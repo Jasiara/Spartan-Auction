@@ -19,16 +19,14 @@
 > Motivation for the App:
 To create a secure, student-exclusive marketplace for UNCG students to buy, sell, and auction items within their campus community.
 
-Goals of the App:
-
+>Goals of the App:
 Facilitate easy and safe transactions among students.
 Provide a platform for students to auction items tailored to their interests.
 Build a sense of community and connection through shared commerce.
 Problem the App Solves:
 It addresses the lack of a centralized, student-specific platform for secure peer-to-peer transactions at UNCG.
 
-Features of the App:
-
+>Features of the App:
 Student-only sign-up and profile creation.
 Personalized auction listings based on user interests.
 Easy item posting, bidding, and bid management.
