@@ -1,7 +1,3 @@
-# Spartan Auction
-
-Spartan Auction is UNCG's hot spot for buying and selling
-
 ## Title
 
 > Spartan Auction
