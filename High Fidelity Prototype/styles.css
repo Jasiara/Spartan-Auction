@@ -1,0 +1,69 @@
+/*
+UNCG colors in HEX
+Navy: #0f2044
+Gold: #ffb71b
+Grey: #bec0c2
+*/
+
+body {
+    background-color: #bec0c2;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    background-color: #0f2044;
+    color: #ffb71b;
+    width: 100%;
+    margin: -1%;
+    padding: .75%;
+    border-radius: 10%;
+}
+
+.items-view {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+
+.item {
+    background-color: #e5e6e4 ;
+    padding: 1%;
+    width: 20%;
+    margin: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10%;
+    box-shadow: black;
+}
+
+img {
+    border-radius: 5%;
+}
+
+.small-header {
+    font-size: 135%;
+}
+
+input {
+    width: 100%;
+    border-radius: 15%;
+}
+
+.header-items {
+    width: 33%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.sign-in-login {
+    width: 33%;
+    display: flex;
+    justify-content: space-around;
+}
