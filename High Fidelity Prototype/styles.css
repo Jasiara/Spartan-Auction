@@ -7,30 +7,30 @@ Grey: #bec0c2
 
 body {
     background-color: #bec0c2;
+    padding: 0;
+    margin: 0;
 }
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
-    background-color: #0f2044;
-    color: #ffb71b;
+    color: #0f2044;
     width: 100%;
-    margin: -1%;
-    padding: .75%;
-    border-radius: 10%;
+    padding: 1% 0%;
+    background-color: #e7e7ee;
+    /*border-bottom: 2px solid #8f8f94;*/
 }
 
 .items-view {
     width: 100%;
     display: flex;
     align-content: center;
-    justify-content: end;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 .item {
-    background-color: #e5e6e4 ;
     padding: 1%;
     width: 20%;
     margin: 2%;
@@ -50,20 +50,48 @@ img {
     font-size: 135%;
 }
 
-input {
-    width: 100%;
-    border-radius: 15%;
-}
-
-.header-items {
-    width: 33%;
+.search {
+    width: 30%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-content: center;
 }
 
-.sign-in-login {
-    width: 33%;
+.search > input {
+    color: #0f2044;
+    font-size: 100%;
+    background: transparent;
+    width: 700px;
+    height: 20px;
+    padding: 6%;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+    margin-left: -200px;
+}
+
+.header-items {
+    width: 15%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+}
+
+.sign-up-login {
+    width: 15%;
     display: flex;
     justify-content: space-around;
+}
+
+.link-button {
+    background-color: #0f2044;
+    padding: 0px 50px;
+    margin: 0px 10px;
+    /*border: 1px solid #0f2044;*/
+    border-radius: 10%;
+    color: #e7e7ee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
