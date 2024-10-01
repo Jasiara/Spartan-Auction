@@ -95,3 +95,19 @@ img {
     justify-content: center;
     align-items: center;
 }
+
+.sign-up-main, .login-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.sign-up-login-form {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 2%;
+    padding: 2%;
+}
