@@ -50,6 +50,11 @@ img {
     font-size: 135%;
 }
 
+.small-header > a{
+    text-decoration: none;
+    color: #0f2044;
+}
+
 .search {
     width: 30%;
     display: flex;
@@ -110,4 +115,73 @@ img {
     width: 50%;
     margin: 2%;
     padding: 2%;
+}
+
+.current-bids {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.profile-top {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img, .profile-desc {
+    margin: 2%;
+}
+
+.profile-top p {
+    font-size: 150%;
+}
+
+.user-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.user-nav a {
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 0;
+    padding: 2%;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.user-nav-highlight {
+    background-color: #e7e7ee;
+    color: #0f2044;
+    text-decoration: none;
+}
+
+.user-nav-non-highlight {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    text-decoration: none;
+}
+
+.current-bids {
+    background-color: #e7e7ee;
+    height: 50%;
+}
+
+.black-writing {
+    color: black;
+    text-decoration: none;
+}
+
+.seller-name {
+    display: flex;
+    align-content: center;
+}
+
+.item-link {
+    text-decoration: none;
 }
