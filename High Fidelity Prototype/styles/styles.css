@@ -9,6 +9,7 @@ body {
     background-color: #bec0c2;
     padding: 0;
     margin: 0;
+    color: #0f2044;
 }
 
 header {
@@ -236,6 +237,29 @@ img {
     background-color: #e7e7ee;
 }
 
+.customer-review {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #e7e7ee;
+}
+
+.customer-review-item {
+    width: 80%;
+    display: flex;
+    margin: 2%;
+    padding: 2%;
+    border: 2px solid #0f2044;
+    border-radius: 50px;
+}
+
+.customer-review-item img {
+    margin: 2%;
+}
+
 .black-writing {
     color: black;
     text-decoration: none;
@@ -290,4 +314,36 @@ img {
 .current-and-past-bids .item-link {
     margin: 3%;
     padding: 3%;
+}
+
+.fa-search {
+    margin: 3%;
+    padding: 5%;
+    font-size: 400%;
+    color: #0f2044;
+}
+
+.search-heading {
+    font-size: 200%;
+    margin: 2%;
+}
+
+.bid-confirm-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bid-confirm-form input {
+    width: 100%;
+    padding: 2%;
+}
+
+.bid-confirm-form .cancel:hover {
+    background-color: red;
+    color: #e7e7ee;
+}
+
+.bid-confirm-form .bid:hover {
+    background-color: green;
+    color: #e7e7ee;
 }

@@ -23,17 +23,22 @@
             <a href="signup.html" class="link-button">Sign Up</a>
         </div>
     </header>
-    <main>
-        <div class="a-bid">
-            <img src="https://placehold.co/500x500" alt="">
-            <div>
-                <p>Item Name: </p>
-                <p>Current Highest Bid</p>
-                <p>Seller: <a href="./other-profile.html">@username</a></p>
-                <div>
-                    <a href="./bid-confirm.html" class="link-button">Place A Bid</a>
-                </div>
+    <main class="sign-up-main">
+        <div class="sign-up-login-form">
+            <h2>Item Name</h2>
+            <div class="bid-confirm-form">
+                <img src="https://placehold.co/200x200" alt="">
+                <form action="" method="post">
+                    <label for="your-bid">Highest Bid: $500</label>
+                    <label for="your-bid">Your Bid:</label><br>
+                    <input type="text"><br>
+                    <div>
+                        <a class="cancel" href="./a-bid.html">Cancel Bid</a>
+                        <a class="bid" href="./a-bid.html">Confirm Bid</a>
+                    </div>
+                </form>
             </div>
+
         </div>
     </main>
 </body>
