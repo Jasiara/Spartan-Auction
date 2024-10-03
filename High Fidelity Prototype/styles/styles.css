@@ -549,3 +549,83 @@ img {
     font-size: 1500%;
     color: #0f2044;
 }
+
+.admin-header {
+    background-color: #0f2044;
+    color: #e7e7ee;
+}
+
+.admin-header .link-button {
+    background-color: #e7e7ee;
+    color: #0f2044;
+}
+
+.admin-header .header-items .small-header a {
+    color: #e7e7ee;
+}
+
+table, th, td {
+    border: 1px solid #0f2044;
+    border-radius: 10px;
+    border-collapse: collapse;
+    font-size: 125%;
+}
+
+td, th {
+    padding: 0px 20px;
+}
+
+.stat-table {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.admin-big-heading {
+    margin: 2%;
+}
+
+.admin-search {
+    width: 30%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.admin-search > input {
+    color: #0f2044;
+    font-size: 100%;
+    background: transparent;
+    width: 700px;
+    height: 10px;
+    padding: 6%;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+}
+
+.admin-main .current-and-past-bids {
+    padding-bottom: 30%;
+    display: block;
+}
+
+.manage-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.manage-item p {
+    font-size: 200%;
+    text-align: center;
+}
+
+.manage-item img {
+    width: 100px;
+    height: 100px;
+}
+
+.manage-item i {
+    font-size: 300%;
+}
