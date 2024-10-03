@@ -9,68 +9,73 @@
 </head>
 
 <body>
-<header>
-  <div class="header-items">
-    <p class="small-header"><a href="./index.html">Spartan Auction</a></p>
-  </div>
-  <div class="search">
-    <input type="text" placeholder="Search . . .">
-    <!--<i class="fa fa-search"></i>-->
-  </div>
-  <div class="sign-up-login">
-    <a href="login.html" class="link-button">Login</a>
-    <a href="signup.html" class="link-button">Sign Up</a>
-  </div>
-</header>
-<main>
-  <div class="profile-top">
-    <div class="profile-img">
-      <img class="profile-img"src="https://placehold.co/250x250" alt="">
+  <header>
+    <div class="header-items">
+      <p class="small-header"><a href="./index.html">Spartan Auction</a></p>
     </div>
-    <div class="profile-desc">
-      <p>Name: </p>
-      <p>Username: </p>
-      <p>Location: </p>
-      <div class="rating">
-        <p>Rating:</p>
-        <div class="stars">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star-half-empty"></i>
-          <i class="fa fa-star-o"></i>
+    <div class="search">
+      <input type="text" placeholder="Search . . .">
+      <a href="./search.html"><i class="fa fa-search"></i></a>
+    </div>
+    <div class="sign-up-login">
+      <a href="login.html" class="link-button">Login</a>
+      <a href="signup.html" class="link-button">Sign Up</a>
+    </div>
+  </header>
+  <main>
+    <div class="profile-top">
+      <div class="profile-img">
+        <!--IMAGE SOURCE:  https://www.pinterest.com/pin/712905816020483535/-->
+        <img class="profile-img" src="./images/random-profile-pic.jpg" alt="">
+      </div>
+      <div class="profile-desc">
+        <p>Name: Hazel Victor</p>
+        <p>Username: impoptic</p>
+        <p>Location: Greensboro, NC</p>
+        <div class="rating">
+          <p>Rating:</p>
+          <div class="stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-empty"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="user-nav">
-    <a href="./my_auctions.html" class="user-nav-non-highlight">My Auctions</a>
-    <a href="./profile.html" class="user-nav-non-highlight">Current Bids</a>
-    <a href="./past-bids.html" class="user-nav-non-highlight">Past Bids</a>
-    <a href="./customer_reviews.html" class="user-nav-highlight">Customer Reviews</a>
-  </div>
+    <div class="user-nav">
+      <a href="./my_auctions.html" class="user-nav-non-highlight">My Auctions</a>
+      <a href="./profile.html" class="user-nav-non-highlight">Current Bids</a>
+      <a href="./past-bids.html" class="user-nav-non-highlight">Past Bids</a>
+      <a href="./customer_reviews.html" class="user-nav-highlight">Customer Reviews</a>
+    </div>
 
-  <div class="customer_review">
-    <section>
-    <img width="66" height="66" alt="Tilo Mitra&#x27;s avatar" class="customer-avatar" src="https://placehold.co/500x500">
-    By <a href="./other-profile.html">@username</a>
-    <p>This person was a huge help and made the payment process very easy and smooth. Definitely will buy from them again!! </p>
-    <br>
-    </section>
-    <br>
-    <section>
-    <img width="66" height="66" alt="Tilo Mitra&#x27;s avatar" class="customer-avatar" src="https://placehold.co/500x500">
-    By <a href="./other-profile.html">@username</a>
-    <p>This person was a huge help and made the payment process very easy and smooth. Definitely will buy from them again!! </p>
-    </section>
-    <br>
-    <section>
-      <label for="item_info">Leave a Comment</label>
+    <div class="customer_review">
+      <div class="customer_review_item">
+        <!--IMAGE SOURCE:  https://www.pinterest.com/Shuu026/random-profile-pic/-->
+        <img alt="Tilo Mitra&#x27;s avatar" class="customer-avatar" src="./images/meme-profile-pic.jpg">
+        By <a href="./other-profile.html">@telescopemerely</a>
+        <p>This person was a huge help and made the payment process very easy and smooth. Definitely will buy from them
+          again!! </p>
+        <br>
+      </div>
       <br>
-      <textarea type="text" name="item_info" id="item_info" width= "20" rows="5"></textarea>
-    </section>
-  </div>
-</main>
+      <div class="customer_review_item">
+        <!--IMAGE SOURCE:  https://www.pinterest.com/Shuu026/random-profile-pic/-->
+        <img alt="Tilo Mitra&#x27;s avatar" class="customer-avatar" src="./images/Astronaut Eating Donuts by kim-id.jpg">
+        By <a href="./other-profile.html">@clogsgoat</a>
+        <p>This person was a huge help and made the payment process very easy and smooth. Definitely will buy from them
+          again!! </p>
+      </div>
+      <br>
+      <div>
+        <label for="item_info">Leave a Comment</label>
+        <br>
+        <textarea type="text" name="item_info" id="item_info" width="20" rows="5"></textarea>
+      </div>
+    </div>
+  </main>
 </body>
 
 </html>

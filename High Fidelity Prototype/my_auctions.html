@@ -4,69 +4,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile</title>
+  <title>My Auction</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-<header>
-  <div class="header-items">
-    <p class="small-header"><a href="./index.html">Spartan Auction</a></p>
-  </div>
-  <div class="search">
-    <input type="text" placeholder="Search . . .">
-    <!--<i class="fa fa-search"></i>-->
-  </div>
-  <div class="sign-up-login">
-    <a href="login.html" class="link-button">Login</a>
-    <a href="signup.html" class="link-button">Sign Up</a>
-  </div>
-</header>
-<main>
-  <div class="profile-top">
-    <div class="profile-img">
-      <img class="profile-img"src="https://placehold.co/250x250" alt="">
+  <header>
+    <div class="header-items">
+      <p class="small-header"><a href="./index.html">Spartan Auction</a></p>
     </div>
-    <div class="profile-desc">
-      <p>Name: </p>
-      <p>Username: </p>
-      <p>Location: </p>
-      <div class="rating">
-        <p>Rating:</p>
-        <div class="stars">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star-half-empty"></i>
-          <i class="fa fa-star-o"></i>
+    <div class="search">
+      <input type="text" placeholder="Search . . .">
+      <a href="./search.html"><i class="fa fa-search"></i></a>
+    </div>
+    <div class="sign-up-login">
+      <a href="login.html" class="link-button">Login</a>
+      <a href="signup.html" class="link-button">Sign Up</a>
+    </div>
+  </header>
+  <main>
+    <div class="profile-top">
+      <div class="profile-img">
+        <!--IMAGE SOURCE:  https://www.pinterest.com/pin/712905816020483535/-->
+        <img class="profile-img" src="./images/random-profile-pic.jpg" alt="">
+      </div>
+      <div class="profile-desc">
+        <p>Name: Hazel Victor</p>
+        <p>Username: impoptic</p>
+        <p>Location: Greensboro, NC</p>
+        <div class="rating">
+          <p>Rating:</p>
+          <div class="stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-empty"></i>
+            <i class="fa fa-star-o"></i>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="user-nav">
-    <a href="./my_auctions.html" class="user-nav-highlight">My Auctions</a>
-    <a href="./profile.html" class="user-nav-non-highlight">Current Bids</a>
-    <a href="./past-bids.html" class="user-nav-non-highlight">Past Bids</a>
-    <a href="./customer_reviews.html" class="user-nav-non-highlight">Customer Reviews</a>
-  </div>
-  <div class="my_auctions">
-    <a href="./a-bid.html" class="item-link">
-      <div class="item">
-        <img src="https://placehold.co/200x200" alt="">
-        <p class="black-writing">Highest Bid: $500</p>
-        <p class="black-writing">Time Left: 1D 15H 16MIN</p>
-        <p><span class="black-writing"><a href="./auctioning.html">Edit Auction</a></p>
-      </div>
-    </a>
-    <a href="./auctioning.html" class="item-link">
-      <div class="item">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/376/259/small/Basic_Elements__28121_29.jpg" alt="">
-        <p><span class="black-writing"></span><a href="./auctioning.html">Register New Auction</a></p>
-      </div>
-    </a>
-  </div>
-</main>
+    <div class="user-nav">
+      <a href="./my_auctions.html" class="user-nav-highlight">My Auctions</a>
+      <a href="./profile.html" class="user-nav-non-highlight">Current Bids</a>
+      <a href="./past-bids.html" class="user-nav-non-highlight">Past Bids</a>
+      <a href="./customer_reviews.html" class="user-nav-non-highlight">Customer Reviews</a>
+    </div>
+    <div class="my_auctions">
+      <a href="./a-bid.html" class="item-link">
+        <div class="item">
+          <!--IMAGE SOURCE: https://www.gettyimages.com/photos/microwave-->
+          <img src="./images/microwave.jpg" alt="">
+          <p class="black-writing">Highest Bid: $32</p>
+          <p class="black-writing">Time Left: 1D 8H 5MIN</p>
+          <a class="navy-button" href="./auctioning.html">Edit Auction</a>
+        </div>
+      </a>
+      <a href="./auctioning.html" class="item-link">
+        <div class="item">
+          <i class="fa fa-plus"></i>
+          <p><span class="black-writing"></span><a href="./auctioning.html">Register New Auction</a></p>
+        </div>
+      </a>
+    </div>
+  </main>
 </body>
 
 </html>
