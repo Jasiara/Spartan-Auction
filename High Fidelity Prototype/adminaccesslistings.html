@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Listings Page</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f9;
+        }
+
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
+          background-color: #0f2044;
+          color: white;
+        }
+
+        .header-items h2 {
+          margin: 0;
+        }
+
+        .search {
+          flex-grow: 1;
+          margin-left: 20px;
+          margin-right: 20px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .search input[type="search"] {
+          width: 100%;
+          max-width: 400px;
+          padding: 10px;
+          border: none;
+          border-radius: 25px;
+          font-size: 16px;
+        }
+
+        .link-button {
+          text-decoration: none;
+          color: white;
+          background-color: #ffb71b;
+          padding: 10px 20px;
+          border-radius: 25px;
+          font-size: 16px;
+        }
+
+        .dashboard {
+          margin: 20px;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .listings-table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        .listings-table th, .listings-table td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: left;
+        }
+
+        .listings-table th {
+          background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="header-items">
+        <a href="adminboard.html" class="link-button">Admin Dashboard</a>
+    </div>
+    <div class="search">
+        <input type="search" placeholder="Search listings...">
+    </div>
+    <div class="sign-out">
+        <a href="login.html" class="link-button">Sign Out</a>
+    </div>
+</header>
+
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h2>All Listings</h2>
+        <a href="#" class="link-button">Filter Listings</a>
+    </div>
+    <div class="dashboard-content">
+        <table class="listings-table">
+            <thead>
+            <tr>
+                <th>Listing ID</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Starting Price</th>
+                <th>End Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Antique Vase</td>
+                <td>Antiques</td>
+                <td>$50</td>
+                <td>2024-12-01</td>
+                <td><a href="#" class="link-button">Edit</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>PS4 copy of Demon Souls</td>
+                <td>Video Games</td>
+                <td>$10</td>
+                <td>2024-11-21</td>
+                <td><a href="#" class="link-button">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

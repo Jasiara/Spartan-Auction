@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>All Bids Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #0f2044;
+      color: white;
+    }
+
+    .header-items h2 {
+      margin: 0;
+    }
+
+    .search {
+      flex-grow: 1;
+      margin-left: 20px;
+      margin-right: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search input[type="search"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    .link-button {
+      text-decoration: none;
+      color: white;
+      background-color: #ffb71b;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    .dashboard {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .bids-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    .bids-table th, .bids-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .bids-table th {
+      background-color: #f2f2f2;
+    }
+
+    .bids-table td a {
+      color: #0f2044;
+      text-decoration: none;
+    }
+
+    .bids-table td a:hover {
+      text-decoration: underline;
+    }
+
+    .action-buttons a {
+      padding: 5px 10px;
+      margin-right: 5px;
+      text-decoration: none;
+      color: white;
+      background-color: #0f2044;
+      border-radius: 5px;
+    }
+
+    .action-buttons a.reject {
+      background-color: #ff4b5c;
+    }
+
+    .action-buttons a.view {
+      background-color: #4caf50;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="header-items">
+    <a href="adminboard.html" class="link-button">Admin Dashboard</a>
+  </div>
+  <div class="search">
+    <input type="search" placeholder="Search bids...">
+  </div>
+  <div class="sign-out">
+    <a href="login.html" class="link-button">Sign Out</a>
+  </div>
+</header>
+
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h2>Current Bids</h2>
+  </div>
+  <div class="dashboard-content">
+    <table class="bids-table">
+      <thead>
+      <tr>
+        <th>Bid ID</th>
+        <th>Item Name</th>
+        <th>Bidder Name</th>
+        <th>Bid Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>201</td>
+        <td><a href="#">Vintage Watch</a></td>
+        <td><a href="#">John Doe</a></td>
+        <td>$250</td>
+        <td>Pending</td>
+        <td class="action-buttons">
+          <a href="#" class="view">View</a>
+          <a href="#" class="reject">Reject</a>
+        </td>
+      </tr>
+      <tr>
+        <td>202</td>
+        <td><a href="#">Antique Vase</a></td>
+        <td><a href="#">Jane Smith</a></td>
+        <td>$500</td>
+        <td>Pending</td>
+        <td class="action-buttons">
+          <a href="#" class="view">View</a>
+          <a href="#" class="reject">Reject</a>
+        </td>
+      </tr>
+      <tr>
+        <td>203</td>
+        <td><a href="#">Old Camera</a></td>
+        <td><a href="#">Mark Wilson</a></td>
+        <td>$300</td>
+        <td>Accepted</td>
+        <td class="action-buttons">
+          <a href="#" class="view">View</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dashboard-header">
+    <h2>Completed Bids</h2>
+  </div>
+  <div class="dashboard-content">
+    <table class="bids-table">
+      <thead>
+      <tr>
+        <th>Bid ID</th>
+        <th>Item Name</th>
+        <th>Bidder Name</th>
+        <th>Bid Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>101</td>
+        <td><a href="#">Handcrafted Necklace</a></td>
+        <td><a href="#">Laura Jones</a></td>
+        <td>$150</td>
+        <td>Completed</td>
+        <td class="action-buttons">
+          <a href="#" class="view">View</a>
+        </td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td><a href="#">Classic Car Model</a></td>
+        <td><a href="#">Jake Green</a></td>
+        <td>$1000</td>
+        <td>Completed</td>
+        <td class="action-buttons">
+          <a href="#" class="view">View</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+
+</html>
