@@ -258,6 +258,8 @@ img {
     border-radius: 50px;
 }
 
+
+
 .customer-review-item img {
     margin: 2%;
 }
@@ -386,12 +388,12 @@ img {
     border-radius: 10px;
 }
 
-.item a, .customer_review_item a, .a-bid div p a{
+.item a, .customer_review_item a, .a-bid div p a, .customer-review-item div p a{
     color: black;
     text-decoration: none;
 }
 
-.item p a:hover,  .customer_review_item a:hover, .a-bid div p a:hover {
+.item p a:hover,  .customer_review_item a:hover, .a-bid div p a:hover, .customer-review-item div p a:hover {
     color: #0f2044;
     text-decoration: underline;
 }
@@ -499,6 +501,7 @@ img {
     justify-content: center;
     flex-wrap: wrap;
     background-color: #e7e7ee;
+    padding-bottom: 3%;
 }
 
 .customer_review {
