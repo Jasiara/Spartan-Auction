@@ -631,3 +631,7 @@ td, th {
 .manage-item i {
     font-size: 300%;
 }
+
+.rating-number {
+    display: inline;
+}
