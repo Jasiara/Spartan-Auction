@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Provides the actual database transactions.
  */
+@Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
 }
