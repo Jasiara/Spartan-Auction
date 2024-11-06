@@ -32,6 +32,7 @@ public class ReviewController {
 
     @PostMapping("/new")
     public List<Review> addNewReview(@RequestBody Review review) {
+        //System.out.println(review.toString());
         reviewService.addNewReview(review);
         return reviewService.getAllReviews();
     }

@@ -1,5 +1,6 @@
 package com.csc340.SpartanAuction.review;
 
+import com.csc340.SpartanAuction.rating.Rating;
 import com.csc340.SpartanAuction.user.User;
 import com.csc340.SpartanAuction.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class ReviewService {
     }
 
     public void addNewReview(Review review) {
+        if (reviewRepository.existsById(review.getId())) {
+            review = new Review(review);
+            reviewRepository.save(review);
+            return;
+        }
+        review = new Review(review.getReviewUser(), review.getProviderUser(), review.getReview(), review.getRating());
         reviewRepository.save(review);
     }
 

@@ -37,6 +37,31 @@ public class Review {
     public Review() {
     }
 
+    public Review(User reviewUser, User providerUser, String review, Rating rating) {
+        this.reviewUser = reviewUser;
+        this.providerUser = providerUser;
+        this.review = review;
+        this.rating = rating;
+    }
+
+    public Review(int id) {
+        this.id = id;
+    }
+
+    public Review(User reviewUser, User providerUser, Rating rating) {
+        this.reviewUser = reviewUser;
+        this.providerUser = providerUser;
+        this.rating = rating;
+    }
+
+    public Review(Review review) {
+        this.id = review.getId();
+        this.reviewUser = review.getReviewUser();
+        this.providerUser = review.getProviderUser();
+        this.review = review.getReview();
+        this.rating = review.getRating();
+    }
+
     public int getId() {
         return id;
     }
@@ -75,5 +100,16 @@ public class Review {
 
     public void setRating(Rating rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", reviewUser=" + reviewUser +
+                ", providerUser=" + providerUser +
+                ", review='" + review + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }

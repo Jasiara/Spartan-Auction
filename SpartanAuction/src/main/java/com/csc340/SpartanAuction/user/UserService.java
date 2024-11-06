@@ -1,5 +1,6 @@
 package com.csc340.SpartanAuction.user;
 
+import com.csc340.SpartanAuction.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,29 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RatingRepository ratingRepository;
 
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+
+        List<User> users = userRepository.findAll();
+        for (User user: users) {
+            double ratingAverage = ratingRepository.getAverageRatingForOneUser(user.getId());
+            user.setRatingAverage(ratingAverage);
+            userRepository.save(user);
+        }
+        return users;
     }
 
 
     public User getUserById(int id) {
-        return userRepository.findById(id).orElse(null);
+
+        User theUser = userRepository.findById(id).orElse(null);
+        double ratingAverage = ratingRepository.getAverageRatingForOneUser(id);
+        theUser.setRatingAverage(ratingAverage);
+        userRepository.save(theUser);
+        return theUser;
     }
 
     /*
@@ -51,8 +66,7 @@ public class UserService {
         existing.setUserType(user.getUserType());
         existing.setRatingAverage(user.getRatingAverage());
         existing.setImagePath(user.getImagePath());
-
-        //Technically the 4 lines above are not necessary because the save method merges by default.
+        
         userRepository.save(existing);
     }
 

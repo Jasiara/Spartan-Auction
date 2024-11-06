@@ -1,0 +1,16 @@
+package com.csc340.SpartanAuction.rating;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface RatingRepository extends JpaRepository<Rating, Integer> {
+    @Query(value = "SELECT * FROM rating WHERE user_id = :userId", nativeQuery = true)
+    public List<Rating> getAllRatingsForOneUser(@Param("userId") int userId);
+
+    @Query(value = "SELECT AVG(rating) FROM rating WHERE user_id = :userId;", nativeQuery = true)
+    public double getAverageRatingForOneUser(@Param("userId") int userId);
+}
