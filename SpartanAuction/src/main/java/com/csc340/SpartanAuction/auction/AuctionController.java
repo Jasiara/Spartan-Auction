@@ -17,26 +17,26 @@ public class AuctionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Auction> getAuctionById(@PathVariable int id) {
+    public Auction getAuctionById(@PathVariable int id) {
         Auction auction = auctionService.getAuctionById(id);
-        return new ResponseEntity<>( auction, HttpStatus.OK);
+        return auction;
     }
 
-    @PostMapping
-    public ResponseEntity<Auction> createAuction(@RequestBody Auction auction) {
+    @PostMapping("/new")
+    public Auction createAuction(@RequestBody Auction auction) {
         Auction createdAuction = auctionService.createAuction(auction);
-        return new ResponseEntity<>(createdAuction, HttpStatus.CREATED);
+        return createdAuction;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Auction> updateAuction(@PathVariable int id, @RequestBody Auction auctionDetails) {
+    public Auction updateAuction(@PathVariable int id, @RequestBody Auction auctionDetails) {
         Auction updatedAuction = auctionService.updateAuction(id, auctionDetails);
-        return new ResponseEntity<>(updatedAuction, HttpStatus.OK);
+        return auctionService.getAuctionById(updatedAuction.getId());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAuction(@PathVariable int id) {
+    public List<Auction> deleteAuction(@PathVariable int id) {
         auctionService.deleteAuction(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return auctionService.getAllAuctions();
     }
 }

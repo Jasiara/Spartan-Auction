@@ -1,4 +1,4 @@
-package com.csc340.demo.Item;
+package com.csc340.SpartanAuction.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ public class ItemController {
 
     // GET item by ID
     @GetMapping("/{id}")
-    public Optional<Item> getItemById(@PathVariable int id) {
+    public Item getItemById(@PathVariable int id) {
         return itemService.getItemById(id);
     }
 

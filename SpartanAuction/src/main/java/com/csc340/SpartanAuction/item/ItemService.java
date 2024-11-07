@@ -1,4 +1,4 @@
-package com.csc340.demo.Item;
+package com.csc340.SpartanAuction.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,8 @@ public class ItemService {
     }
 
     // Get an item by its ID
-    public Optional<Item> getItemById(int id) {
-        return itemRepository.findById(id);
+    public Item getItemById(int id) {
+        return itemRepository.findById(id).orElse(null);
     }
 
     // Get an item by its name

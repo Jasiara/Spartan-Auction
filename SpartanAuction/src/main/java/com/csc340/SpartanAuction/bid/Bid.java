@@ -1,10 +1,10 @@
 package com.csc340.SpartanAuction.bid;
 
 import com.csc340.SpartanAuction.user.User;
-//import com.csc340.SpartanAuction.item.Item;
+import com.csc340.SpartanAuction.item.Item;
 import jakarta.persistence.*;
 @Entity
-@Table(name = "bids")
+@Table(name = "bid")
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -74,5 +74,15 @@ public class Bid {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "id=" + id +
+                ", item=" + item +
+                ", amount=" + amount +
+                ", user=" + user +
+                '}';
     }
 }

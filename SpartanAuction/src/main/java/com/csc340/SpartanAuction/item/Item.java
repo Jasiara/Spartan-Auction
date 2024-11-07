@@ -1,10 +1,11 @@
-package com.csc340.demo.Item;
+package com.csc340.SpartanAuction.item;
 
+import com.csc340.SpartanAuction.user.User;
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Entity
-@Table(name = "items")
+@Table(name = "item")
 public class Item {
 
     @Id
@@ -16,19 +17,20 @@ public class Item {
 
     private double amount;
 
-    @Column(name = "provider_id")
-    private int providerId;
+    @ManyToOne
+    @JoinColumn(name = "providerId")
+    private User providerId;
 
-    @Column(name = "date_and_time")
-    private LocalDateTime dateAndTime;
+    @Column(name = "date_and_time", nullable = false)
+    private Date dateAndTime;
 
-    @Column(name = "image_path")
+    @Column(name = "image_path", nullable = false)
     private String imagePath;
 
     @Column(columnDefinition = "TEXT")
     private String info;
 
-    @Column(name = "start_bid")
+    @Column(name = "start_bid", nullable = false)
     private double startBid;
 
     @Column(name = "highest_bid")
@@ -36,10 +38,11 @@ public class Item {
 
     private String category;
 
+    @Column(nullable = false)
     private String status;
 
     // Constructors
-    public Item(int id, String name, double amount, int providerId, LocalDateTime dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
+    public Item(int id, String name, double amount, User providerId, Date dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -53,7 +56,7 @@ public class Item {
         this.status = status;
     }
 
-    public Item(String name, double amount, int providerId, LocalDateTime dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
+    public Item(String name, double amount, User providerId, Date dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
         this.name = name;
         this.amount = amount;
         this.providerId = providerId;
@@ -67,6 +70,10 @@ public class Item {
     }
 
     public Item() {
+    }
+
+    public Item(int id) {
+        this.id = id;
     }
 
     // Getters and Setters
@@ -94,19 +101,19 @@ public class Item {
         this.amount = amount;
     }
 
-    public int getProviderId() {
+    public User getProviderId() {
         return providerId;
     }
 
-    public void setProviderId(int providerId) {
+    public void setProviderId(User providerId) {
         this.providerId = providerId;
     }
 
-    public LocalDateTime getDateAndTime() {
+    public Date getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
+    public void setDateAndTime(Date dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 
