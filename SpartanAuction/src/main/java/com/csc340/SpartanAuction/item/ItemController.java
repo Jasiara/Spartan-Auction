@@ -14,13 +14,13 @@ public class ItemController {
     private ItemService itemService;
 
     // POST a new Item
-    @PostMapping
+    @PostMapping("/new")
     public Item createItem(@RequestBody Item item) {
         return itemService.createItem(item);
     }
 
     // GET all items
-    @GetMapping
+    @GetMapping("/all")
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
