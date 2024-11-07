@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/auctions")
+@RequestMapping("/auctions")
 public class AuctionController {
     @Autowired
     private AuctionService auctionService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Auction> getAllAuctions() {
         return auctionService.getAllAuctions();
     }

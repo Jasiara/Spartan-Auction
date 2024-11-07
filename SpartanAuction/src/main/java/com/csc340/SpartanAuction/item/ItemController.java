@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/items")
+@RequestMapping("/items")
 public class ItemController {
 
     @Autowired
@@ -50,13 +50,13 @@ public class ItemController {
     }
 
     // PUT (update) an existing Item
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Item updateItem(@PathVariable int id, @RequestBody Item itemDetails) {
         return itemService.updateItem(id, itemDetails);
     }
 
     // DELETE an Item
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteItem(@PathVariable int id) {
         itemService.deleteItem(id);
         return "Item with ID " + id + " has been deleted.";
