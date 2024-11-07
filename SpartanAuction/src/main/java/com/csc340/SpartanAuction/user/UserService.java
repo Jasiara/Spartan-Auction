@@ -24,8 +24,10 @@ public class UserService {
         List<User> users = userRepository.findAll();
         for (User user: users) {
             double ratingAverage = ratingRepository.getAverageRatingForOneUser(user.getId());
-            user.setRatingAverage(ratingAverage);
-            userRepository.save(user);
+            if (ratingAverage != 0) {
+                user.setRatingAverage(ratingAverage);
+                userRepository.save(user);
+            }
         }
         return users;
     }
@@ -35,8 +37,10 @@ public class UserService {
 
         User theUser = userRepository.findById(id).orElse(null);
         double ratingAverage = ratingRepository.getAverageRatingForOneUser(id);
-        theUser.setRatingAverage(ratingAverage);
-        userRepository.save(theUser);
+        if (ratingAverage != 0 ) {
+            theUser.setRatingAverage(ratingAverage);
+            userRepository.save(theUser);
+        }
         return theUser;
     }
 
@@ -53,6 +57,7 @@ public class UserService {
 
 
     public void addNewUser(User user) {
+        user.setRatingAverage(0);
         userRepository.save(user);
     }
 
