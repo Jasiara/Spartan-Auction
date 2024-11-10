@@ -33,3 +33,25 @@ Easy item posting, bidding, and bid management.
 Real-time notifications and updates.
 What Makes the App Interesting/Cool:
 It’s a unique, campus-exclusive auction platform that fosters community engagement while offering a personalized, secure shopping experience for students.
+
+## API Endpoints
+Use POSTMAN to try the following endpoints:
+
+## Users
+
+## Get list of Users
+
+### Request
+
+    `GET /users/all`
+
+    `(http://localhost:8080/users/all)`
+
+   
+### Response
+
+     [
+   
+     
+   
+     ]
