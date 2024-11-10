@@ -1,7 +1,10 @@
 package com.csc340.SpartanAuction.auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import com.csc340.SpartanAuction.user.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -10,6 +13,8 @@ import java.util.List;
 public class AuctionController {
     @Autowired
     private AuctionService auctionService;
+    @Autowired
+    private UserRepository userRepository; // Inject UserRepository
 
     @GetMapping("/all")
     public List<Auction> getAllAuctions() {
@@ -22,11 +27,20 @@ public class AuctionController {
         return auction;
     }
 
+
     @PostMapping("/new")
     public Auction createAuction(@RequestBody Auction auction) {
-        Auction createdAuction = auctionService.createAuction(auction);
-        return createdAuction;
+        // Check if the seller exists
+        /*User seller = userRepository.findById(sellerId).orElse(null); // Use the repository instance
+        if (seller == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found");
+        }
+        return auctionService.createAuction(auction, sellerId);*/
+
+        auctionService.createAuction(auction);
+        return auctionService.getAuctionById(auction.getId());
     }
+
 
     @PutMapping("/{id}")
     public Auction updateAuction(@PathVariable int id, @RequestBody Auction auctionDetails) {

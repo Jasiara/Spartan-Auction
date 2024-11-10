@@ -3,13 +3,15 @@ package com.csc340.SpartanAuction.auction;
 import com.csc340.SpartanAuction.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.csc340.SpartanAuction.user.*;
 import java.util.List;
 
 @Service
 public class AuctionService {
     @Autowired
     private AuctionRepository auctionRepository;
+    @Autowired
+    private UserRepository userRepository; // Add this line to inject the UserRepository
 
     public List<Auction> getAllAuctions() {
         return auctionRepository.findAll();
@@ -19,9 +21,22 @@ public class AuctionService {
         return auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
     }
 
+//    public Auction createAuction(Auction auction) {
+//        return auctionRepository.save(auction);
+//    }
     public Auction createAuction(Auction auction) {
+        /*User seller = userRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        auction.setSeller(seller); // Set the seller before saving*/
+        if (auctionRepository.existsById(auction.getId())) {
+            auction = new Auction(auction);
+            auctionRepository.save(auction);
+            return;
+        }
+        auction = new Auction(auction.getTitle(), auction.getDescription(), auction.getStartingPrice(), auction.getCurrentPrice(), auction.getAuctionStatus(), auction.getSeller());
         return auctionRepository.save(auction);
     }
+
 
     public Auction updateAuction(int id, Auction auctionDetails) {
         Auction auction = auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
@@ -38,3 +53,6 @@ public class AuctionService {
         auctionRepository.deleteById(id);
     }
 }
+
+
+

@@ -1,7 +1,7 @@
 package com.csc340.SpartanAuction.auction;
 
 import jakarta.persistence.*;
-import com.csc340.SpartanAuction.user.User;
+import com.csc340.SpartanAuction.user.*;
 
 @Entity
 @Table(name = "auction")
@@ -29,7 +29,10 @@ public class Auction {
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller; // Reference to the User entity
 
-    public Auction(int id, String title, String description, double startingPrice, double currentPrice, String auctionStatus, String sellerUsername) {
+    public Auction() {
+    }
+
+    public Auction(int id, String title, String description, double startingPrice, double currentPrice, String auctionStatus, User seller) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -39,7 +42,15 @@ public class Auction {
         this.seller = seller;
     }
 
-    public Auction() {
+    
+
+    public Auction(String title, String description, double startingPrice, double currentPrice, String auctionStatus, User seller) {
+        this.title = title;
+        this.description = description;
+        this.startingPrice = startingPrice;
+        this.currentPrice = currentPrice;
+        this.auctionStatus = auctionStatus;
+        this.seller = seller;
     }
 
     public Auction(int id) {
