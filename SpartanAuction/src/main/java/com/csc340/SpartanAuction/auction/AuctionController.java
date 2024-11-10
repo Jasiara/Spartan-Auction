@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/auctions")
+@RequestMapping("/api/auctions")
 public class AuctionController {
     @Autowired
     private AuctionService auctionService;

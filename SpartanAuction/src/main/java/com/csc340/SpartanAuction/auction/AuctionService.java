@@ -30,7 +30,7 @@ public class AuctionService {
         auction.setStartingPrice(auctionDetails.getStartingPrice());
         auction.setCurrentPrice(auctionDetails.getCurrentPrice());
         auction.setAuctionStatus(auctionDetails.getAuctionStatus());
-        auction.setSellerUsername(auctionDetails.getSellerUsername());
+        auction.setSeller(auctionDetails.getSeller());
         return auctionRepository.save(auction);
     }
 
