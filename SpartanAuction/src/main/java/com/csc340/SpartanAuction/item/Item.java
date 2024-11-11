@@ -3,6 +3,7 @@ package com.csc340.SpartanAuction.item;
 import com.csc340.SpartanAuction.user.User;
 import jakarta.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "item")
@@ -15,14 +16,13 @@ public class Item {
     @Column(nullable = false)
     private String name;
 
-    private double amount;
 
     @ManyToOne
     @JoinColumn(name = "providerId")
     private User providerId;
 
     @Column(name = "date_and_time", nullable = false)
-    private Date dateAndTime;
+    private Timestamp dateAndTime;
 
     @Column(name = "image_path", nullable = false)
     private String imagePath;
@@ -42,10 +42,9 @@ public class Item {
     private String status;
 
     // Constructors
-    public Item(int id, String name, double amount, User providerId, Date dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
+    public Item(int id, String name, User providerId, Timestamp dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
         this.id = id;
         this.name = name;
-        this.amount = amount;
         this.providerId = providerId;
         this.dateAndTime = dateAndTime;
         this.imagePath = imagePath;
@@ -56,9 +55,8 @@ public class Item {
         this.status = status;
     }
 
-    public Item(String name, double amount, User providerId, Date dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
+    public Item(String name, User providerId, Timestamp dateAndTime, String imagePath, String info, double startBid, double highestBid, String category, String status) {
         this.name = name;
-        this.amount = amount;
         this.providerId = providerId;
         this.dateAndTime = dateAndTime;
         this.imagePath = imagePath;
@@ -93,14 +91,6 @@ public class Item {
         this.name = name;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public User getProviderId() {
         return providerId;
     }
@@ -109,11 +99,11 @@ public class Item {
         this.providerId = providerId;
     }
 
-    public Date getDateAndTime() {
+    public Timestamp getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(Date dateAndTime) {
+    public void setDateAndTime(Timestamp dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 

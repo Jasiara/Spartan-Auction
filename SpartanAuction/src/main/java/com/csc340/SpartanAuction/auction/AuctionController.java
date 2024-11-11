@@ -1,5 +1,6 @@
 package com.csc340.SpartanAuction.auction;
 
+import com.csc340.SpartanAuction.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,26 @@ public class AuctionController {
         return auction;
     }
 
+    // GET item by its name
+    @GetMapping("/name/{name}")
+    public List<Auction> getAuctionsByName(@PathVariable String name) {
+        return auctionService.getAuctionsByName(name);
+    }
+
+    // GET item by its category
+    @GetMapping("/category/{category}")
+    public List<Auction> getAuctionsByCategory(@PathVariable String category) {
+        return auctionService.getAuctionsByCategory(category);
+    }
+
+    // GET statistics for items by provider
+    @GetMapping("/provider/{providerId}/statistics")
+    public List<Auction> getAuctionsByProvider(@PathVariable int providerId) {
+        return auctionService.getAuctionsByProvider(providerId);
+    }
 
     @PostMapping("/new")
-    public Auction createAuction(@RequestBody Auction auction) {
+    public List<Auction> createAuction(@RequestBody Auction auction) {
         // Check if the seller exists
         /*User seller = userRepository.findById(sellerId).orElse(null); // Use the repository instance
         if (seller == null) {
@@ -38,7 +56,7 @@ public class AuctionController {
         return auctionService.createAuction(auction, sellerId);*/
 
         auctionService.createAuction(auction);
-        return auctionService.getAuctionById(auction.getId());
+        return auctionService.getAllAuctions();
     }
 
 

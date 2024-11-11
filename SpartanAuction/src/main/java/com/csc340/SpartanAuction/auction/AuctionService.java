@@ -1,5 +1,6 @@
 package com.csc340.SpartanAuction.auction;
 
+import com.csc340.SpartanAuction.item.Item;
 import com.csc340.SpartanAuction.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,23 @@ public class AuctionService {
         return auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
     }
 
-//    public Auction createAuction(Auction auction) {
+    public List<Auction> getAuctionsByName(String name) {
+        return auctionRepository.findByName(name);
+    }
+
+    public List<Auction> getAuctionsByCategory(String category) {
+        return auctionRepository.findByCategory(category);
+    }
+
+    public List<Auction> getAuctionsByProvider(int providerId) {
+        return auctionRepository.findByProviderId(providerId);
+    }
+
+
+    //    public Auction createAuction(Auction auction) {
 //        return auctionRepository.save(auction);
 //    }
-    public Auction createAuction(Auction auction) {
+    public void createAuction(Auction auction) {
         /*User seller = userRepository.findById(sellerId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         auction.setSeller(seller); // Set the seller before saving*/
@@ -33,8 +47,10 @@ public class AuctionService {
             auctionRepository.save(auction);
             return;
         }
-        auction = new Auction(auction.getTitle(), auction.getDescription(), auction.getStartingPrice(), auction.getCurrentPrice(), auction.getAuctionStatus(), auction.getSeller());
-        return auctionRepository.save(auction);
+        auction = new Auction(auction.getTitle(), auction.getDescription(), auction.getStartingPrice(),
+                auction.getCurrentPrice(), auction.getAuctionStatus(), auction.getSeller(),
+                auction.getDateAndTime(), auction.getImagePath(), auction.getCategory());
+        auctionRepository.save(auction);
     }
 
 
@@ -46,6 +62,9 @@ public class AuctionService {
         auction.setCurrentPrice(auctionDetails.getCurrentPrice());
         auction.setAuctionStatus(auctionDetails.getAuctionStatus());
         auction.setSeller(auctionDetails.getSeller());
+        auction.setDateAndTime(auctionDetails.getDateAndTime());
+        auction.setImagePath(auctionDetails.getImagePath());
+        auction.setCategory(auctionDetails.getCategory());
         return auctionRepository.save(auction);
     }
 

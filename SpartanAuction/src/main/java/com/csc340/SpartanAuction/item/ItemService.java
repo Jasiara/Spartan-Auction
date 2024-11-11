@@ -46,7 +46,6 @@ public class ItemService {
     public Item updateItem(int id, Item itemDetails) {
         return itemRepository.findById(id).map(item -> {
             item.setName(itemDetails.getName());
-            item.setAmount(itemDetails.getAmount());
             item.setProviderId(itemDetails.getProviderId());
             item.setDateAndTime(itemDetails.getDateAndTime());
             item.setImagePath(itemDetails.getImagePath());

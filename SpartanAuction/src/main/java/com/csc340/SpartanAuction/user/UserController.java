@@ -40,9 +40,9 @@ public class UserController {
 
 
     @PostMapping("/new")
-    public List<User> addNewUser(@RequestBody User user) {
+    public User addNewUser(@RequestBody User user) {
         service.addNewUser(user);
-        return service.getAllUsers();
+        return service.getUserById(user.getId());
     }
 
     @PutMapping("/update/{id}")

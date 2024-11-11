@@ -1,6 +1,7 @@
 package com.csc340.SpartanAuction.user;
 
 import com.csc340.SpartanAuction.rating.RatingRepository;
+import com.csc340.SpartanAuction.review.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,15 @@ public class UserService {
     @Autowired
     private RatingRepository ratingRepository;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
 
     public List<User> getAllUsers() {
 
         List<User> users = userRepository.findAll();
         for (User user: users) {
-            double ratingAverage = ratingRepository.getAverageRatingForOneUser(user.getId());
+            double ratingAverage = reviewRepository.getAverageRatingForOneUser(user.getId());
             if (ratingAverage != 0) {
                 user.setRatingAverage(ratingAverage);
                 userRepository.save(user);
@@ -36,7 +40,7 @@ public class UserService {
     public User getUserById(int id) {
 
         User theUser = userRepository.findById(id).orElse(null);
-        double ratingAverage = ratingRepository.getAverageRatingForOneUser(id);
+        double ratingAverage = reviewRepository.getAverageRatingForOneUser(id);
         if (ratingAverage != 0 ) {
             theUser.setRatingAverage(ratingAverage);
             userRepository.save(theUser);

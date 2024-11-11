@@ -22,11 +22,10 @@ public class Review {
 
     private String review;
 
-    @OneToOne
-    @JoinColumn(name = "ratingId")
-    private Rating rating;
+    @Column(nullable = false)
+    private double rating;
 
-    public Review(int id, User reviewUser, User providerUser, String review, Rating rating) {
+    public Review(int id, User reviewUser, User providerUser, String review, double rating) {
         this.id = id;
         this.reviewUser = reviewUser;
         this.providerUser = providerUser;
@@ -37,7 +36,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(User reviewUser, User providerUser, String review, Rating rating) {
+    public Review(User reviewUser, User providerUser, String review, double rating) {
         this.reviewUser = reviewUser;
         this.providerUser = providerUser;
         this.review = review;
@@ -48,7 +47,7 @@ public class Review {
         this.id = id;
     }
 
-    public Review(User reviewUser, User providerUser, Rating rating) {
+    public Review(User reviewUser, User providerUser, double rating) {
         this.reviewUser = reviewUser;
         this.providerUser = providerUser;
         this.rating = rating;
@@ -94,11 +93,11 @@ public class Review {
         this.review = review;
     }
 
-    public Rating getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
