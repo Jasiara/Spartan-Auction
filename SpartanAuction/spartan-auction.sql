@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2024 at 05:01 AM
+-- Generation Time: Nov 12, 2024 at 05:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,84 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `auction`
+--
+
+CREATE TABLE `auction` (
+  `id` int(11) NOT NULL,
+  `auction_status` varchar(255) NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `current_price` double NOT NULL,
+  `date_and_time` datetime(6) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `starting_price` double NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `seller_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `auction`
+--
+
+INSERT INTO `auction` (`id`, `auction_status`, `category`, `current_price`, `date_and_time`, `description`, `image_path`, `starting_price`, `title`, `seller_id`) VALUES
+(1, 'active', 'phone', 915, '2024-11-23 13:25:43.000000', 'This is an iPhone', 'imagePath1', 915, 'iPhone 15', 2),
+(2, 'active', 'headphone', 40, '2024-11-23 13:25:43.000000', 'These are headphones', 'imagePath2', 40, 'Sony Headphones', 1),
+(3, 'active', 'watch', 5, '2024-11-23 13:25:43.000000', 'This is a watch', 'imagePath3', 5, 'Casio Watch', 3),
+(4, 'active', 'jacket', 20, '2024-11-23 13:25:43.000000', 'This is a jean jacket', 'imagePath4', 20, 'Jean Jacket', 1),
+(5, 'active', 'chair', 65, '2024-11-23 13:25:43.000000', 'This is a chair.', 'imagePath6', 65, 'Chair', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auction_seq`
+--
+
+CREATE TABLE `auction_seq` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `auction_seq`
+--
+
+INSERT INTO `auction_seq` (`next_val`) VALUES
+(1),
+(101);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bid`
+--
+
+CREATE TABLE `bid` (
+  `id` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `auction_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bid_seq`
+--
+
+CREATE TABLE `bid_seq` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bid_seq`
+--
+
+INSERT INTO `bid_seq` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rating`
 --
 
@@ -32,17 +110,6 @@ CREATE TABLE `rating` (
   `rating` double NOT NULL,
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `rating`
---
-
-INSERT INTO `rating` (`id`, `rating`, `user_id`) VALUES
-(1, 3.5, 1),
-(2, 4.3, 2),
-(3, 2.9, 3),
-(52, 3.8, 1),
-(102, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -59,7 +126,7 @@ CREATE TABLE `rating_seq` (
 --
 
 INSERT INTO `rating_seq` (`next_val`) VALUES
-(201);
+(1);
 
 -- --------------------------------------------------------
 
@@ -69,9 +136,9 @@ INSERT INTO `rating_seq` (`next_val`) VALUES
 
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
+  `rating` double NOT NULL,
   `review` varchar(255) DEFAULT NULL,
   `provider_id` int(11) DEFAULT NULL,
-  `rating_id` int(11) DEFAULT NULL,
   `reviewer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,9 +146,13 @@ CREATE TABLE `review` (
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`id`, `review`, `provider_id`, `rating_id`, `reviewer_id`) VALUES
-(1, 'The product was in mint condition, but it took 2 months for the seller to send it.', 1, 1, 2),
-(2, 'The item looked just like the image, but it took 4 weeks longer for item to arrive.', 1, 52, 3);
+INSERT INTO `review` (`id`, `rating`, `review`, `provider_id`, `reviewer_id`) VALUES
+(1, 2, 'Review', 4, 1),
+(2, 3, 'Review', 4, 2),
+(3, 4, 'Review', 3, 2),
+(4, 3, 'Review', 3, 2),
+(5, 3, 'Review', 1, 4),
+(6, 5, 'Review', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -123,9 +194,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `image_path`, `location`, `name`, `password`, `rating_average`, `user_type`, `username`) VALUES
-(1, 'impoptic@gmail.com', 'imagePath1', 'Greensboro, NC', 'Hazel Victor', 'password1', 3.65, 'user', 'impoptic'),
-(2, 'shademap@gmail.com', 'imagePath2', 'Greensboro, NC', 'Jenny Harvey', 'password2', 4.15, 'user', 'shademap'),
-(3, 'colossaldairy@gmail.com', 'imagePath3', 'Greensboro, NC', 'Makenzie Crofton', 'password3', 2.9, 'user', 'colossaldairy');
+(1, 'impoptic@gmail.com', 'imagePath1', 'Greensboro, NC', 'Hazel Victor', 'password1', 3.5, 'user', 'impoptic'),
+(2, 'shademap@gmail.com', 'imagePath2', 'Greensboro, NC', 'Jenny Harvey', 'password2', 0, 'user', 'shademap'),
+(3, 'colossaldairy@gmail.com', 'imagePath3', 'Greensboro, NC', 'Makenzie Crofton', 'password3', 0, 'user', 'colossaldairy'),
+(4, 'overtstudy@gmail.com', 'imagePath4', 'Greensboro, NC', 'Edward Quast', 'password4', 0, 'user', 'overtstudy'),
+(5, 'annoyedbeeswax@gmail.com', 'imagePath5', 'Greensboro, NC', 'Kimberly Lee', 'password5', 0, 'user', 'annoyedbeeswax');
 
 -- --------------------------------------------------------
 
@@ -142,11 +215,27 @@ CREATE TABLE `user_seq` (
 --
 
 INSERT INTO `user_seq` (`next_val`) VALUES
+(1),
 (101);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `auction`
+--
+ALTER TABLE `auction`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKf69hwkicisgydruy5wyyj02k1` (`seller_id`);
+
+--
+-- Indexes for table `bid`
+--
+ALTER TABLE `bid`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKhexc6i4j8i0tmpt8bdulp6g3g` (`auction_id`),
+  ADD KEY `FK4abkntgv9nvsfi86p7kfl63au` (`user_id`);
 
 --
 -- Indexes for table `rating`
@@ -160,7 +249,6 @@ ALTER TABLE `rating`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UKhl7vwiux3myhyervk4u9in7cj` (`rating_id`),
   ADD KEY `FKi913970b83vivoxn5dbnso3mg` (`provider_id`),
   ADD KEY `FKt58e9mdgxpl7j90ketlaosmx4` (`reviewer_id`);
 
@@ -177,6 +265,19 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `auction`
+--
+ALTER TABLE `auction`
+  ADD CONSTRAINT `FKf69hwkicisgydruy5wyyj02k1` FOREIGN KEY (`seller_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `bid`
+--
+ALTER TABLE `bid`
+  ADD CONSTRAINT `FK4abkntgv9nvsfi86p7kfl63au` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `FKhexc6i4j8i0tmpt8bdulp6g3g` FOREIGN KEY (`auction_id`) REFERENCES `auction` (`id`);
+
+--
 -- Constraints for table `rating`
 --
 ALTER TABLE `rating`
@@ -186,7 +287,6 @@ ALTER TABLE `rating`
 -- Constraints for table `review`
 --
 ALTER TABLE `review`
-  ADD CONSTRAINT `FKfoadt2illecegj32wlk5hau9p` FOREIGN KEY (`rating_id`) REFERENCES `rating` (`id`),
   ADD CONSTRAINT `FKi913970b83vivoxn5dbnso3mg` FOREIGN KEY (`provider_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FKt58e9mdgxpl7j90ketlaosmx4` FOREIGN KEY (`reviewer_id`) REFERENCES `user` (`id`);
 COMMIT;

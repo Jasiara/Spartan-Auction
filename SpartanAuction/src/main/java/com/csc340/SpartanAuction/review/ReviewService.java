@@ -18,7 +18,8 @@ public class ReviewService {
     }
 
     public Review getReviewById(int id) {
-        return reviewRepository.findById(id).orElse(null);
+                Review theReview = reviewRepository.findById(id).orElse(null);
+                return theReview;
     }
 
     public List<Review> getAllReviewsForOneUser(int userId) {

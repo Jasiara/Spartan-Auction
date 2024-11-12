@@ -6,6 +6,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 public interface BidRepository extends JpaRepository<Bid, Integer> {
-    @Query(value = "SELECT * FROM bid WHERE item_id = :itemId", nativeQuery = true)
-    public List<Bid> getAllBidsForOneItem(@Param("itemId") int itemId);
+    @Query(value = "SELECT * FROM bid WHERE auction_id = :auctionId", nativeQuery = true)
+    public List<Bid> getAllBidsForOneAuction(@Param("auctionId") int auctionId);
 }

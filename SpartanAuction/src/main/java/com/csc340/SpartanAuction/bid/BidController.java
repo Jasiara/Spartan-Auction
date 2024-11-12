@@ -29,10 +29,10 @@ public class BidController {
     }
 
     @PostMapping("/new")
-    public Bid addNewBid(@RequestBody Bid bid) {
-        System.out.println(bid.toString());
+    public List<Bid> addNewBid(@RequestBody Bid bid) {
+        //System.out.println(bid.toString());
         bidService.addNewBid(bid);
-        return bidService.getBidById(bid.getId());
+        return bidService.getAllBids();
     }
 
     @PutMapping("/update/{id}")

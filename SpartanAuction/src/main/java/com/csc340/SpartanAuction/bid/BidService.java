@@ -20,7 +20,7 @@ public class BidService {
     }
 
     public List<Bid> getAllBidsForOneItem(int itemId) {
-        return bidRepository.getAllBidsForOneItem(itemId);
+        return bidRepository.getAllBidsForOneAuction(itemId);
     }
 
     public void addNewBid(Bid bid) {
@@ -29,13 +29,13 @@ public class BidService {
             bidRepository.save(bid);
             return;
         }
-        bid = new Bid(bid.getItem(), bid.getAmount(), bid.getUser());
+        bid = new Bid(bid.getAuction(), bid.getAmount(), bid.getUser());
         bidRepository.save(bid);
     }
 
     public void updateBid(int id, Bid bid) {
         Bid existing = getBidById(id);
-        existing.setItem(bid.getItem());
+        existing.setAuction(bid.getAuction());
         existing.setAmount(bid.getAmount());
         existing.setUser(bid.getUser());
 

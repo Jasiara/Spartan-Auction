@@ -1,7 +1,7 @@
 package com.csc340.SpartanAuction.bid;
 
+import com.csc340.SpartanAuction.auction.Auction;
 import com.csc340.SpartanAuction.user.User;
-import com.csc340.SpartanAuction.item.Item;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "bid")
@@ -11,35 +11,35 @@ public class Bid {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "itemId")
-    private Item item;
+    @JoinColumn(name = "auctionId")
+    private Auction auction;
 
     @Column(nullable = false)
     private double amount;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
     public Bid() {
     }
 
-    public Bid(int id, Item item, double amount, User user) {
+    public Bid(int id, Auction auction, double amount, User user) {
         this.id = id;
-        this.item = item;
+        this.auction = auction;
         this.amount = amount;
         this.user = user;
     }
 
     public Bid(Bid bid) {
         this.id = bid.getId();
-        this.item = bid.getItem();
+        this.auction = bid.getAuction();
         this.amount = bid.getAmount();
         this.user = bid.getUser();
     }
 
-    public Bid(Item item, double amount, User user) {
-        this.item = item;
+    public Bid(Auction auction, double amount, User user) {
+        this.auction = auction;
         this.amount = amount;
         this.user = user;
     }
@@ -52,12 +52,12 @@ public class Bid {
         this.id = id;
     }
 
-    public Item getItem() {
-        return item;
+    public Auction getAuction() {
+        return auction;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setAuction(Auction auction) {
+        this.auction = auction;
     }
 
     public double getAmount() {
@@ -80,7 +80,7 @@ public class Bid {
     public String toString() {
         return "Bid{" +
                 "id=" + id +
-                ", item=" + item +
+                ", auction=" + auction +
                 ", amount=" + amount +
                 ", user=" + user +
                 '}';

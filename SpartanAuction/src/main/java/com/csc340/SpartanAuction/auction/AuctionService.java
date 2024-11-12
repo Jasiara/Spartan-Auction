@@ -1,6 +1,5 @@
 package com.csc340.SpartanAuction.auction;
 
-import com.csc340.SpartanAuction.item.Item;
 import com.csc340.SpartanAuction.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

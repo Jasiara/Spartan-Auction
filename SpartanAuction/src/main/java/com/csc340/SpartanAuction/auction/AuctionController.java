@@ -1,6 +1,5 @@
 package com.csc340.SpartanAuction.auction;
 
-import com.csc340.SpartanAuction.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -31,11 +31,10 @@ public class ReviewController {
 
 
     @PostMapping("/new")
-    public Review addNewReview(@RequestBody Review review) {
+    public List<Review> addNewReview(@RequestBody Review review) {
         //System.out.println(review.toString());
         reviewService.addNewReview(review);
-        int id = review.getId();
-        return reviewService.getReviewById(id);
+        return reviewService.getAllReviews();
     }
 
     @PutMapping("/update/{id}")
