@@ -2,6 +2,7 @@ package com.csc340.SpartanAuction.auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.csc340.SpartanAuction.user.*;
@@ -9,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/auctions")
 public class AuctionController {
     @Autowired
@@ -20,7 +21,6 @@ public class AuctionController {
     @GetMapping("/all")
     public String getAllAuctions(Model model) {
         model.addAttribute("auctions", auctionService.getAllAuctions());
-
         return "index";
     }
 

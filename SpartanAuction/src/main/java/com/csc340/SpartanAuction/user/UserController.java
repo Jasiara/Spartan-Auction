@@ -1,6 +1,7 @@
 package com.csc340.SpartanAuction.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * UserController.java.
  * Includes all REST API endpoint mappings for the Student object.
  */
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -44,6 +45,11 @@ public class UserController {
     public String addNewUser(@ModelAttribute("user") User user) {
         service.addNewUser(user);
         return "redirect:profile/" + user.getId();
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+        return "index";
     }
 
     @GetMapping("/createUserForm")

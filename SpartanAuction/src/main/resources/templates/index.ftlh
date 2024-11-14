@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link type="text/css" rel="stylesheet" href="/static/styles/styles.css">
 </head>
 <body>
-    <#include "/include/header.html">
     <main>
         <div class="items-view">
             <#list auctions as item>
@@ -17,11 +16,11 @@
                 <div class="item">
                     <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                     <img src="./images/${item.imagePath}" alt="">
-                    <p class="black-writing">Item Name: ${item.name}</p>
-                    <p class="black-writing">Highest Bid: $ ${item.highesBid}</p>
+                    <p class="black-writing">Item Name: ${item.title}</p>
+                    <p class="black-writing">Highest Bid: $ ${item.currentPrice}</p>
                     <!--Not correct, need to figure it out-->
                     <p class="black-writing">Time Left: ${item.dateAndTime}</p>
-                    <p><span class="black-writing">User: </span><a href="./other-profile.html">@${item.user.userName}</a></p>
+                    <p><span class="black-writing">User: </span><a href="/">@${item.seller.username}</a></p>
                 </div>
             </a>
             </#list>

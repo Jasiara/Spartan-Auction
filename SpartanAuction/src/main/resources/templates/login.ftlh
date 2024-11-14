@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <#include "/include/header.html">
+    <#include "../include/header.ftlh">
     <main class="login-main">
         <div class="sign-up-login-form">
             <div>

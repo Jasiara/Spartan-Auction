@@ -1,0 +1,637 @@
+/*
+UNCG colors in HEX
+Navy: #0f2044
+Gold: #ffb71b
+Grey: #bec0c2
+*/
+
+body {
+    background-color: #bec0c2;
+    padding: 0;
+    margin: 0;
+    color: #0f2044;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    color: #0f2044;
+    width: 100%;
+    padding: 1% 0%;
+    background-color: #e7e7ee;
+    /*border-bottom: 2px solid #8f8f94;*/
+}
+
+.items-view {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 3% 1%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    border-radius: 5%;
+}
+
+.small-header {
+    font-size: 135%;
+}
+
+.small-header > a{
+    text-decoration: none;
+    color: #0f2044;
+}
+
+.search {
+    width: 30%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+}
+
+.search > input {
+    color: #0f2044;
+    font-size: 100%;
+    background: transparent;
+    width: 700px;
+    height: 20px;
+    padding: 6%;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+    margin-left: -200px;
+}
+
+.header-items {
+    width: 15%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+}
+
+.sign-up-login {
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.link-button {
+    background-color: #0f2044;
+    padding: 0px 50px;
+    margin: 0px 10px;
+    /*border: 1px solid #0f2044;*/
+    border-radius: 10px;
+    color: #e7e7ee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.link-button:hover {
+    background-color: #bec0c2;
+    color: #0f2044;
+}
+
+.sign-up-main, .login-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.sign-up-login-form {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    margin: 2%;
+    padding: 5%;
+    border-radius: 10%;
+}
+
+.sign-up-login-form h2 {
+    font-size: 200%;
+    color: #ffb71b;
+}
+
+.sign-up-login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-up-login-form form input {
+    margin: 3%;
+    padding: 2%;
+    border-radius: 10%;
+    font-size: 100%;
+    background: #e7e7ee;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+}
+
+.sign-up-login-form form label {
+    font-size: 125%;
+}
+
+.sign-up-login-form form div {
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-login-form form a {
+    color: #ffb71b;
+    margin: 1%;
+    font-size: 125%;
+    text-decoration: none;
+    outline: none;
+}
+
+.sign-up-login-form form a:hover {
+    color: #bec0c2;
+}
+
+.sign-up-login-form form div a {
+    padding: 2%;
+    margin: 3%;
+    background-color: #e7e7ee;
+    text-decoration: none;
+    border-radius: 10px;
+    color: #0f2044;
+    outline: none;
+    border: solid 2px #0f2044;
+}
+
+.sign-up-login-form form div a:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
+.profile-top {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img, .profile-desc {
+    margin: 2%;
+}
+
+.profile-img {
+    border-radius: 100%;
+    width: 250px;
+    height: 250px;
+}
+
+.profile-top p {
+    font-size: 150%;
+}
+
+.user-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.user-nav a {
+    margin-left: 0%;
+    margin-top: 1%;
+    margin-right: 0%;
+    margin-bottom: 0;
+    padding: 2%;
+    border-radius: 20px 20px 0 0;
+    outline: none;
+}
+
+.user-nav a:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
+.user-nav-highlight {
+    background-color: #e7e7ee;
+    color: #0f2044;
+    text-decoration: none;
+    outline: none;
+}
+
+.user-nav-non-highlight {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    text-decoration: none;
+    outline: none;
+}
+
+.current-and-past-bids {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #e7e7ee;
+}
+
+.customer-review {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #e7e7ee;
+}
+
+.customer-review-item {
+    width: 80%;
+    display: flex;
+    margin: 2%;
+    padding: 2%;
+    border: 2px solid #0f2044;
+    border-radius: 50px;
+}
+
+
+
+.customer-review-item img {
+    margin: 2%;
+}
+
+.black-writing {
+    color: black;
+    text-decoration: none;
+}
+
+.seller-name {
+    display: flex;
+    align-content: center;
+}
+
+.item-link {
+    text-decoration: none;
+    margin: 5%;
+    padding: 1%;
+}
+
+.a-bid {
+    margin: 5% 15%;
+    display: flex;
+}
+
+.a-bid div {
+    margin: 5%;
+}
+
+.a-bid div p {
+    font-size: 175%;
+}
+
+.a-bid div div a {
+    font-size: 175%;
+}
+
+.a-bid div div a:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
+.fa-star, .fa-star-half-empty, .fa-star-o {
+    color: #0f2044;
+    font-size: 150%;
+}
+
+.current-and-past-bids {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.current-and-past-bids .item-link {
+    margin: 3%;
+    padding: 3%;
+}
+
+.fa-search {
+    margin: 3%;
+    padding: 5%;
+    font-size: 400%;
+    color: #0f2044;
+}
+
+.search-heading {
+    font-size: 200%;
+    margin: 2%;
+}
+
+.bid-confirm-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bid-confirm-form input {
+    width: 100%;
+    padding: 2%;
+}
+
+.bid-confirm-form .cancel:hover {
+    background-color: red;
+    color: #e7e7ee;
+}
+
+.bid-confirm-form .bid:hover {
+    background-color: green;
+    color: #e7e7ee;
+}
+
+.write-review-form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.write-review-form img {
+    margin: 3%;
+    width: 250px;
+    height: 250px;
+}
+
+.write-review-form textarea {
+    border-radius: 15px;
+}
+
+
+
+.item .navy-button:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
+.item img, .customer-review-item img, .bid-confirm-form img {
+    width: 200px;
+    height: 200px;
+}
+
+.item .navy-button {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    text-decoration: none;
+    text-align: center;
+    margin: 3%;
+    padding: 2%;
+    border-radius: 10px;
+}
+
+.item a, .customer_review_item a, .a-bid div p a, .customer-review-item div p a{
+    color: black;
+    text-decoration: none;
+}
+
+.item p a:hover,  .customer_review_item a:hover, .a-bid div p a:hover, .customer-review-item div p a:hover {
+    color: #0f2044;
+    text-decoration: underline;
+}
+
+.no-reviews {
+    font-size: 300%;
+    padding-bottom: 20%;
+}
+
+
+
+.no-rating {
+    font-size: 50%;
+}
+
+.auction-register-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.auction-register-form {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    margin: 2%;
+    padding: 5%;
+    border-radius: 10%;
+}
+.auction-register-form h2 {
+    justify-content: center;
+    font-size: 200%;
+    color: #ffb71b;
+}
+
+.auction-register-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auction-register-form form input {
+    margin: 3%;
+    padding: 2%;
+    border-radius: 10%;
+    font-size: 100%;
+    background: #e7e7ee;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+}
+
+.auction-register-form form textarea {
+    margin: 3%;
+    padding: 2%;
+    border-radius: 10%;
+    font-size: 100%;
+    background: #e7e7ee;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+}
+
+.auction-register-form form label {
+    font-size: 125%;
+}
+
+.auction-register-form form div {
+    display: flex;
+    justify-content: center;
+}
+
+.auction-register-form form a {
+    color: #ffb71b;
+    margin: 1%;
+    font-size: 125%;
+    text-decoration: none;
+    outline: none;
+}
+
+.auction-register-form form a:hover {
+    color: #bec0c2;
+}
+
+.auction-register-form form div a {
+    padding: 2%;
+    margin: 3%;
+    background-color: #e7e7ee;
+    text-decoration: none;
+    border-radius: 10px;
+    color: #0f2044;
+    outline: none;
+    border: solid 2px #0f2044;
+}
+
+.auction-register-form form div a:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
+.my_auctions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #e7e7ee;
+    padding-bottom: 3%;
+}
+
+.customer_review {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #e7e7ee;
+}
+
+.customer-avatar {
+    border-radius: 50px;
+    float: left;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.customer_review label {
+    font-size: 125%;
+}
+
+.customer_review textarea {
+    margin: 3%;
+    padding: 2%;
+    border-radius: 10%;
+    font-size: 100%;
+    background: #e7e7ee;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+    width: 30;
+}
+
+.customer_review div img{
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.customer_review_item {
+    margin: 2%;
+}
+
+.fa-plus {
+    font-size: 1500%;
+    color: #0f2044;
+}
+
+.admin-header {
+    background-color: #0f2044;
+    color: #e7e7ee;
+}
+
+.admin-header .link-button {
+    background-color: #e7e7ee;
+    color: #0f2044;
+}
+
+.admin-header .header-items .small-header a {
+    color: #e7e7ee;
+}
+
+table, th, td {
+    border: 1px solid #0f2044;
+    border-radius: 10px;
+    border-collapse: collapse;
+    font-size: 125%;
+}
+
+td, th {
+    padding: 0px 20px;
+}
+
+.stat-table {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.admin-big-heading {
+    margin: 2%;
+}
+
+.admin-search {
+    width: 30%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.admin-search > input {
+    color: #0f2044;
+    font-size: 100%;
+    background: transparent;
+    width: 700px;
+    height: 10px;
+    padding: 6%;
+    border: solid 2px #0f2044;
+    outline: none;
+    border-radius: 35px;
+}
+
+.admin-main .current-and-past-bids {
+    padding-bottom: 30%;
+    display: block;
+}
+
+.manage-item {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.manage-item p {
+    font-size: 200%;
+    text-align: center;
+}
+
+.manage-item img {
+    width: 100px;
+    height: 100px;
+}
+
+.manage-item i {
+    font-size: 300%;
+}
+
+.rating-number {
+    display: inline;
+}
