@@ -2,6 +2,7 @@ package com.csc340.SpartanAuction.auction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.csc340.SpartanAuction.user.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,8 +18,10 @@ public class AuctionController {
     private UserRepository userRepository; // Inject UserRepository
 
     @GetMapping("/all")
-    public List<Auction> getAllAuctions() {
-        return auctionService.getAllAuctions();
+    public String getAllAuctions(Model model) {
+        model.addAttribute("auctions", auctionService.getAllAuctions());
+
+        return "index";
     }
 
     @GetMapping("/{id}")

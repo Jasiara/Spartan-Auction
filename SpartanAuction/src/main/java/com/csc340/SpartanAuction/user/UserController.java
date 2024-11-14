@@ -2,6 +2,7 @@ package com.csc340.SpartanAuction.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -40,9 +41,17 @@ public class UserController {
 
 
     @PostMapping("/new")
-    public User addNewUser(@RequestBody User user) {
+    public String addNewUser(@ModelAttribute("user") User user) {
         service.addNewUser(user);
-        return service.getUserById(user.getId());
+        return "redirect:profile/" + user.getId();
+    }
+
+    @GetMapping("/createUserForm")
+    public String showNewUserForm(Model model) {
+        User user = new User();
+
+
+        return "login";
     }
 
     @PutMapping("/update/{id}")

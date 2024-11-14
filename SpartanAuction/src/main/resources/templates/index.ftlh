@@ -12,7 +12,7 @@
     <#include "/include/header.html">
     <main>
         <div class="items-view">
-            <#list itemList as item>
+            <#list auctions as item>
             <a href="./item/${item.id}" class="item-link">
                 <div class="item">
                     <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
