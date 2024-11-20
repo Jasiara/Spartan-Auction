@@ -1,0 +1,8 @@
+<body>
+    <div class="user-nav">
+        <a href="./my_auctions.html" class="user-nav-highlight">My Auctions</a>
+        <a href="./profile.html" class="user-nav-non-highlight">Current Bids</a>
+        <a href="./past-bids.html" class="user-nav-non-highlight">Past Bids</a>
+        <a href="./customer_reviews.html" class="user-nav-non-highlight">Customer Reviews</a>
+    </div>
+</body>
