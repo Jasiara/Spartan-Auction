@@ -14,4 +14,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Integer> {
     List<Auction> findByCategory(String category);
     @Query(value = "SELECT * FROM auction WHERE seller_id = :providerId;", nativeQuery = true)
     List<Auction> findByProviderId(int providerId);
+
+    @Query(value = "SELECT * FROM auction WHERE auction_status = 'active';", nativeQuery = true)
+    List<Auction> findAllCurrentAuctions();
+
+
 }

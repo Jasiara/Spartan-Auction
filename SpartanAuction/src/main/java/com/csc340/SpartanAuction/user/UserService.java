@@ -1,6 +1,5 @@
 package com.csc340.SpartanAuction.user;
 
-import com.csc340.SpartanAuction.rating.RatingRepository;
 import com.csc340.SpartanAuction.review.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,7 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private RatingRepository ratingRepository;
+
 
     @Autowired
     private ReviewRepository reviewRepository;
@@ -45,6 +43,18 @@ public class UserService {
             theUser.setRatingAverage(ratingAverage);
             userRepository.save(theUser);
         }
+        return theUser;
+    }
+
+    public User doesUserExist(User user) {
+
+        User theUser = userRepository.findLoginUser(user.getUsername(), user.getPassword());
+
+        if (theUser != null) {
+            return theUser;
+        }
+        theUser = new User();
+
         return theUser;
     }
 
@@ -82,5 +92,9 @@ public class UserService {
 
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
+    }
+
+    public void deleteUserByUsername(String username) {
+        userRepository.deleteByUsername(username);
     }
 }

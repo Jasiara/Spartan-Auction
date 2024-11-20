@@ -1,9 +1,11 @@
 package com.csc340.SpartanAuction.bid;
 
 
+import com.csc340.SpartanAuction.auction.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +33,21 @@ public class BidService {
         }
         bid = new Bid(bid.getAuction(), bid.getAmount(), bid.getUser());
         bidRepository.save(bid);
+    }
+
+    public List<Bid> getCurrentBidsForUser(int userId) {
+        List<Bid> listOfAllBids = bidRepository.getCurrentBidsForUser(userId);
+        List<Bid> highestBids = new ArrayList<>();
+        for (int i = 0; i < listOfAllBids.size(); i++) {
+            Bid addingBid = listOfAllBids.get(i);
+            for (int j = i + 1; j < listOfAllBids.size(); j++) {
+                if (listOfAllBids.get(i).getAuction().equals(listOfAllBids.get(j).getAuction()) && listOfAllBids.get(j).getAmount() > addingBid.getAmount()) {
+                    addingBid = listOfAllBids.get(j);
+                }
+            }
+            highestBids.add(addingBid);
+        }
+        return highestBids;
     }
 
     public void updateBid(int id, Bid bid) {

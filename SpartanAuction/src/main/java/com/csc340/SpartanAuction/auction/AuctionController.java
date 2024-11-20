@@ -21,13 +21,19 @@ public class AuctionController {
     @GetMapping("/all")
     public String getAllAuctions(Model model) {
         model.addAttribute("auctions", auctionService.getAllAuctions());
+        return "";
+    }
+
+    @GetMapping("")
+    public String getAllCurrentAuctions(Model model) {
+        model.addAttribute("auctions", auctionService.getAllCurrentAuctions());
         return "index";
     }
 
     @GetMapping("/{id}")
-    public Auction getAuctionById(@PathVariable int id) {
-        Auction auction = auctionService.getAuctionById(id);
-        return auction;
+    public String getAuctionById(Model model, @PathVariable int id) {
+        model.addAttribute("auction", auctionService.getAuctionById(id));
+        return "an-auction";
     }
 
     // GET item by its name

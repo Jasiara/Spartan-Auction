@@ -1,6 +1,5 @@
 package com.csc340.SpartanAuction.review;
 
-import com.csc340.SpartanAuction.rating.Rating;
 import com.csc340.SpartanAuction.user.User;
 import jakarta.persistence.*;
 

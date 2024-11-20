@@ -1,6 +1,5 @@
 package com.csc340.SpartanAuction.auction;
 
-import com.csc340.SpartanAuction.rating.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.SpartanAuction.user.*;
@@ -16,6 +15,8 @@ public class AuctionService {
     public List<Auction> getAllAuctions() {
         return auctionRepository.findAll();
     }
+
+    public List<Auction> getAllCurrentAuctions() {return auctionRepository.findAllCurrentAuctions();}
 
     public Auction getAuctionById(int id) {
         return auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));

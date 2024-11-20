@@ -1,6 +1,6 @@
 package com.csc340.SpartanAuction.review;
 
-import com.csc340.SpartanAuction.rating.Rating;
+
 import com.csc340.SpartanAuction.user.User;
 import com.csc340.SpartanAuction.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

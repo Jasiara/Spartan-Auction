@@ -47,6 +47,19 @@ public class User {
         this.id = id;
     }
 
+    public User(String username, String password, String email, String name) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.userType = "user";
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -117,5 +130,20 @@ public class User {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", userType='" + userType + '\'' +
+                ", ratingAverage=" + ratingAverage +
+                ", imagePath='" + imagePath + '\'' +
+                '}';
     }
 }

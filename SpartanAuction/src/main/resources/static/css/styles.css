@@ -29,7 +29,6 @@ header {
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    margin: 3% 1%;
 }
 
 .item {
@@ -183,7 +182,7 @@ img {
     justify-content: center;
 }
 
-.profile-img, .profile-desc {
+.profile-img, .profile-desc, .profile-edit {
     margin: 2%;
 }
 
@@ -547,7 +546,7 @@ img {
     margin: 2%;
 }
 
-.fa-plus {
+.fa-plus, .fa-gear {
     font-size: 1500%;
     color: #0f2044;
 }
@@ -580,6 +579,11 @@ td, th {
 .stat-table {
     display: flex;
     justify-content: center;
+    align-content: center;
+}
+
+.profile-edit {
+    display: flex;
     align-content: center;
 }
 
@@ -634,4 +638,8 @@ td, th {
 
 .rating-number {
     display: inline;
+}
+
+.sign-log-button {
+
 }

@@ -1,7 +1,5 @@
 package com.csc340.SpartanAuction.bid;
 
-import com.csc340.SpartanAuction.rating.Rating;
-import com.csc340.SpartanAuction.rating.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +32,9 @@ public class BidController {
         bidService.addNewBid(bid);
         return bidService.getAllBids();
     }
+
+    /*@GetMapping("/making-bid")
+    public String createBidForm(@ModelAttribute("bid") )*/
 
     @PutMapping("/update/{id}")
     public Bid updateBid(@PathVariable int id, @RequestBody Bid bid) {
