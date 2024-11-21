@@ -319,6 +319,10 @@ img {
     font-size: 180%;
 }
 
+.rating-number {
+    display: inline;
+}
+
 .no-rating {
     font-size: 50%;
 }

@@ -15,7 +15,7 @@
         <div class="profile-top">
           <div class="profile-img">
             <!--IMAGE SOURCE:  https://www.pinterest.com/pin/712905816020483535/-->
-            <img class="profile-img" src="./images/random-profile-pic.jpg" alt="">
+            <img class="profile-img" src="./images" alt="">
           </div>
           <div class="profile-desc">
             <p class="black-writing">Name: ${profile-desc.user.name}</p>
