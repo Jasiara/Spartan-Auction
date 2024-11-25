@@ -187,7 +187,7 @@ img {
 .sign-log-link {
     background-color: #e7e7ee;
     text-decoration: none;
-    padding: 2%;
+    padding: 5% 8%;
     margin: 3%;
     color: #0f2044;
     border-radius: 10px;
@@ -197,6 +197,15 @@ img {
 .sign-log-link:hover {
     background-color: #ffb71b;
     color: #0f2044;
+}
+
+.sign-up-login-form button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: solid 2px #0f2044;
+    border-radius: 10px;
+    padding: 0% 8%;
 }
 
 .forgot {
@@ -319,15 +328,31 @@ img {
     font-size: 180%;
 }
 
-.rating-number {
-    display: inline;
-}
-
 .no-rating {
     font-size: 50%;
 }
 
-.a-bid img {
-    width: 500px;
-    height: 500px;
+.rating-number {
+    display: inline;
+}
+
+.bid-confirm-form {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.bid-confirm-form input {
+    width: 100%;
+    padding: 2%;
+}
+
+.bid-confirm-form .cancel:hover {
+    background-color: red;
+    color: #e7e7ee;
+}
+
+.bid-confirm-form .bid:hover {
+    background-color: green;
+    color: #e7e7ee;
 }

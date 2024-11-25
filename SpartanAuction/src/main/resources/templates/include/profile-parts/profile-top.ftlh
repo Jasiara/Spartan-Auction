@@ -33,6 +33,6 @@
                 </#if>
             </div>
         </div>
-            <a href="/users/update/${user.id}"><i class="fa fa-gear" style="font-size: 500%;"></i></a>
+            <a href="/users/update/${user.id}"><i class="fa fa-gear"></i></a>
 
 </div>

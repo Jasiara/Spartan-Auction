@@ -88,6 +88,16 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("/other-profile/{id}")
+    public String showOthersProfile(Model model, @PathVariable int id) {
+        model.addAttribute("user", userService.getUserById(id));
+        List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
+        int currentAuctionsSize = currentAuctions.size();
+        model.addAttribute("currentAuctions", currentAuctions);
+        model.addAttribute("currentAuctionAmount", currentAuctionsSize);
+        return "other-profile";
+    }
+
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable int id, @ModelAttribute("user") User user) {
 

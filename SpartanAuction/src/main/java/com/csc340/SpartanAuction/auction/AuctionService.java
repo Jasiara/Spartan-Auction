@@ -3,6 +3,8 @@ package com.csc340.SpartanAuction.auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.SpartanAuction.user.*;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -16,10 +18,16 @@ public class AuctionService {
         return auctionRepository.findAll();
     }
 
-    public List<Auction> getAllCurrentAuctions() {return auctionRepository.findAllCurrentAuctions();}
+    public List<Auction> getAllCurrentAuctions() {
+        checkForActiveAuctions(auctionRepository.findAllCurrentAuctions());
+        return auctionRepository.findAllCurrentAuctions();}
 
     public Auction getAuctionById(int id) {
         return auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
+    }
+
+    public List<Auction> getCurrentAuctionsForUser(int id) {
+        return auctionRepository.getCurrentAuctionsForUser(id);
     }
 
     public List<Auction> getAuctionsByName(String name) {
@@ -31,6 +39,7 @@ public class AuctionService {
     }
 
     public List<Auction> getAuctionsByProvider(int providerId) {
+
         return auctionRepository.findByProviderId(providerId);
     }
 
@@ -70,6 +79,18 @@ public class AuctionService {
 
     public void deleteAuction(int id) {
         auctionRepository.deleteById(id);
+    }
+
+    public void checkForActiveAuctions(List<Auction> auctions) {
+        long millis = System.currentTimeMillis();
+        Timestamp currentTime = new Timestamp(millis);
+        for (int i = 0; i < auctions.size(); i++) {
+            long timeLeft = auctions.get(i).getDateAndTime().getTime() - currentTime.getTime();
+            if (timeLeft < 0) {
+                auctions.get(i).setAuctionStatus("completed");
+                auctionRepository.save(auctions.get(i));
+            }
+        }
     }
 }
 

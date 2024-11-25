@@ -15,16 +15,16 @@ console.log(countdowns);
                         if (timeLeft < 0) {
                             console.log(`auction-end${index}`);
                             document.getElementById(`auction-end${index}`).innerHTML = "Auction Over!";
-                            return;
+                        } else {
+
+                            let days = Math.floor((timeLeft / (1000 * 60 * 60 * 24)));
+                            let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                            let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                            document.getElementById('auction-end' + index).innerHTML = "Time Left: " + days + ' D ' + hours + ' H '
+                            + minutes + " M " + seconds +' S';
                         }
-
-                        let days = Math.floor((timeLeft / (1000 * 60 * 60 * 24)));
-                        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                        document.getElementById('auction-end' + index).innerHTML = "Time Left: " + days + ' D ' + hours + ' H '
-                        + minutes + " M " + seconds +' S';
                     }
 
                 }

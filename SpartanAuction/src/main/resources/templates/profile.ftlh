@@ -13,13 +13,8 @@
 <body>
     <#include "./include/header.ftlh">
     <main>
-        <#include "./include/profile-top.ftlh">
-        <div class="user-nav">
-            <a id="my-auctions-tab" class="user-nav-non-highlight">My Auctions</a>
-            <a id="current-bids-tab" class="user-nav-highlight">Current Bids</a>
-            <a id="past-bids-tab" class="user-nav-non-highlight">Past Bids</a>
-            <a id="customer-reviews-tab" class="user-nav-non-highlight">Customer Reviews</a>
-        </div>
+        <#include "./include/profile-parts/profile-top.ftlh">
+        <#include "./include/profile-parts/user-nav(my_auctions).ftlh">
         <div class="current-and-past-bids">
             <#if currentBidAmount gt 0>
                 <#assign index = 0>
@@ -32,7 +27,8 @@
                             <p class="black-writing">Highest Bid: $ ${bid.auction.currentPrice}</p>
                             <p class="black-writing">Your Highest Bid: $ ${bid.amount}</p>
                             <p class="black-writing" id="auction-end${index}">Time Left: </p>
-                            <p><span class="black-writing">User: </span><a href="/">@${bid.auction.seller.username}</a></p>
+                            <p><span class="black-writing">User: </span><a href="/users/other-profile/${bid.auction.seller.id}">
+                                @${bid.auction.seller.username}</a></p>
                              <#assign index = index + 1>
                         </div>
                     </a>

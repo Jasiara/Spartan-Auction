@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import com.csc340.SpartanAuction.user.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -26,7 +30,8 @@ public class AuctionController {
 
     @GetMapping("")
     public String getAllCurrentAuctions(Model model) {
-        model.addAttribute("auctions", auctionService.getAllCurrentAuctions());
+        List<Auction> auctions = auctionService.getAllCurrentAuctions();
+        model.addAttribute("auctions", auctions);
         return "index";
     }
 
@@ -79,4 +84,6 @@ public class AuctionController {
         auctionService.deleteAuction(id);
         return auctionService.getAllAuctions();
     }
+
+
 }

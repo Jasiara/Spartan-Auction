@@ -20,9 +20,9 @@
                 <p id="auction-end">Time Left: ${auction.dateAndTime}</p>
                 <p>Description: ${auction.description}</p>
                 <p>Current Highest Bid: $ ${auction.currentPrice}</p>
-                <p>Seller: <a href="./other-profile.html">@${auction.seller.username}</a></p>
+                <p>Seller: <a href="/users/other-profile/${auction.seller.id}">@${auction.seller.username}</a></p>
                 <div>
-                    <a href="./bid-confirm.html" class="link-button-small">Place A Bid</a>
+                    <a href="/bids/making-bid/${auction.id}" class="link-button-small">Place A Bid</a>
                 </div>
             </div>
         </div>
