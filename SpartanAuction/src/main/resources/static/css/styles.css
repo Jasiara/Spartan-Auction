@@ -643,3 +643,11 @@ td, th {
 .sign-log-button {
 
 }
+
+.hide {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}

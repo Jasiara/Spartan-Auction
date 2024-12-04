@@ -5,4 +5,3 @@
     <a id="customer-reviews-tab" class="user-nav-non-highlight">Customer Reviews</a>
 </div>
 
-<!--<script src="/script/profile.js" type="text/javascript"></script>-->

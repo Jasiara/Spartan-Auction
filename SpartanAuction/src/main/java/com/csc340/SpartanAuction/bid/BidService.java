@@ -50,6 +50,18 @@ public class BidService {
         return highestBids;
     }
 
+    public List<Bid> getPastBidsForUser(int userId) {
+        List<Bid> listOfAllBids = bidRepository.getPastBidsForUser(userId);
+        List<Bid> pastBids = new ArrayList<>();
+
+        for (int i = 0; i < listOfAllBids.size(); i++) {
+            if (listOfAllBids.get(i).getAuction().getCurrentPrice() == listOfAllBids.get(i).getAmount()) {
+                pastBids.add(listOfAllBids.get(i));
+            }
+        }
+        return pastBids;
+    }
+
     public void updateBid(int id, Bid bid) {
         Bid existing = getBidById(id);
         existing.setAuction(bid.getAuction());

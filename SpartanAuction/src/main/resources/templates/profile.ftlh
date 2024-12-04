@@ -13,45 +13,130 @@
 <body>
     <#include "./include/header.ftlh">
     <main>
-        <#include "./include/profile-parts/profile-top.ftlh">
-        <#include "./include/profile-parts/user-nav(my_auctions).ftlh">
-        <div class="current-and-past-bids">
-            <#if currentBidAmount gt 0>
-                <#assign index = 0>
-                <#list currentBids as bid>
-                    <a href="/api/auctions/${bid.auction.id}" class="item-link">
-                        <div class="item">
-                            <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-                            <img src="/images/${bid.auction.imagePath}" alt="">
-                            <p class="black-writing">Item Name: ${bid.auction.title}</p>
-                            <p class="black-writing">Highest Bid: $ ${bid.auction.currentPrice}</p>
-                            <p class="black-writing">Your Highest Bid: $ ${bid.amount}</p>
-                            <p class="black-writing" id="auction-end${index}">Time Left: </p>
-                            <p><span class="black-writing">User: </span><a href="/users/other-profile/${bid.auction.seller.id}">
-                                @${bid.auction.seller.username}</a></p>
-                             <#assign index = index + 1>
-                        </div>
-                    </a>
-                </#list>
-                <script type="text/javascript">
-                    console.log("Hi, there");
-                    var datesArr = [<#list currentBids as bid>"${bid.auction.dateAndTime}", </#list>];
-                    console.log(datesArr);
-                </script>
-                <script src="/script/multiple-items.js" type="text/javascript"></script>
-            <#else>
-                <div class="no-current-bids-container">
-                    <br>
-                    <p class="no-current-bids"> You are currently not bidding on any items</p>
-                    <br>
-                    <p class="no-current-bids">Would you like to find some <a href="/api/auctions">items?</a></p>
-                    <br><br><br>
-                </div>
-            </#if>
-        </div>
+        <#include "./include/profile-top.ftlh">
+        <#include "./include/user-nav(my_auctions).ftlh">
+        <#include "./include/my_auctions.ftlh">
+        <#include "./include/current-bids.ftlh">
+        <#include "./include/past-bids.ftlh">
+        <#include "./include/customer-reviews.ftlh">
     </main>
-    <script src="/script/profile.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var datesArr = [<#list currentBids as bid>"${bid.auction.dateAndTime}", </#list>];
+    </script>
+    <script src="/script/multiple-items.js" type="text/javascript"></script>
+    <script>
 
+console.log("Can you see me 1");
+
+let auctionsTab;
+let currentBidsTab;
+let pastBidsTab;
+let customerReviewsTab;
+
+console.log("Can you see me 2");
+
+auctionsTab = document.getElementById("my-auctions-tab");
+currentBidsTab = document.getElementById("current-bids-tab");
+pastBidsTab = document.getElementById("past-bids-tab");
+customerReviewsTab = document.getElementById("customer-reviews-tab");
+
+console.log("Can you see me 3");
+
+
+console.log(auctionsTab);
+console.log(currentBidsTab);
+console.log(pastBidsTab);
+console.log(customerReviewsTab);
+
+auctionsTab.addEventListener("click", function () {
+    console.log("Auction");
+    let classArray = document.getElementsByClassName("user-nav-highlight");
+    let whiteTab = classArray[0];
+    whiteTab.classList.add("user-nav-non-highlight");
+    whiteTab.classList.remove("user-nav-highlight");
+
+    auctionsTab.classList.add("user-nav-highlight");
+    auctionsTab.classList.remove("user-nav-non-highlight");
+
+    let blockArray = document.getElementsByClassName("show");
+    let shownBlock = blockArray[0];
+    console.log(shownBlock);
+
+    shownBlock.classList.add("hide");
+    shownBlock.classList.remove("show");
+
+    let auctionBlock = document.getElementById("auction-block");
+    auctionBlock.classList.add("show");
+    auctionBlock.classList.remove("hide");
+});
+
+currentBidsTab.addEventListener("click", function () {
+    console.log("Current");
+    let classArray = document.getElementsByClassName("user-nav-highlight");
+    let whiteTab = classArray[0];
+    whiteTab.classList.add("user-nav-non-highlight");
+    whiteTab.classList.remove("user-nav-highlight");
+
+    currentBidsTab.classList.add("user-nav-highlight");
+    currentBidsTab.classList.remove("user-nav-non-highlight");
+
+    let blockArray = document.getElementsByClassName("show");
+    let shownBlock = blockArray[0];
+    console.log(shownBlock);
+
+    shownBlock.classList.add("hide");
+    shownBlock.classList.remove("show");
+
+    let currentBlock = document.getElementById("current-bids-block");
+    currentBlock.classList.add("show");
+    currentBlock.classList.remove("hide");
+});
+
+pastBidsTab.addEventListener("click", function () {
+    console.log("Past");
+    let classArray = document.getElementsByClassName("user-nav-highlight");
+    let whiteTab = classArray[0];
+    whiteTab.classList.add("user-nav-non-highlight");
+    whiteTab.classList.remove("user-nav-highlight");
+
+    pastBidsTab.classList.add("user-nav-highlight");
+    pastBidsTab.classList.remove("user-nav-non-highlight");
+
+    let blockArray = document.getElementsByClassName("show");
+    let shownBlock = blockArray[0];
+    console.log(shownBlock);
+
+    shownBlock.classList.add("hide");
+    shownBlock.classList.remove("show");
+
+    let pastBlock = document.getElementById("past-bids-block");
+    pastBlock.classList.add("show");
+    pastBlock.classList.remove("hide");
+});
+
+customerReviewsTab.addEventListener("click", function () {
+    console.log("Review");
+    let classArray = document.getElementsByClassName("user-nav-highlight");
+    let whiteTab = classArray[0];
+    whiteTab.classList.add("user-nav-non-highlight");
+    whiteTab.classList.remove("user-nav-highlight");
+
+    customerReviewsTab.classList.add("user-nav-highlight");
+    customerReviewsTab.classList.remove("user-nav-non-highlight");
+
+    let blockArray = document.getElementsByClassName("show");
+    let shownBlock = blockArray[0];
+    console.log(shownBlock);
+
+    shownBlock.classList.add("hide");
+    shownBlock.classList.remove("show");
+
+    let reviewBlock = document.getElementById("customer-review-block");
+    reviewBlock.classList.add("show");
+    reviewBlock.classList.remove("hide");
+});
+    </script>
+    <!--<script src="/script/profile.js" type="text/javascript"></script>-->
 </body>
 
 </html>

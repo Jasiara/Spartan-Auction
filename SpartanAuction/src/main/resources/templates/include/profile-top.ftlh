@@ -33,6 +33,7 @@
                 </#if>
             </div>
         </div>
+            <#if loggedIn = true>
             <a href="/users/update/${user.id}"><i class="fa fa-gear"></i></a>
-
+            </#if>
 </div>

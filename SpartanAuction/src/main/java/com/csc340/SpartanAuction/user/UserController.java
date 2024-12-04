@@ -4,6 +4,8 @@ import com.csc340.SpartanAuction.auction.Auction;
 import com.csc340.SpartanAuction.auction.AuctionService;
 import com.csc340.SpartanAuction.bid.Bid;
 import com.csc340.SpartanAuction.bid.BidService;
+import com.csc340.SpartanAuction.review.Review;
+import com.csc340.SpartanAuction.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     private BidService bidService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @GetMapping("/all")
     public List<User> getAllUsers() {
@@ -82,9 +87,17 @@ public class UserController {
     public String showProfile(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
+        List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
+        List<Bid> pastBids = bidService.getPastBidsForUser(id);
         int currentBidsSize = currentBids.size();
+        List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
+        boolean loggedIn = true;
         model.addAttribute("currentBids", currentBids);
         model.addAttribute("currentBidAmount", currentBidsSize);
+        model.addAttribute("loggedIn", loggedIn);
+        model.addAttribute("auctions", currentAuctions);
+        model.addAttribute("pastBids", pastBids);
+        model.addAttribute("customerReviews", customerReviews);
         return "profile";
     }
 
@@ -93,7 +106,9 @@ public class UserController {
         model.addAttribute("user", userService.getUserById(id));
         List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
         int currentAuctionsSize = currentAuctions.size();
+        boolean loggedIn = false;
         model.addAttribute("currentAuctions", currentAuctions);
+        model.addAttribute("loggedIn", loggedIn);
         model.addAttribute("currentAuctionAmount", currentAuctionsSize);
         return "other-profile";
     }

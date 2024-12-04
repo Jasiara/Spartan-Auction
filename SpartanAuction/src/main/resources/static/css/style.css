@@ -104,6 +104,22 @@ header {
     margin: 2% 6%;
 }
 
+.item .navy-button {
+    background-color: #0f2044;
+    color: #e7e7ee;
+    text-decoration: none;
+    text-align: center;
+    margin: 3%;
+    padding: 3% 20%;
+    border-radius: 10px;
+}
+
+
+.item .navy-button:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
+}
+
 img {
     border-radius: 20px;
 }
@@ -253,15 +269,28 @@ img {
     height: 250px;
 }
 
+
+.profile-img-small {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
 .profile-top p {
     font-size: 150%;
 }
 
+.fa-gear, .fa-plus {
+    color: #0f2044;
+    text-decoration: none;
+}
 
 .fa-gear {
     font-size: 600%;
-    color: #0f2044;
-    text-decoration: none;
+}
+
+.fa-plus {
+    font-size: 1400%;
 }
 
 .user-nav {
@@ -294,7 +323,7 @@ img {
     color: #e7e7ee;
 }
 
-.current-and-past-bids {
+.current-and-past-bids, .my_auctions{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -339,7 +368,6 @@ img {
 .bid-confirm-form {
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
 }
 
 .bid-confirm-form input {
@@ -355,4 +383,44 @@ img {
 .bid-confirm-form .bid:hover {
     background-color: green;
     color: #e7e7ee;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+
+/*.my_auctions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #e7e7ee;
+    padding-bottom: 3%;
+}*/
+
+.customer-review {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #e7e7ee;
+}
+
+.customer-review-item {
+    width: 80%;
+    display: flex;
+    margin: 2%;
+    padding: 2%;
+    border: 2px solid #0f2044;
+    border-radius: 50px;
+}
+
+.customer-review-item img {
+    margin: 2%;
 }
