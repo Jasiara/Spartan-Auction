@@ -70,16 +70,17 @@
         </#list>
     </#if>
     </#list>
+    <br>
     <#else>
         <#if loggedIn == true>
             <div class="no-current-bids-container">
-                <br><br><br>
+                <br><br><br><br>
                 <p class="no-current-bids"> You currently don't have any reviews</p>
                 <br><br><br><br><br><br><br><br><br><br>
             </div>
         <#else>
             <div class="no-current-bids-container">
-                <br><br><br>
+                <br><br><br><br>
                 <p class="no-current-bids"> This user doesn't have any reviews currently</p>
                 <br><br><br><br><br><br><br><br><br><br>
             </div>

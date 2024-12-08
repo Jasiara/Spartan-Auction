@@ -78,6 +78,10 @@ public class BidService {
         return pastBids;
     }
 
+    public List<Bid> getAllBidsForUser(int userId) {
+        return bidRepository.getAllBidsForUser(userId);
+    }
+
     public void updateBid(int id, Bid bid) {
         Bid existing = getBidById(id);
         existing.setAuction(bid.getAuction());

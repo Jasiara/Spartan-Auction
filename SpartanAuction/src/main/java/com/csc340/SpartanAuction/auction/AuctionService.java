@@ -1,6 +1,7 @@
 package com.csc340.SpartanAuction.auction;
 
 import com.csc340.SpartanAuction.bid.Bid;
+import com.csc340.SpartanAuction.bid.BidRepository;
 import com.csc340.SpartanAuction.bid.BidService;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedRepository;
@@ -21,7 +22,9 @@ public class AuctionService {
 
     @Autowired
     private BidService bidService;
-    
+
+    @Autowired
+    private BidRepository bidRepository;
     @Autowired
     private ReviewCompletedRepository reviewCompletedRepository;
     public List<Auction> getAllAuctions() {
@@ -37,6 +40,7 @@ public class AuctionService {
     }
 
     public List<Auction> getCurrentAuctionsForUser(int id) {
+        checkForActiveAuctions(auctionRepository.getCurrentAuctionsForUser(id));
         return auctionRepository.getCurrentAuctionsForUser(id);
     }
 
@@ -49,8 +53,13 @@ public class AuctionService {
     }
 
     public List<Auction> getAuctionsByProvider(int providerId) {
-
+        checkForActiveAuctions(auctionRepository.findByProviderId(providerId));
         return auctionRepository.findByProviderId(providerId);
+    }
+
+    public List<Auction> getAllAuctionsForUser(int userId) {
+        checkForActiveAuctions(auctionRepository.getAllAuctionsForUser(userId));
+        return auctionRepository.getAllAuctionsForUser(userId);
     }
 
 
@@ -93,6 +102,19 @@ public class AuctionService {
     }
 
     public void deleteAuction(int id) {
+        List<Bid> bidsForOneAuction = bidRepository.getAllBidsForOneAuction(id);
+
+        while (!bidsForOneAuction.isEmpty()) {
+            Bid deletedBid = bidsForOneAuction.get(0);
+            bidsForOneAuction.remove(0);
+            bidService.deleteBidById(deletedBid.getId());
+        }
+
+        ReviewCompleted reviewCompleted = reviewCompletedRepository.getReviewCompletedByAuctionId(id);
+        if (reviewCompleted != null) {
+            reviewCompletedRepository.deleteById(reviewCompleted.getId());
+        }
+
         auctionRepository.deleteById(id);
     }
 

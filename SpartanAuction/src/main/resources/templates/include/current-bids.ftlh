@@ -5,7 +5,7 @@
                 <#list currentBids as bid>
                     <a href="/api/auctions/${bid.auction.id}" class="item-link">
                         <div class="item">
-                        <#if bid.auction.imagePath = "imagePath">
+                        <#if bid.auction.imagePath == "imagePath">
                             <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                             <img src="/images/no-auction-photo.jpg" alt="">
                         <#else>

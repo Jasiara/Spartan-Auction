@@ -15,7 +15,17 @@
                         <p class="black-writing">Item Name: ${bid.auction.title}</p>
                         <p class="black-writing">Highest Bid: $ ${bid.auction.currentPrice}</p>
                         <p><span class="black-writing">User: </span><a href="/users/other-profile/${bid.auction.seller.id}">@${bid.auction.seller.username}</a></p>
-                        <a href="/reviews/write-review/user/${user.id}/auction/${bid.auction.id}" class="navy-button-2">Write A Review</a>
+                        <#if reviewsCompletedAmount gt 0>
+                            <#list reviewsCompleted as reviewCompleted>
+                                <#if reviewCompleted.auction.id == bid.auction.id && reviewCompleted.reviewCompleted == true>
+                                    <a href="/reviews/update-review/${reviewCompleted.review.id}/auction/${bid.auction.id}" class="navy-button-2">Edit Review</a>
+                                <#else>
+                                    <a href="/reviews/write-review/user/${user.id}/auction/${bid.auction.id}" class="navy-button-2">Write A Review</a>
+                                </#if>
+                            </#list>
+                        <#else>
+                            <a href="/reviews/write-review/user/${user.id}/auction/${bid.auction.id}" class="navy-button-2">Write A Review</a>
+                        </#if>
                         <#assign index = index + 1>
                     </div>
                 </a>

@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/styles.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <#include "./include/header.ftlh">
     <main class="sign-up-main">
         <div class="sign-up-login-form">
-            <h2>Update Profile</h2>
+            <div>
+                <h2>Update ${user.username} Profile</h2>
+                <div class="delete-div">
+                    <a href="/users/delete/${user.id}" class="delete">Delete Profile</a>
+                </div>
+            </div>
             <form action="/users/update/${user.id}" method="post" modelAttribute="${user}">
                 <label for="name">Name</label>
                 <br>

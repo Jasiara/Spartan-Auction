@@ -539,6 +539,20 @@ img {
     height: 125px;
 }
 
+.delete {
+    background-color: red;
+    text-align: center;
+    color: white;
+    padding: 15%;
+    text-decoration: none;
+    margin: 15%;
+    border-radius: 10px;
+}
+
+.delete:hover {
+    background-color: maroon;
+}
+
 .hide {
     display: none;
 }

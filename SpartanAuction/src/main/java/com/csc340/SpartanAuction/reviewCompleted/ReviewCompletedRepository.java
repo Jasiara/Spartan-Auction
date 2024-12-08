@@ -10,7 +10,10 @@ import java.util.List;
 
 @Repository
 public interface ReviewCompletedRepository extends JpaRepository<ReviewCompleted, Integer> {
-    @Query(value = "SELECT * FROM review_completed WHERE provider_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT review_completed.id, review_completed.review_id, review_completed.auction_id, review_completed.review_completed" +
+            " FROM review_completed, review" +
+            " WHERE review.reviewer_id = :userId" +
+            " AND review_completed.review_id = review.id", nativeQuery = true)
     public List<ReviewCompleted> getAllReviewsCompletedForOneUser(@Param("userId") int userId);
 
     @Query(value = "SELECT * FROM review_completed WHERE auction_id = :auctionId", nativeQuery = true)

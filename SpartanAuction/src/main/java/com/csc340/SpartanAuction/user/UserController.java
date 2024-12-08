@@ -8,6 +8,8 @@ import com.csc340.SpartanAuction.reply.Reply;
 import com.csc340.SpartanAuction.reply.ReplyService;
 import com.csc340.SpartanAuction.review.Review;
 import com.csc340.SpartanAuction.review.ReviewService;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,9 @@ public class UserController {
 
     @Autowired
     private ReplyService replyService;
+
+    @Autowired
+    private ReviewCompletedService reviewCompletedService;
 
     @GetMapping("/users/all")
     public List<User> getAllUsers() {
@@ -91,11 +96,12 @@ public class UserController {
     public String showProfile(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
-        List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
+        List<Auction> currentAuctions = auctionService.getAllAuctionsForUser(id);
         List<Bid> pastBids = bidService.getPastBidsForUser(id);
         int currentBidsSize = currentBids.size();
         List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
         List<Reply> replies = replyService.getAllRepliesForOneUser(id);
+        List<ReviewCompleted> reviewsCompleted = reviewCompletedService.getAllReviewsCompletedForOneUser(id);
         boolean loggedIn = true;
         model.addAttribute("currentBids", currentBids);
         model.addAttribute("currentBidAmount", currentBidsSize);
@@ -107,6 +113,8 @@ public class UserController {
         model.addAttribute("replies", replies);
         model.addAttribute("repliesAmount", replies.size());
         model.addAttribute("customerReviewsAmount", customerReviews.size());
+        model.addAttribute("reviewsCompleted", reviewsCompleted);
+        model.addAttribute("reviewsCompletedAmount", reviewsCompleted.size());
         return "profile";
     }
 
@@ -145,10 +153,10 @@ public class UserController {
         return "update-user";
     }
 
-    @DeleteMapping("/users/delete/{id}")
-    public List<User> deleteUserById(@PathVariable int id) {
+    @GetMapping("/users/delete/{id}")
+    public String deleteUserById(@PathVariable int id) {
         userService.deleteUserById(id);
-        return userService.getAllUsers();
+        return "redirect:/users/login";
     }
 
 }

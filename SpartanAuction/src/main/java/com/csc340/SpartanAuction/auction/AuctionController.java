@@ -136,18 +136,6 @@ public class AuctionController {
     @GetMapping("/delete/{id}")
     public String deleteAnAuction(@PathVariable int id) {
         User user = auctionService.getAuctionById(id).getSeller();
-        List<Bid> bidsForOneAuction =  bidService.getAllBidsForOneItem(id);
-
-        while (!bidsForOneAuction.isEmpty()) {
-            Bid deletedBid = bidsForOneAuction.get(0);
-            bidsForOneAuction.remove(0);
-            bidService.deleteBidById(deletedBid.getId());
-        }
-
-        ReviewCompleted reviewCompleted = reviewCompletedService.getReviewCompletedForOneAuction(id);
-        if (reviewCompleted != null) {
-            reviewCompletedService.deleteReviewCompletedById(reviewCompleted.getId());
-        }
 
         auctionService.deleteAuction(id);
         return "redirect:/users/profile/" + user.getId();

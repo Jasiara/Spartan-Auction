@@ -3,10 +3,10 @@
     <div>
     <#assign index = 0>
     <#list auctions as item>
-        <#if item.auctionStatus = 'active'>
+        <#if item.auctionStatus == 'active'>
             <a href="/api/auctions/${item.id}" class="item-link">
                 <div class="item">
-                    <#if item.imagePath = "imagePath">
+                    <#if item.imagePath == "imagePath">
                         <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                         <img src="/images/no-auction-photo.jpg" alt="">
                     <#else>
@@ -34,11 +34,16 @@
     <h2> Past Auctions </h2>
     <div>
     <#list auctions as item>
-            <#if item.auctionStatus = 'completed'>
+            <#if item.auctionStatus == 'completed'>
                 <a href="/api/auctions/${item.id}" class="item-link">
                     <div class="item">
-                        <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-                        <img src="/images/${item.imagePath}" alt="">
+                        <#if item.imagePath == "imagePath">
+                            <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                            <img src="/images/no-auction-photo.jpg" alt="">
+                        <#else>
+                            <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                            <img src="/images/${item.imagePath}" alt="">
+                        </#if>
                         <p class="black-writing">Item Name: ${item.title}</p>
                         <p class="black-writing">Highest Bid: $ ${item.currentPrice}</p>
                     </div>

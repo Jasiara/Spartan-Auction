@@ -1,6 +1,13 @@
 package com.csc340.SpartanAuction.user;
 
+import com.csc340.SpartanAuction.auction.Auction;
+import com.csc340.SpartanAuction.auction.AuctionService;
+import com.csc340.SpartanAuction.bid.Bid;
+import com.csc340.SpartanAuction.bid.BidRepository;
+import com.csc340.SpartanAuction.bid.BidService;
+import com.csc340.SpartanAuction.review.Review;
 import com.csc340.SpartanAuction.review.ReviewRepository;
+import com.csc340.SpartanAuction.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +23,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BidService bidService;
 
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private AuctionService auctionService;
 
 
     public List<User> getAllUsers() {
@@ -91,6 +105,30 @@ public class UserService {
 
 
     public void deleteUserById(int id) {
+        List<Bid> bidsForOneUser = bidService.getAllBidsForUser(id);
+
+        while (!bidsForOneUser.isEmpty()) {
+            Bid deletedBid = bidsForOneUser.get(0);
+            bidsForOneUser.remove(0);
+            bidService.deleteBidById(deletedBid.getId());
+        }
+
+        List<Review> reviewsForOneUser = reviewService.getAllReviewsForOneUser(id);
+
+        while (!reviewsForOneUser.isEmpty()) {
+            Review deletedReview = reviewsForOneUser.get(0);
+            reviewsForOneUser.remove(0);
+            reviewService.deleteReviewById(deletedReview.getId());
+        }
+
+        List<Auction> auctionsForOneUser = auctionService.getAllAuctionsForUser(id);
+
+        while (!auctionsForOneUser.isEmpty()) {
+            Auction deletedAuction = auctionsForOneUser.get(0);
+            auctionsForOneUser.remove(0);
+            auctionService.deleteAuction(deletedAuction.getId());
+        }
+
         userRepository.deleteById(id);
     }
 

@@ -54,16 +54,29 @@ public class ReviewController {
         return "write-review";
     }
 
-    @PutMapping("/update/{id}")
-    public Review updateReview(@PathVariable int id, @RequestBody Review review) {
+    @PostMapping("/update/{id}")
+    public String updateReview(@PathVariable int id, @ModelAttribute("review") Review review) {
         reviewService.updateReview(id, review);
-        return reviewService.getReviewById(id);
+
+        User user = reviewService.getReviewById(id).getReviewUser();
+        return "redirect:/users/profile/" + user.getId();
+    }
+
+    @GetMapping("/update-review/{reviewId}/auction/{auctionId}")
+    public String updateReviewForm(@PathVariable int reviewId, @PathVariable int auctionId, Model model) {
+        Review review = reviewService.getReviewById(reviewId);
+
+        model.addAttribute("review", review);
+        model.addAttribute("auction", auctionService.getAuctionById(auctionId));
+        return "edit-review";
     }
 
 
-    @DeleteMapping("/delete/{id}")
-    public List<Review> deleteReviewById(@PathVariable int id) {
+    @GetMapping("/delete/{id}")
+    public String deleteReviewById(@PathVariable int id) {
+        User user = reviewService.getReviewById(id).getReviewUser();
+
         reviewService.deleteReviewById(id);
-        return reviewService.getAllReviews();
+        return "redirect:/users/profile/" + user.getId();
     }
 }

@@ -1,6 +1,8 @@
 package com.csc340.SpartanAuction.review;
 
 
+import com.csc340.SpartanAuction.reply.Reply;
+import com.csc340.SpartanAuction.reply.ReplyRepository;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedRepository;
 import com.csc340.SpartanAuction.user.User;
@@ -14,6 +16,9 @@ import java.util.List;
 public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     @Autowired
     private ReviewCompletedRepository reviewCompletedRepository;
@@ -59,6 +64,21 @@ public class ReviewService {
 
 
     public void deleteReviewById(int id) {
+        List<Reply> allRepliesForOneReview = replyRepository.getAllRepliesForOneReview(id);
+
+        while (!allRepliesForOneReview.isEmpty()) {
+            Reply deletedReply = allRepliesForOneReview.get(0);
+            allRepliesForOneReview.remove(0);
+            replyRepository.deleteById(deletedReply.getId());
+        }
+
+        ReviewCompleted reviewCompleted = reviewCompletedRepository.getReviewCompletedByReviewId(id);
+        if (reviewCompleted != null) {
+            reviewCompleted.setReviewCompleted(false);
+            reviewCompleted.setReview(null);
+            reviewCompletedRepository.save(reviewCompleted);
+        }
+
         reviewRepository.deleteById(id);
     }
 }
