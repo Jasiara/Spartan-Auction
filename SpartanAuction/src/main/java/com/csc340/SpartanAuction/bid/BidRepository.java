@@ -10,10 +10,15 @@ public interface BidRepository extends JpaRepository<Bid, Integer> {
     @Query(value = "SELECT * FROM bid WHERE auction_id = :auctionId", nativeQuery = true)
     public List<Bid> getAllBidsForOneAuction(@Param("auctionId") int auctionId);
 
-    @Query(value = "SELECT bid.id, bid.amount, bid.auction_id, bid.user_id FROM bid, auction WHERE bid.auction_id = auction.id AND user_id = :userId AND auction.auction_status = 'active';", nativeQuery = true)
+    @Query(value = "SELECT bid.id, bid.amount, bid.auction_id, bid.user_id FROM bid, auction WHERE bid.auction_id = auction.id AND user_id = :userId AND auction.auction_status = 'active' ORDER BY bid.auction_id DESC, bid.amount DESC;", nativeQuery = true)
     List<Bid> getCurrentBidsForUser(@Param("userId")int userId);
 
     //SELECT bid.id, bid.amount, bid.auction_id, bid.user_id FROM bid, auction WHERE bid.auction_id = auction.id AND bid.user_id = 252 AND auction.auction_status = 'completed';
     @Query(value = "SELECT bid.id, bid.amount, bid.auction_id, bid.user_id FROM bid, auction WHERE bid.auction_id = auction.id AND bid.user_id = :userId AND auction.auction_status = 'completed';", nativeQuery = true)
     List<Bid> getPastBidsForUser(@Param("userId")int userId);
+
+
+    @Query(value = "SELECT (CASE WHEN MAX(bid.amount) != 0 then MAX(bid.amount) else 0 END) FROM bid WHERE auction_id = :auctionId", nativeQuery = true)
+    double getHighestBidForAuction(@Param("auctionId")int auctionId);
+
 }

@@ -15,8 +15,13 @@
         <#include "/include/profile-top.ftlh">
         <#include "/include/other-user-nav(current_auctions).ftlh">
         <#include "/include/current-auctions.ftlh">
+        <#include "./include/customer-reviews.ftlh">
+        <script type="text/javascript">
+            var datesArr = [<#list currentAuctions as item>"${item.dateAndTime}", </#list>];
+        </script>
+        <script src="/script/multiple-items.js" type="text/javascript"></script>
+        <script src="/script/profile.js" type="text/javascript"></script>
     </main>
-    <script src="/script/profile.js" type="text/javascript"></script>
     </body>
 
 </html>

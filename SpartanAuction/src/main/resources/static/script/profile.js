@@ -6,14 +6,13 @@ let currentBidsTab;
 let pastBidsTab;
 let customerReviewsTab;
 
-console.log("Can you see me 2");
 
 auctionsTab = document.getElementById("my-auctions-tab");
 currentBidsTab = document.getElementById("current-bids-tab");
 pastBidsTab = document.getElementById("past-bids-tab");
 customerReviewsTab = document.getElementById("customer-reviews-tab");
 
-console.log("Can you see me 3");
+
 
 
 console.log(auctionsTab);
@@ -33,14 +32,17 @@ auctionsTab.addEventListener("click", function () {
 
     let blockArray = document.getElementsByClassName("show");
     let shownBlock = blockArray[0];
+    console.log("Shown Block :");
     console.log(shownBlock);
 
     shownBlock.classList.add("hide");
     shownBlock.classList.remove("show");
 
     let auctionBlock = document.getElementById("auction-block");
+    console.log("Block");
+    console.log(auctionBlock);
     auctionBlock.classList.add("show");
-    auctionBlock.classList.remove("remove");
+    auctionBlock.classList.remove("hide");
 });
 
 currentBidsTab.addEventListener("click", function () {
@@ -55,14 +57,17 @@ currentBidsTab.addEventListener("click", function () {
 
     let blockArray = document.getElementsByClassName("show");
     let shownBlock = blockArray[0];
+    console.log("Shown Block :");
     console.log(shownBlock);
 
     shownBlock.classList.add("hide");
     shownBlock.classList.remove("show");
 
     let currentBlock = document.getElementById("current-bids-block");
+    console.log("Block");
+    console.log(currentBlock);
     currentBlock.classList.add("show");
-    currentBlock.classList.remove("remove");
+    currentBlock.classList.remove("hide");
 });
 
 pastBidsTab.addEventListener("click", function () {
@@ -77,14 +82,17 @@ pastBidsTab.addEventListener("click", function () {
 
     let blockArray = document.getElementsByClassName("show");
     let shownBlock = blockArray[0];
+    console.log("Shown Block :");
     console.log(shownBlock);
 
     shownBlock.classList.add("hide");
     shownBlock.classList.remove("show");
 
     let pastBlock = document.getElementById("past-bids-block");
+    console.log("Block");
+    console.log(pastBlock);
     pastBlock.classList.add("show");
-    pastBlock.classList.remove("remove");
+    pastBlock.classList.remove("hide");
 });
 
 customerReviewsTab.addEventListener("click", function () {
@@ -96,4 +104,18 @@ customerReviewsTab.addEventListener("click", function () {
 
     customerReviewsTab.classList.add("user-nav-highlight");
     customerReviewsTab.classList.remove("user-nav-non-highlight");
+
+    let blockArray = document.getElementsByClassName("show");
+    let shownBlock = blockArray[0];
+    console.log("Shown Block :");
+    console.log(shownBlock)
+
+    shownBlock.classList.add("hide");
+    shownBlock.classList.remove("show");
+
+    let reviewBlock = document.getElementById("customer-review-block");
+    console.log("Block");
+    console.log(reviewBlock);
+    reviewBlock.classList.add("show");
+    reviewBlock.classList.remove("hide");
 });

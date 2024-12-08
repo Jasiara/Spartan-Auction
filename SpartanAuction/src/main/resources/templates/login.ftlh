@@ -11,32 +11,27 @@
     <#include "./include/header.ftlh">
     <main class="login-main">
         <div class="sign-up-login-form">
-            <div>
-                <h2>Login</h2>
-            </div>
-            <div>
-                <form action="/users/logging" method="get" >
-                    <label for="username">Username</label>
-                    <br>
-                    <input type="text" name="username" id="username" required>
-                    <br>
-                    <label for="password">Password</label>
-                    <br>
-                    <input type="password" name="password" id="password" required>
-                    <br>
-                    <a href="#">Forgot Username or Password</a><br>
+            <h2>Login</h2>
+            <form action="/users/logging" method="get" >
+                <label for="username">Username</label>
+                <br>
+                <input type="text" name="username" id="username" required>
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password" name="password" id="password" required>
+                <br>
+                <a href="#">Forgot Username or Password</a><br>
+                <div>
                     <div>
-                        <div>
-                            <a href="/users/signup" class="sign-log-link">Sign Up Instead</a>
-                        </div>
-                        <div>
-                            <button class=".sign-log-button">Login</button>
-                        </div>
-
-                        <!--<button class=".sign-log-button">Admin Login</button>-->
+                        <a href="/users/signup" class="sign-log-link">Sign Up Instead</a>
                     </div>
-                </form>
-            </div>
+                    <div>
+                        <button class=".sign-log-button">Login</button>
+                    </div>
+                        <!--<button class=".sign-log-button">Admin Login</button>-->
+                </div>
+            </form>
         </div>
     </main>
 </body>

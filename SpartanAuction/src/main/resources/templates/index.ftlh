@@ -18,7 +18,13 @@
             <a href="/api/auctions/${item.id}" class="item-link">
                 <div class="item">
                     <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-                    <img src="/images/${item.imagePath}" alt="">
+                    <#if item.imagePath = "imagePath">
+                        <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                        <img src="/images/no-auction-photo.jpg" alt="">
+                    <#else>
+                        <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                        <img src="/images/${item.imagePath}" alt="">
+                    </#if>
                     <p class="black-writing">Item Name: ${item.title}</p>
                     <p class="black-writing">Highest Bid: $ ${item.currentPrice}</p>
                     <p class="black-writing" id="auction-end${index}">Time Left: </p>

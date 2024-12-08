@@ -21,7 +21,6 @@ public class Auction {
     @Column(nullable = false)
     private double startingPrice;
 
-
     private double currentPrice;
 
     @Column(nullable = false)

@@ -19,26 +19,26 @@ public class Review {
     @JoinColumn(name = "providerId")
     private User providerUser;
 
-    private String review;
+    private String comment;
 
     @Column(nullable = false)
     private double rating;
 
-    public Review(int id, User reviewUser, User providerUser, String review, double rating) {
+    public Review(int id, User reviewUser, User providerUser, String comment, double rating) {
         this.id = id;
         this.reviewUser = reviewUser;
         this.providerUser = providerUser;
-        this.review = review;
+        this.comment = comment;
         this.rating = rating;
     }
 
     public Review() {
     }
 
-    public Review(User reviewUser, User providerUser, String review, double rating) {
+    public Review(User reviewUser, User providerUser, String comment, double rating) {
         this.reviewUser = reviewUser;
         this.providerUser = providerUser;
-        this.review = review;
+        this.comment = comment;
         this.rating = rating;
     }
 
@@ -56,7 +56,7 @@ public class Review {
         this.id = review.getId();
         this.reviewUser = review.getReviewUser();
         this.providerUser = review.getProviderUser();
-        this.review = review.getReview();
+        this.comment = review.getComment();
         this.rating = review.getRating();
     }
 
@@ -84,12 +84,12 @@ public class Review {
         this.providerUser = providerUser;
     }
 
-    public String getReview() {
-        return review;
+    public String getComment() {
+        return comment;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public double getRating() {
@@ -106,7 +106,7 @@ public class Review {
                 "id=" + id +
                 ", reviewUser=" + reviewUser +
                 ", providerUser=" + providerUser +
-                ", review='" + review + '\'' +
+                ", review='" + comment + '\'' +
                 ", rating=" + rating +
                 '}';
     }

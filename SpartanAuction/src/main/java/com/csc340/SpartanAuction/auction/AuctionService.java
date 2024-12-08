@@ -1,5 +1,10 @@
 package com.csc340.SpartanAuction.auction;
 
+import com.csc340.SpartanAuction.bid.Bid;
+import com.csc340.SpartanAuction.bid.BidService;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedRepository;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.csc340.SpartanAuction.user.*;
@@ -14,6 +19,11 @@ public class AuctionService {
     @Autowired
     private UserRepository userRepository; // Add this line to inject the UserRepository
 
+    @Autowired
+    private BidService bidService;
+    
+    @Autowired
+    private ReviewCompletedRepository reviewCompletedRepository;
     public List<Auction> getAllAuctions() {
         return auctionRepository.findAll();
     }
@@ -60,6 +70,11 @@ public class AuctionService {
                 auction.getCurrentPrice(), auction.getAuctionStatus(), auction.getSeller(),
                 auction.getDateAndTime(), auction.getImagePath(), auction.getCategory());
         auctionRepository.save(auction);
+
+        ReviewCompleted newReviewCompleted = new ReviewCompleted();
+        newReviewCompleted.setAuction(auction);
+        newReviewCompleted.setReviewCompleted(false);
+        reviewCompletedRepository.save(newReviewCompleted);
     }
 
 
@@ -85,11 +100,14 @@ public class AuctionService {
         long millis = System.currentTimeMillis();
         Timestamp currentTime = new Timestamp(millis);
         for (int i = 0; i < auctions.size(); i++) {
+            double highestBid = bidService.getHighestBidForAuction(auctions.get(i).getId());
+            auctions.get(i).setCurrentPrice(highestBid);
+
             long timeLeft = auctions.get(i).getDateAndTime().getTime() - currentTime.getTime();
             if (timeLeft < 0) {
                 auctions.get(i).setAuctionStatus("completed");
-                auctionRepository.save(auctions.get(i));
             }
+            auctionRepository.save(auctions.get(i));
         }
     }
 }

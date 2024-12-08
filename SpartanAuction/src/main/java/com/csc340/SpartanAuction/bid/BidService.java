@@ -2,6 +2,8 @@ package com.csc340.SpartanAuction.bid;
 
 
 import com.csc340.SpartanAuction.auction.Auction;
+import com.csc340.SpartanAuction.auction.AuctionRepository;
+import com.csc340.SpartanAuction.auction.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class BidService {
     @Autowired
     private BidRepository bidRepository;
+    @Autowired
+    private AuctionRepository auctionRepository;
 
     public List<Bid> getAllBids() {
         return bidRepository.findAll();
@@ -38,16 +42,28 @@ public class BidService {
     public List<Bid> getCurrentBidsForUser(int userId) {
         List<Bid> listOfAllBids = bidRepository.getCurrentBidsForUser(userId);
         List<Bid> highestBids = new ArrayList<>();
-        for (int i = 0; i < listOfAllBids.size(); i++) {
-            Bid addingBid = listOfAllBids.get(i);
-            for (int j = i + 1; j < listOfAllBids.size(); j++) {
-                if (listOfAllBids.get(i).getAuction().equals(listOfAllBids.get(j).getAuction()) && listOfAllBids.get(j).getAmount() > addingBid.getAmount()) {
-                    addingBid = listOfAllBids.get(j);
-                }
-            }
+        if (listOfAllBids.size() > 0) {
+            Bid addingBid = listOfAllBids.get(0);
             highestBids.add(addingBid);
+            Auction currentAuction = listOfAllBids.get(0).getAuction();
+            for (int i = 1; i < listOfAllBids.size(); i++) {
+                if (listOfAllBids.get(i).getAuction() != currentAuction) {
+                    highestBids.add(listOfAllBids.get(i));
+                    currentAuction = listOfAllBids.get(i).getAuction();
+                }
+
+            }
         }
         return highestBids;
+    }
+
+    public double getHighestBidForAuction(int auctionId) {
+        double highestBid = bidRepository.getHighestBidForAuction(auctionId);
+        if (highestBid == 0) {
+            Auction auction = auctionRepository.findById(auctionId).orElse(null);
+            highestBid = auction.getStartingPrice();
+        }
+        return highestBid;
     }
 
     public List<Bid> getPastBidsForUser(int userId) {

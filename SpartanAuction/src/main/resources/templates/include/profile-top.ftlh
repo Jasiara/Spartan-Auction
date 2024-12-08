@@ -1,10 +1,16 @@
 <div class="profile-top">
     <div class="profile-img">
         <!--IMAGE SOURCE:  https://www.pinterest.com/pin/712905816020483535/-->
-            <img class="profile-img" src="/images/${user.imagePath}" alt="">
+            <#if user.imagePath = 'imagePath'>
+                <i class="fa fa-user-circle"></i>
+            <#else>
+                <img class="profile-img" src="/images/${user.imagePath}" alt="">
+            </#if>
         </div>
         <div class="profile-desc">
-            <p>Name: ${user.name}</p>
+            <#if loggedIn = true>
+                <p>Name: ${user.name}</p>
+            </#if>
             <p>Username: ${user.username}</p>
             <p>Location: ${user.location}</p>
             <div class="rating">

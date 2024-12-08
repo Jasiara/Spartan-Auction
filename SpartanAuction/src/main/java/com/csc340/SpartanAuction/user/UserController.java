@@ -4,6 +4,8 @@ import com.csc340.SpartanAuction.auction.Auction;
 import com.csc340.SpartanAuction.auction.AuctionService;
 import com.csc340.SpartanAuction.bid.Bid;
 import com.csc340.SpartanAuction.bid.BidService;
+import com.csc340.SpartanAuction.reply.Reply;
+import com.csc340.SpartanAuction.reply.ReplyService;
 import com.csc340.SpartanAuction.review.Review;
 import com.csc340.SpartanAuction.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,9 @@ import java.util.List;
 
 /**
  * UserController.java.
- * Includes all REST API endpoint mappings for the Student object.
+ * Includes all REST API endpoint mappings for the User object.
  */
 @Controller
-@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -33,13 +34,16 @@ public class UserController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/all")
+    @Autowired
+    private ReplyService replyService;
+
+    @GetMapping("/users/all")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public User getOneUser(@PathVariable int id) {
         return userService.getUserById(id);
     }
@@ -56,34 +60,34 @@ public class UserController {
     }*/
 
 
-    @PostMapping("/new")
+    @PostMapping("/users/new")
     public String addNewUser(@ModelAttribute("user") User user) {
         user.setUserType("user");
         user.setLocation(" ");
         user.setImagePath("imagePath");
         userService.addNewUser(user);
-        return "redirect:profile/" + user.getId();
+        return "redirect:/users/profile/" + user.getId();
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/users/signup")
     public String showNewUserForm(Model model) {
         User user = new User();
         return "signup";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/users/login")
     public String showLoginForm(Model model) {
         User user = new User();
         return "login";
     }
 
-    @GetMapping("/logging")
+    @GetMapping("/users/logging")
     public String logIn(@ModelAttribute("user") User user) {
         User theUser = userService.doesUserExist(user);
-        return "redirect:profile/" + theUser.getId();
+        return "redirect:/users/profile/" + theUser.getId();
     }
 
-    @GetMapping({"/profile/{id}", "/update/profile/{id}"})
+    @GetMapping({"/users/profile/{id}", "/users/update/profile/{id}"})
     public String showProfile(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
@@ -91,47 +95,57 @@ public class UserController {
         List<Bid> pastBids = bidService.getPastBidsForUser(id);
         int currentBidsSize = currentBids.size();
         List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
+        List<Reply> replies = replyService.getAllRepliesForOneUser(id);
         boolean loggedIn = true;
         model.addAttribute("currentBids", currentBids);
         model.addAttribute("currentBidAmount", currentBidsSize);
         model.addAttribute("loggedIn", loggedIn);
         model.addAttribute("auctions", currentAuctions);
         model.addAttribute("pastBids", pastBids);
+        model.addAttribute("pastBidsAmount", pastBids.size());
         model.addAttribute("customerReviews", customerReviews);
+        model.addAttribute("replies", replies);
+        model.addAttribute("repliesAmount", replies.size());
+        model.addAttribute("customerReviewsAmount", customerReviews.size());
         return "profile";
     }
 
-    @GetMapping("/other-profile/{id}")
+    @GetMapping("/users/other-profile/{id}")
     public String showOthersProfile(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getUserById(id));
         List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
         int currentAuctionsSize = currentAuctions.size();
         boolean loggedIn = false;
+        List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
+        List<Reply> replies = replyService.getAllRepliesForOneUser(id);
         model.addAttribute("currentAuctions", currentAuctions);
         model.addAttribute("loggedIn", loggedIn);
         model.addAttribute("currentAuctionAmount", currentAuctionsSize);
+        model.addAttribute("customerReviews", customerReviews);
+        model.addAttribute("customerReviewsAmount", customerReviews.size());
+        model.addAttribute("replies", replies);
+        model.addAttribute("repliesAmount", replies.size());
         return "other-profile";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/users/update/{id}")
     public String updateUser(@PathVariable int id, @ModelAttribute("user") User user) {
 
-        if (user.getUserType() == null) {
-            user.setUserType("user");
-        }
+
+
         //userService.deleteUserById(id);
         userService.updateUser(id, user);
 
-        return "redirect:profile/" + user.getId();
+        return "redirect:/users/profile/" + user.getId();
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/users/update/{id}")
     public String showUpdateUserForm(@PathVariable int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "update-user";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/users/delete/{id}")
     public List<User> deleteUserById(@PathVariable int id) {
         userService.deleteUserById(id);
         return userService.getAllUsers();

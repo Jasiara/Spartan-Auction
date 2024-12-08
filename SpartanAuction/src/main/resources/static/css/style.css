@@ -104,18 +104,23 @@ header {
     margin: 2% 6%;
 }
 
-.item .navy-button {
+.item .navy-button, .item .navy-button-2 {
     background-color: #0f2044;
     color: #e7e7ee;
     text-decoration: none;
     text-align: center;
-    margin: 3%;
-    padding: 3% 20%;
+    margin: 1%;
+    padding: 1% 4%;
     border-radius: 10px;
 }
 
+.item .navy-button-2 {
+    margin: 3%;
+    padding: 3% 20%;
+}
 
-.item .navy-button:hover {
+
+.item .navy-button:hover, .item .navy-button-2:hover{
     background-color: #ffb71b;
     color: #0f2044;
 }
@@ -129,12 +134,12 @@ img {
     height: 200px;
 }
 
-.item a, .customer_review_item a, .a-bid div p a, .customer-review-item div p a {
+.item a, .customer_review_item a, .a-bid div p a, .customer-review-item div p a, .customer-reply-item div p a {
     color: black;
     text-decoration: none;
 }
 
-.item a:hover, .customer_review_item a:hover, .a-bid div p a:hover, .customer-review-item div p a:hover {
+.item a:hover, .customer_review_item a:hover, .a-bid div p a:hover, .customer-review-item div p a:hover, .customer-reply-item div p a:hover {
     color: #0f2044;
     text-decoration: none;
 }
@@ -167,6 +172,11 @@ img {
     border-radius: 20px;
 }
 
+.sign-up-login-form img {
+    height: 500px;
+    width: 500px;
+}
+
 .sign-up-login-form h2 {
     font-size: 200%;
     color: #ffb71b;
@@ -196,8 +206,15 @@ img {
     justify-content: center;
 }
 
-.sign-up-login-form form a {
+.sign-up-login-form > form > a {
     font-size: 125%;
+    color: #ffb71b;
+    text-decoration: none;
+}
+
+.sign-up-login-form > form > a:hover {
+    color: #e7e7ee;
+    text-decoration: underline;
 }
 
 .sign-log-link {
@@ -252,6 +269,11 @@ img {
     color: #0f2044;
 }
 
+.a-bid  img{
+    width: 500px;
+    height: 500px;
+}
+
 .profile-top {
     display: flex;
     justify-content: center;
@@ -269,11 +291,35 @@ img {
     height: 250px;
 }
 
+.fa-user-circle {
+    margin: 2%;
+    font-size: 1600%;
+}
+
+.sign-up-login-form div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-trash {
+    color: red;
+    font-size: 300%;
+    text-align: center;
+}
 
 .profile-img-small {
     border-radius: 100%;
     width: 100px;
     height: 100px;
+}
+
+
+.customer-review-item .fa-user-circle {
+    font-size: 1200%;
+}
+
+.customer-reply-item .fa-user-circle {
+    font-size: 700%;
 }
 
 .profile-top p {
@@ -323,13 +369,36 @@ img {
     color: #e7e7ee;
 }
 
-.current-and-past-bids, .my_auctions{
+.current-and-past-bids{
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     background-color: #e7e7ee;
     height: 50%;
+}
+
+.current-auctions {
+    display: flex;
+    justify-content: center;
+    background-color: #e7e7ee;
+    flex-wrap: wrap;
+}
+
+.current-and-past-bids-2 {
+    width: 100%;
+    background-color: #e7e7ee;
+}
+
+.current-and-past-bids-2 div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.current-and-past-bids-2 h2 {
+    margin: 3%;
+    font-size: 200%;
 }
 
 .no-current-bids-container {
@@ -352,9 +421,43 @@ img {
     text-align: center;
 }
 
-.fa-star, .fa-star-half-empty, .fa-star-o {
+.customer-review {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #e7e7ee;
+}
+
+.customer-review-item, .customer-reply-item{
+    width: 80%;
+    display: flex;
+    margin: 2%;
+    padding: 2%;
+    border: 2px solid #0f2044;
+    border-radius: 50px;
+}
+
+
+
+.customer-review-item img, .customer-reply-item img {
+    margin: 2%;
+}
+
+.customer-reply-item {
+    border: 2px solid #598ffa;
+    margin: 1% 2% 1% 10%;
+}
+
+.fa-star, .fa-star-half-empty, .fa-star-o, .fa-reply {
     color: #0f2044;
     font-size: 180%;
+}
+
+.fa-reply {
+    text-align: center;
 }
 
 .no-rating {
@@ -363,6 +466,15 @@ img {
 
 .rating-number {
     display: inline;
+}
+
+.reply {
+    display: flex;
+    align-items: center;
+}
+
+.reply p {
+    margin: 1%;
 }
 
 .bid-confirm-form {
@@ -375,14 +487,56 @@ img {
     padding: 2%;
 }
 
-.bid-confirm-form .cancel:hover {
+.write-review-form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.write-review-form img {
+    margin: 3%;
+    width: 200px;
+    height: 200px;
+}
+
+.write-review-form textarea {
+    border-radius: 15px;
+}
+
+.bid-confirm-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bid-confirm-form input {
+    width: 100%;
+    padding: 2%;
+}
+
+.cancel:hover {
     background-color: red;
     color: #e7e7ee;
 }
 
-.bid-confirm-form .bid:hover {
+.bid:hover {
     background-color: green;
     color: #e7e7ee;
+}
+
+.cancel:hover,  {
+    background-color: red;
+    color: #e7e7ee;
+}
+
+.bid:hover {
+    background-color: green;
+    color: #e7e7ee;
+}
+
+.profile-img-small-replies {
+    border-radius: 100%;
+    width: 125px;
+    height: 125px;
 }
 
 .hide {
@@ -390,7 +544,7 @@ img {
 }
 
 .show {
-    display: flex;
+    display: inline-block;
 }
 
 /*.my_auctions {
@@ -402,25 +556,3 @@ img {
     padding-bottom: 3%;
 }*/
 
-.customer-review {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    background-color: #e7e7ee;
-}
-
-.customer-review-item {
-    width: 80%;
-    display: flex;
-    margin: 2%;
-    padding: 2%;
-    border: 2px solid #0f2044;
-    border-radius: 50px;
-}
-
-.customer-review-item img {
-    margin: 2%;
-}

@@ -37,7 +37,7 @@
                 <br>
                 <input type="password" name="password" id="password" value=${user.password}>
                 <br>
-                <span id="message"></span>
+                <input type="text" name="userType" id="userType" value=${user.userType} class="hide">
                 <div>
                     <a href="/users/profile/${user.id}" class="sign-log-link">Cancel</a>
                     <button type=submit class=".sign-log-button">Update Profile</button>

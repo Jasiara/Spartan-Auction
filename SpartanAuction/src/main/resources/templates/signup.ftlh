@@ -23,7 +23,7 @@
                 <br>
                 <input type="text" name="username" id="username" required>
                 <br>
-                <label for="email">Email Adress</label>
+                <label for="email">Email Address</label>
                 <br>
                 <input type="email" name="email" id="email" required>
                 <br>
@@ -35,26 +35,26 @@
                 <br>
                 <input type="password" name="confirm-password" id="confirm-password" required>
                 <br>
-                <span id="message"></span>
+                <p><span id="message"></span></p>
                 <div>
                     <div>
                         <a href="/users/login" class="sign-log-link">Login Instead</a>
                     </div>
                     <div>
-                        <button class=".sign-log-button">Sign-Up</button>
+                        <button class="sign-log-button">Sign-Up</button>
                     </div>
-
                 </div>
             </form>
         </div>
     </main>
-</body>
-<script>
-    let check = function() {
-        if (document.getElementById('password').value != document.getElementById('confirm_password').value) {
-            document.getElementById('message').style.color = 'red';
-            document.getElementById('message').innerHTML = 'not matching';
+    <script>
+        let check = function() {
+            if (document.getElementById('password').value !== document.getElementById('confirm-password').value) {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+            }
         }
-    }
-</script>
+    </script>
+</body>
+
 </html>

@@ -1,6 +1,8 @@
 package com.csc340.SpartanAuction.review;
 
 
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedRepository;
 import com.csc340.SpartanAuction.user.User;
 import com.csc340.SpartanAuction.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.List;
 public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ReviewCompletedRepository reviewCompletedRepository;
 
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
@@ -26,21 +31,26 @@ public class ReviewService {
         return reviewRepository.getAllReviewsForOneUser(userId);
     }
 
-    public void addNewReview(Review review) {
+    public void addNewReview(Review review, int auctionId) {
         if (reviewRepository.existsById(review.getId())) {
             review = new Review(review);
             reviewRepository.save(review);
             return;
         }
-        review = new Review(review.getReviewUser(), review.getProviderUser(), review.getReview(), review.getRating());
+        review = new Review(review.getReviewUser(), review.getProviderUser(), review.getComment(), review.getRating());
         reviewRepository.save(review);
+
+        ReviewCompleted reviewCompleted = reviewCompletedRepository.getReviewCompletedByAuctionId(auctionId);
+        reviewCompleted.setReview(review);
+        reviewCompleted.setReviewCompleted(true);
+        reviewCompletedRepository.save(reviewCompleted);
     }
 
     public void updateReview(int id, Review review) {
         Review existing = getReviewById(id);
         existing.setReviewUser(review.getReviewUser());
         existing.setProviderUser(review.getProviderUser());
-        existing.setReview(review.getReview());
+        existing.setComment(review.getComment());
         existing.setRating(review.getRating());
 
         //Technically the 4 lines above are not necessary because the save method merges by default.

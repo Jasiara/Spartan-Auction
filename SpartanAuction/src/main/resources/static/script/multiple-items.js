@@ -22,8 +22,8 @@ function updateCountdowns() {
             let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            document.getElementById('auction-end' + index).innerHTML = "Time Left: " + days + ' D ' + hours + ' H '
-                + minutes + " M " + seconds + ' S';
+            document.getElementById('auction-end' + index).innerHTML = "Time Left: " + days + 'D ' + hours + 'H '
+                + minutes + "M " + seconds + 'S';
         }
     }
 

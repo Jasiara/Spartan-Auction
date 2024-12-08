@@ -1,5 +1,9 @@
 package com.csc340.SpartanAuction.auction;
 
+import com.csc340.SpartanAuction.bid.Bid;
+import com.csc340.SpartanAuction.bid.BidService;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
+import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -21,6 +26,15 @@ public class AuctionController {
     private AuctionService auctionService;
     @Autowired
     private UserRepository userRepository; // Inject UserRepository
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ReviewCompletedService reviewCompletedService;
+
+    @Autowired
+    private BidService bidService;
 
     @GetMapping("/all")
     public String getAllAuctions(Model model) {
@@ -59,30 +73,84 @@ public class AuctionController {
         return auctionService.getAuctionsByProvider(providerId);
     }
 
-    @PostMapping("/new")
-    public List<Auction> createAuction(@RequestBody Auction auction) {
-        // Check if the seller exists
-        /*User seller = userRepository.findById(sellerId).orElse(null); // Use the repository instance
-        if (seller == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found");
-        }
-        return auctionService.createAuction(auction, sellerId);*/
+    @PostMapping("/new/{sellerId}")
+    public String createAuction(@ModelAttribute("auction") Auction auction, @PathVariable int sellerId,
+                                @RequestParam String auctionEnd) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime localDateTime = LocalDateTime.parse(auctionEnd, formatter);
+        Timestamp dateAndTime = Timestamp.valueOf(localDateTime);
 
+        auction.setDateAndTime(dateAndTime);
+        auction.setCurrentPrice(auction.getStartingPrice());
+        User seller = userService.getUserById(sellerId);
+        auction.setSeller(seller);
+        auction.setAuctionStatus("active");
         auctionService.createAuction(auction);
-        return auctionService.getAllAuctions();
+
+        return "redirect:/users/profile/" + sellerId;
+    }
+
+    @GetMapping("/new-auction/{userId}")
+    public String createNewAuctionForm(Model model, @PathVariable int userId) {
+        model.addAttribute("user", userService.getUserById(userId));
+        Auction auction = new Auction();
+        return "auctioning";
     }
 
 
-    @PutMapping("/{id}")
-    public Auction updateAuction(@PathVariable int id, @RequestBody Auction auctionDetails) {
-        Auction updatedAuction = auctionService.updateAuction(id, auctionDetails);
-        return auctionService.getAuctionById(updatedAuction.getId());
+    @PostMapping("/update-auction/{id}")
+    public String updateAuction(@PathVariable int id, @ModelAttribute("auction") Auction auction, @RequestParam String auctionEnd) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime localDateTime = LocalDateTime.parse(auctionEnd, formatter);
+        Timestamp dateAndTime = Timestamp.valueOf(localDateTime);
+
+        auction.setDateAndTime(dateAndTime);
+        //auction.setAuctionStatus("active");
+        auctionService.updateAuction(id, auction);
+        User user = auctionService.getAuctionById(id).getSeller();
+        return "redirect:/users/profile/" + user.getId();
+    }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateAuctionForm(@PathVariable int id, Model model) {
+        Auction auction = auctionService.getAuctionById(id);
+
+        Timestamp dateAndTime = auction.getDateAndTime();
+        LocalDateTime localDateTime = dateAndTime.toLocalDateTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        String auctionEnd = localDateTime.format(formatter);
+
+        model.addAttribute("auction", auctionService.getAuctionById(id));
+        model.addAttribute("auctionEnd", auctionEnd);
+        //model.addAttribute("user", userService.getUserById(userId));
+        return "edit-auction";
     }
 
     @DeleteMapping("/{id}")
     public List<Auction> deleteAuction(@PathVariable int id) {
         auctionService.deleteAuction(id);
         return auctionService.getAllAuctions();
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAnAuction(@PathVariable int id) {
+        User user = auctionService.getAuctionById(id).getSeller();
+        List<Bid> bidsForOneAuction =  bidService.getAllBidsForOneItem(id);
+
+        while (!bidsForOneAuction.isEmpty()) {
+            Bid deletedBid = bidsForOneAuction.get(0);
+            bidsForOneAuction.remove(0);
+            bidService.deleteBidById(deletedBid.getId());
+        }
+
+        ReviewCompleted reviewCompleted = reviewCompletedService.getReviewCompletedForOneAuction(id);
+        if (reviewCompleted != null) {
+            reviewCompletedService.deleteReviewCompletedById(reviewCompleted.getId());
+        }
+
+        auctionService.deleteAuction(id);
+        return "redirect:/users/profile/" + user.getId();
     }
 
 

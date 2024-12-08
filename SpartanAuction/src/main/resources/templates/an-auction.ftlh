@@ -13,8 +13,13 @@
     <#include "./include/header.ftlh">
     <main>
         <div class="a-bid">
-            <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-            <img src="/images/${auction.imagePath}" alt="">
+            <#if auction.imagePath = "imagePath">
+                <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                <img src="/images/no-auction-photo.jpg" alt="">
+            <#else>
+                <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
+                <img src="/images/${auction.imagePath}" alt="">
+            </#if>
             <div>
                 <p>Item Name: ${auction.title}</p>
                 <p id="auction-end">Time Left: ${auction.dateAndTime}</p>
@@ -48,8 +53,8 @@
         let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById('auction-end').innerHTML = "Time Left: " + days + ' D ' + hours + ' H '
-            + minutes + " M " + seconds +' S';
+        document.getElementById('auction-end').innerHTML = "Time Left: " + days + 'D ' + hours + 'H '
+            + minutes + "M " + seconds + 'S';
 
 
     }
