@@ -18,10 +18,6 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 public class SecurityConfig {
     private CustomUserDetailsService userDetailsService;
 
-    public SecurityConfig(CustomUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
@@ -32,15 +28,12 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.ERROR).permitAll()
                         .requestMatchers("/ADMIN/**").hasAuthority("admin")
-                        .requestMatchers("/users/**").hasAuthority("user")
-                        .requestMatchers("/bids/**").hasAuthority("user")
-                        .requestMatchers("/reviews/**").hasAuthority("user")
-                        .requestMatchers("/replies/**").hasAuthority("user")
+                        .requestMatchers("/users/**", "/bids/**", "/reviews/**", "/replies/**").hasAuthority("user")
                         .requestMatchers("/public/**").permitAll()
 
                 )
                 .formLogin((form) -> form
-                        .loginPage("/public/users/login")
+                        /*.loginPage("/public/users/login")*/
                         .successHandler(new CustomAuthenticationSuccessHandler())
                         .permitAll()
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
@@ -57,7 +50,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    /*protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }*/
+    }
 }

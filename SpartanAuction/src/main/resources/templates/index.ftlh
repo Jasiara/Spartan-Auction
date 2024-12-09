@@ -41,7 +41,7 @@
 
     </script>
     <script src="/script/multiple-items.js" type="text/javascript"></script>
-
+    <#include "./include/multiple-items-js.ftlh">
 </body>
 
 </html>

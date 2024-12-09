@@ -91,14 +91,14 @@ public class UserService {
 
     public void addNewUser(User user) {
         user.setRatingAverage(0);
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     public void updateUser(int id, User user) {
         User existing = getUserById(id);
         existing.setUsername(user.getUsername());
-        //existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        existing.setPassword(passwordEncoder.encode(user.getPassword()));
         existing.setPassword(user.getPassword());
         existing.setEmail(user.getEmail());
         existing.setName(user.getName());

@@ -1,10 +1,10 @@
 <div class="profile-top">
     <div class="profile-img">
         <!--IMAGE SOURCE:  https://www.pinterest.com/pin/712905816020483535/-->
-            <#if user.imagePath = 'imagePath'>
+            <#if user.imagePath == 'imagePath'>
                 <i class="fa fa-user-circle"></i>
             <#else>
-                <img class="profile-img" src="/images/${user.imagePath}" alt="">
+                <img class="profile-img" src="/static/images/${user.imagePath}" alt="">
             </#if>
         </div>
         <div class="profile-desc">

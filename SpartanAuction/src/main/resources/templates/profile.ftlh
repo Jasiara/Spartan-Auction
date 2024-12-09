@@ -10,6 +10,8 @@
 
 </head>
 
+
+
 <body>
     <#include "./include/header.ftlh">
     <main>
@@ -24,6 +26,7 @@
         var datesArr = [<#list currentBids as bid>"${bid.auction.dateAndTime}", </#list>];
     </script>
     <script src="/script/multiple-items.js" type="text/javascript"></script>
+    <#include "./include/multiple-items-js.ftlh">
     <script>
         console.log("Hi, me");
     </script>
@@ -53,7 +56,7 @@
         console.log("Here Now 2");
         </script>
     <script src="/script/profile.js" type="text/javascript"></script>
-
+    <#include "./include/profile-js.ftlh">
 </body>
 
 </html>

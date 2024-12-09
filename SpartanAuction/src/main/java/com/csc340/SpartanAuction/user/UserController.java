@@ -92,16 +92,21 @@ public class UserController {
         User theUser = userService.doesUserExist(user);
 
         if (theUser != null) {
-            return "redirect:/users/profile/";
+            return "redirect:/users/profile/" + theUser.getId();
         } else {
             return "error";
         }
     }
 
-    @GetMapping({"/users/profile/", "/users/update/profile/{id}"})
-    public String showProfile(Model model) {
+    @GetMapping({"/users/profile", "/users/update/profile/{id}"})
+    public String showProfile(Model model /*@PathVariable int id*/) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(name);
         int id = userService.getUserByUsername(name).getId();
+
+        boolean currentlyLoggedIn = true;
+
+        System.out.println(id);
         model.addAttribute("user", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
         List<Auction> currentAuctions = auctionService.getAllAuctionsForUser(id);
@@ -114,6 +119,7 @@ public class UserController {
         model.addAttribute("currentBids", currentBids);
         model.addAttribute("currentBidAmount", currentBidsSize);
         model.addAttribute("loggedIn", loggedIn);
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         model.addAttribute("auctions", currentAuctions);
         model.addAttribute("pastBids", pastBids);
         model.addAttribute("pastBidsAmount", pastBids.size());
