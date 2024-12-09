@@ -19,5 +19,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
     @Query(value = "DELETE FROM user WHERE username = ':username';", nativeQuery = true)
     void deleteByUsername(String username);
 
-    Optional<User> findByUsername(String username);
+    @Query(value = "SELECT * FROM user WHERE username = :username;", nativeQuery = true)
+    User findByUsername(String username);
 }

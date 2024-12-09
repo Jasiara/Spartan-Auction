@@ -11,6 +11,7 @@ import com.csc340.SpartanAuction.review.ReviewService;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -86,14 +87,21 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/users/logging")
+    @PostMapping("/users/logging")
     public String logIn(@ModelAttribute("user") User user) {
         User theUser = userService.doesUserExist(user);
-        return "redirect:/users/profile/" + theUser.getId();
+
+        if (theUser != null) {
+            return "redirect:/users/profile/";
+        } else {
+            return "error";
+        }
     }
 
-    @GetMapping({"/users/profile/{id}", "/users/update/profile/{id}"})
-    public String showProfile(Model model, @PathVariable int id) {
+    @GetMapping({"/users/profile/", "/users/update/profile/{id}"})
+    public String showProfile(Model model) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        int id = userService.getUserByUsername(name).getId();
         model.addAttribute("user", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
         List<Auction> currentAuctions = auctionService.getAllAuctionsForUser(id);

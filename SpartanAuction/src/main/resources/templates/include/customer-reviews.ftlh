@@ -10,7 +10,7 @@
                 <img class="profile-img-small" src="/images/${review.reviewUser.imagePath}" alt="">
             </#if>
             <div>
-                <p>Reviewer: <a href="/users/other-profile/${review.reviewUser.id}">@${review.reviewUser.username}</a></p>
+                <p>Reviewer: <a href="/public/users/other-profile/${review.reviewUser.id}">@${review.reviewUser.username}</a></p>
                 <p>Rating:</p>
                 <#assign ratingTimesTen = review.rating * 10>
                 <#assign runAmount = [1,2,3,4,5]>
@@ -60,7 +60,7 @@
                     <img class="profile-img-small-replies" src="/images/${review.providerUser.imagePath}" alt="">
                 </#if>
                 <div>
-                <p>Replier: <a href="/users/other-profile/${reply.review.providerUser.id}">@${reply.review.providerUser.username}</a></p>
+                <p>Replier: <a href="/public/users/other-profile/${reply.review.providerUser.id}">@${reply.review.providerUser.username}</a></p>
                 <p>Reply:</p>
                 <p>${reply.comment}</p>
                 </div>

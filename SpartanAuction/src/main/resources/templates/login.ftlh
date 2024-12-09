@@ -12,7 +12,7 @@
     <main class="login-main">
         <div class="sign-up-login-form">
             <h2>Login</h2>
-            <form action="/users/logging" method="get" >
+            <form action="/users/logging" method="post" >
                 <label for="username">Username</label>
                 <br>
                 <input type="text" name="username" id="username" required>

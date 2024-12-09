@@ -10,10 +10,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import java.io.IOException;
 
 public class CustomAuthenticationSuccessHandler implements org.springframework.security.web.authentication.AuthenticationSuccessHandler {
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
-    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -26,7 +22,7 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
         } else {
             redirectURL = "/public/api/auctions";
         }
-
+        System.out.println("Redirect URL: " + redirectURL);
         response.sendRedirect(redirectURL);
 
     }

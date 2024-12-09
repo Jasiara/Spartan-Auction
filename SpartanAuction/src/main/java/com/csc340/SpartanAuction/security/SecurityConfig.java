@@ -16,7 +16,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final CustomUserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -37,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/reviews/**").hasAuthority("user")
                         .requestMatchers("/replies/**").hasAuthority("user")
                         .requestMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated()
+
                 )
                 .formLogin((form) -> form
                         .loginPage("/public/users/login")
@@ -57,7 +57,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    /*protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
+    }*/
 }

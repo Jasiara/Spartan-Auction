@@ -18,12 +18,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository repo;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repo.findByUsername(username).orElseThrow(()
-                -> new UsernameNotFoundException(username + "not found"));
+        User user = repo.findByUsername(username);
 
         ArrayList<SimpleGrantedAuthority> authList = new ArrayList<>();
 
         authList.add(new SimpleGrantedAuthority(user.getUserType()));
+
+        System.out.println("Auth List: " + authList);
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(), user.getPassword(), authList);
