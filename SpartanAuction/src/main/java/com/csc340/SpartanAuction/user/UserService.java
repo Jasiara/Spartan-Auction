@@ -9,6 +9,8 @@ import com.csc340.SpartanAuction.review.Review;
 import com.csc340.SpartanAuction.review.ReviewRepository;
 import com.csc340.SpartanAuction.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +35,9 @@ public class UserService {
 
     @Autowired
     private AuctionService auctionService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     public List<User> getAllUsers() {
@@ -86,13 +91,14 @@ public class UserService {
 
     public void addNewUser(User user) {
         user.setRatingAverage(0);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     public void updateUser(int id, User user) {
         User existing = getUserById(id);
         existing.setUsername(user.getUsername());
-        existing.setPassword(user.getPassword());
+        existing.setPassword(passwordEncoder.encode(user.getPassword()));
         existing.setEmail(user.getEmail());
         existing.setName(user.getName());
         existing.setLocation(user.getLocation());
@@ -130,6 +136,11 @@ public class UserService {
         }
 
         userRepository.deleteById(id);
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(()
+                -> new UsernameNotFoundException(username + "not found"));
     }
 
     public void deleteUserByUsername(String username) {

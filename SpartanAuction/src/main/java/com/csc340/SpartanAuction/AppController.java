@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AppController {
     @GetMapping({"", "/", "/home", "/index"})
     public String home() {
-        return "redirect:/api/auctions";
+        return "redirect:/public/api/auctions";
     }
 
 

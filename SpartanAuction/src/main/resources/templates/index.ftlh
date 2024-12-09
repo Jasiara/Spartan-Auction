@@ -15,10 +15,10 @@
         <div class="items-view">
         <#assign index = 0>
             <#list auctions as item>
-            <a href="/api/auctions/${item.id}" class="item-link">
+            <a href="/public/api/auctions/${item.id}" class="item-link">
                 <div class="item">
                     <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-                    <#if item.imagePath = "imagePath">
+                    <#if item.imagePath == 'imagePath'>
                         <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                         <img src="/images/no-auction-photo.jpg" alt="">
                     <#else>
@@ -28,7 +28,7 @@
                     <p class="black-writing">Item Name: ${item.title}</p>
                     <p class="black-writing">Highest Bid: $ ${item.currentPrice}</p>
                     <p class="black-writing" id="auction-end${index}">Time Left: </p>
-                    <p><span class="black-writing">User: </span><a href="/users/other-profile/${item.seller.id}">@${item.seller.username}</a></p>
+                    <p><span class="black-writing">User: </span><a href="/public/users/other-profile/${item.seller.id}">@${item.seller.username}</a></p>
                     <#assign index = index + 1>
                 </div>
             </a>

@@ -74,13 +74,13 @@ public class UserController {
         return "redirect:/users/profile/" + user.getId();
     }
 
-    @GetMapping("/users/signup")
+    @GetMapping("/public/users/signup")
     public String showNewUserForm(Model model) {
         User user = new User();
         return "signup";
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("/public/users/login")
     public String showLoginForm(Model model) {
         User user = new User();
         return "login";
@@ -118,7 +118,7 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("/users/other-profile/{id}")
+    @GetMapping("/public/users/other-profile/{id}")
     public String showOthersProfile(Model model, @PathVariable int id) {
         model.addAttribute("user", userService.getUserById(id));
         List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);

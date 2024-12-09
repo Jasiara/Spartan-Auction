@@ -20,7 +20,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/auctions")
 public class AuctionController {
     @Autowired
     private AuctionService auctionService;
@@ -36,44 +35,50 @@ public class AuctionController {
     @Autowired
     private BidService bidService;
 
-    @GetMapping("/all")
+    @GetMapping("/api/auctions/all")
     public String getAllAuctions(Model model) {
         model.addAttribute("auctions", auctionService.getAllAuctions());
         return "";
     }
 
-    @GetMapping("")
+    @GetMapping("/ADMIN/all")
+    public String getAuctionsForAdmins(Model model) {
+        model.addAttribute("auctions", auctionService.getAllAuctions());
+        return "admin-home";
+    }
+
+    @GetMapping("/public/api/auctions")
     public String getAllCurrentAuctions(Model model) {
         List<Auction> auctions = auctionService.getAllCurrentAuctions();
         model.addAttribute("auctions", auctions);
         return "index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/api/auctions/{id}")
     public String getAuctionById(Model model, @PathVariable int id) {
         model.addAttribute("auction", auctionService.getAuctionById(id));
         return "an-auction";
     }
 
     // GET item by its name
-    @GetMapping("/name/{name}")
+    @GetMapping("/api/auctions/name/{name}")
     public List<Auction> getAuctionsByName(@PathVariable String name) {
         return auctionService.getAuctionsByName(name);
     }
 
     // GET item by its category
-    @GetMapping("/category/{category}")
+    @GetMapping("/api/auctions/category/{category}")
     public List<Auction> getAuctionsByCategory(@PathVariable String category) {
         return auctionService.getAuctionsByCategory(category);
     }
 
     // GET statistics for items by provider
-    @GetMapping("/provider/{providerId}/statistics")
+    @GetMapping("/api/auctions/provider/{providerId}/statistics")
     public List<Auction> getAuctionsByProvider(@PathVariable int providerId) {
         return auctionService.getAuctionsByProvider(providerId);
     }
 
-    @PostMapping("/new/{sellerId}")
+    @PostMapping("/api/auctions/new/{sellerId}")
     public String createAuction(@ModelAttribute("auction") Auction auction, @PathVariable int sellerId,
                                 @RequestParam String auctionEnd) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -90,7 +95,7 @@ public class AuctionController {
         return "redirect:/users/profile/" + sellerId;
     }
 
-    @GetMapping("/new-auction/{userId}")
+    @GetMapping("/api/auctions/new-auction/{userId}")
     public String createNewAuctionForm(Model model, @PathVariable int userId) {
         model.addAttribute("user", userService.getUserById(userId));
         Auction auction = new Auction();
@@ -98,7 +103,7 @@ public class AuctionController {
     }
 
 
-    @PostMapping("/update-auction/{id}")
+    @PostMapping("/api/auctions/update-auction/{id}")
     public String updateAuction(@PathVariable int id, @ModelAttribute("auction") Auction auction, @RequestParam String auctionEnd) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime localDateTime = LocalDateTime.parse(auctionEnd, formatter);
@@ -111,7 +116,7 @@ public class AuctionController {
         return "redirect:/users/profile/" + user.getId();
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/api/auctions/update/{id}")
     public String showUpdateAuctionForm(@PathVariable int id, Model model) {
         Auction auction = auctionService.getAuctionById(id);
 
@@ -127,13 +132,13 @@ public class AuctionController {
         return "edit-auction";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/auctions/{id}")
     public List<Auction> deleteAuction(@PathVariable int id) {
         auctionService.deleteAuction(id);
         return auctionService.getAllAuctions();
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/api/auctions/delete/{id}")
     public String deleteAnAuction(@PathVariable int id) {
         User user = auctionService.getAuctionById(id).getSeller();
 

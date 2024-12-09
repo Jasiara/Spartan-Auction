@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Provides the actual database transactions.
@@ -17,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
     @Query(value = "DELETE FROM user WHERE username = ':username';", nativeQuery = true)
     void deleteByUsername(String username);
+
+    Optional<User> findByUsername(String username);
 }
