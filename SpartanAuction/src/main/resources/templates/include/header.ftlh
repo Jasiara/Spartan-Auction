@@ -542,8 +542,24 @@ img {
 
 .profile-img-small-header {
     border-radius: 100%;
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
+    margin: 1%;
+}
+
+.link-header-div {
+    display: flex;
+}
+
+.link-header-div p {
+    margin: 1%;
+    text-decoration: none;
+    color: #0f2044;
+}
+
+.bid-confirm-form img {
+  width: 200px;
+  height: 200px;
 }
 
 .delete {
@@ -590,12 +606,17 @@ img {
     </form>
     <div class="sign-up-login">
         <#if currentlyLoggedIn == true>
-            <#if user.imagePath == 'imagePath'>
-                <i class="fa fa-user-circle"></i>
-            <#else>
-                <img class="profile-img-small-header" src="/static/images/${user.imagePath}" alt="">
-            </#if>
-            <p>@${user.username}</p>
+            <a href="/users/profile" class="link-header-div">
+                <#if user.imagePath == 'imagePath'>
+                    <i class="fa fa-user-circle"></i>
+                <#else>
+                    <img class="profile-img-small-header" src="/images/${user.imagePath}" alt="">
+                </#if>
+                <p>@${user.username}</p>
+            </a>
+            <form class="form-inline" action="/logout" method="post">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Out</button>
+            </form>
         <#else>
             <a href="/public/users/login" class="link-button">Login</a>
             <a href="/public/users/signup" class="link-button">Sign Up</a>

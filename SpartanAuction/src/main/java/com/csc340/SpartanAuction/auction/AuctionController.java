@@ -4,8 +4,10 @@ import com.csc340.SpartanAuction.bid.Bid;
 import com.csc340.SpartanAuction.bid.BidService;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
+import com.csc340.SpartanAuction.security.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,13 +53,32 @@ public class AuctionController {
     public String getAllCurrentAuctions(Model model) {
         List<Auction> auctions = auctionService.getAllCurrentAuctions();
         model.addAttribute("auctions", auctions);
-        return "index";
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        System.out.println("Currently Logged In: " + currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "index";
+        } else {
+            return "index";
+        }
     }
 
     @GetMapping("/public/api/auctions/{id}")
     public String getAuctionById(Model model, @PathVariable int id) {
         model.addAttribute("auction", auctionService.getAuctionById(id));
-        return "an-auction";
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "an-auction";
+        } else {
+            return "an-auction";
+        }
     }
 
     // GET item by its name
@@ -99,7 +120,16 @@ public class AuctionController {
     public String createNewAuctionForm(Model model, @PathVariable int userId) {
         model.addAttribute("user", userService.getUserById(userId));
         Auction auction = new Auction();
-        return "auctioning";
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "auctioning";
+        } else {
+            return "auctioning";
+        }
     }
 
 
@@ -126,10 +156,23 @@ public class AuctionController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         String auctionEnd = localDateTime.format(formatter);
 
+
+
+
         model.addAttribute("auction", auctionService.getAuctionById(id));
         model.addAttribute("auctionEnd", auctionEnd);
         //model.addAttribute("user", userService.getUserById(userId));
-        return "edit-auction";
+
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "edit-auction";
+        } else {
+            return "edit-auction";
+        }
     }
 
     @DeleteMapping("/api/auctions/{id}")

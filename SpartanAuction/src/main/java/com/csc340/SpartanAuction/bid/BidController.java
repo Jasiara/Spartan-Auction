@@ -1,7 +1,10 @@
 package com.csc340.SpartanAuction.bid;
 
 import com.csc340.SpartanAuction.auction.AuctionService;
+import com.csc340.SpartanAuction.user.User;
+import com.csc340.SpartanAuction.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,10 @@ public class BidController {
 
     @Autowired
     private AuctionService auctionService;
+
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public List<Bid> getAllBids() {
@@ -42,7 +49,16 @@ public class BidController {
     @GetMapping("/making-bid/{itemId}")
     public String createBidForm(@PathVariable int itemId, Model model) {
         model.addAttribute("auction", auctionService.getAuctionById(itemId));
-        return "a-bid";
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "a-bid";
+        } else {
+            return "a-bid";
+        }
     }
 
     @PutMapping("/update/{id}")

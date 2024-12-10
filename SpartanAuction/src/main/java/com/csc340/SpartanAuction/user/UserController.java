@@ -72,17 +72,21 @@ public class UserController {
         user.setLocation(" ");
         user.setImagePath("imagePath");
         userService.addNewUser(user);
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 
-    @GetMapping("/public/users/signup")
+    @GetMapping("/signup")
     public String showNewUserForm(Model model) {
+        boolean currentlyLoggedIn = false;
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         User user = new User();
         return "signup";
     }
 
-    @GetMapping("/public/users/login")
+    @GetMapping("/login")
     public String showLoginForm(Model model) {
+        boolean currentlyLoggedIn = false;
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         User user = new User();
         return "login";
     }
@@ -92,7 +96,7 @@ public class UserController {
         User theUser = userService.doesUserExist(user);
 
         if (theUser != null) {
-            return "redirect:/users/profile/" + theUser.getId();
+            return "redirect:/users/profile";
         } else {
             return "error";
         }
@@ -104,7 +108,8 @@ public class UserController {
         System.out.println(name);
         int id = userService.getUserByUsername(name).getId();
 
-        boolean currentlyLoggedIn = true;
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
 
         System.out.println(id);
         model.addAttribute("user", userService.getUserById(id));
@@ -119,7 +124,6 @@ public class UserController {
         model.addAttribute("currentBids", currentBids);
         model.addAttribute("currentBidAmount", currentBidsSize);
         model.addAttribute("loggedIn", loggedIn);
-        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         model.addAttribute("auctions", currentAuctions);
         model.addAttribute("pastBids", pastBids);
         model.addAttribute("pastBidsAmount", pastBids.size());
@@ -138,6 +142,8 @@ public class UserController {
         List<Auction> currentAuctions = auctionService.getCurrentAuctionsForUser(id);
         int currentAuctionsSize = currentAuctions.size();
         boolean loggedIn = false;
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
         List<Reply> replies = replyService.getAllRepliesForOneUser(id);
         model.addAttribute("currentAuctions", currentAuctions);
@@ -158,11 +164,13 @@ public class UserController {
         //userService.deleteUserById(id);
         userService.updateUser(id, user);
 
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/users/update/{id}")
     public String showUpdateUserForm(@PathVariable int id, Model model) {
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         model.addAttribute("user", userService.getUserById(id));
         return "update-user";
     }

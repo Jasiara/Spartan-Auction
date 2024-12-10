@@ -29,11 +29,11 @@ public class SecurityConfig {
                                 DispatcherType.ERROR).permitAll()
                         .requestMatchers("/ADMIN/**").hasAuthority("admin")
                         .requestMatchers("/users/**", "/bids/**", "/reviews/**", "/replies/**").hasAuthority("user")
-                        .requestMatchers("/public/**").permitAll()
-
+                        .requestMatchers("/public/**", "/", "/signup", "/login").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        /*.loginPage("/public/users/login")*/
+                        .loginPage("/login")
                         .successHandler(new CustomAuthenticationSuccessHandler())
                         .permitAll()
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))

@@ -4,6 +4,7 @@ import com.csc340.SpartanAuction.auction.AuctionService;
 import com.csc340.SpartanAuction.user.User;
 import com.csc340.SpartanAuction.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,8 @@ public class ReviewController {
     public String writeReviewForm(Model model, @PathVariable int userId, @PathVariable int auctionId) {
         model.addAttribute("user", userService.getUserById(userId));
         model.addAttribute("auction", auctionService.getAuctionById(auctionId));
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         return "write-review";
     }
 
@@ -68,7 +71,16 @@ public class ReviewController {
 
         model.addAttribute("review", review);
         model.addAttribute("auction", auctionService.getAuctionById(auctionId));
-        return "edit-review";
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("user", user);
+            return "edit-review";
+        } else {
+            return "edit-review";
+        }
     }
 
 

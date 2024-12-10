@@ -4,7 +4,7 @@
             <#if user.imagePath == 'imagePath'>
                 <i class="fa fa-user-circle"></i>
             <#else>
-                <img class="profile-img" src="/static/images/${user.imagePath}" alt="">
+                <img class="profile-img" src="/images/${user.imagePath}" alt="">
             </#if>
         </div>
         <div class="profile-desc">

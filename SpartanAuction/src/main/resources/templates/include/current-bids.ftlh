@@ -3,7 +3,7 @@
         <#if currentBidAmount gt 0>
             <#assign index = 0>
                 <#list currentBids as bid>
-                    <a href="/api/auctions/${bid.auction.id}" class="item-link">
+                    <a href="/public/api/auctions/${bid.auction.id}" class="item-link">
                         <div class="item">
                         <#if bid.auction.imagePath == "imagePath">
                             <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
