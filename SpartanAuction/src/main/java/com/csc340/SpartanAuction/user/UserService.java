@@ -98,7 +98,6 @@ public class UserService {
     public void updateUser(int id, User user) {
         User existing = getUserById(id);
         existing.setUsername(user.getUsername());
-        existing.setPassword(passwordEncoder.encode(user.getPassword()));
         existing.setPassword(user.getPassword());
         existing.setEmail(user.getEmail());
         existing.setName(user.getName());
@@ -106,7 +105,9 @@ public class UserService {
         existing.setUserType(user.getUserType());
         existing.setRatingAverage(user.getRatingAverage());
         existing.setImagePath(user.getImagePath());
-        
+        if (!existing.getPassword().equals(user.getPassword())) {
+            existing.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.save(existing);
     }
 

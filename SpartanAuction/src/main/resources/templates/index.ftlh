@@ -18,7 +18,7 @@
             <a href="/public/api/auctions/${item.id}" class="item-link">
                 <div class="item">
                     <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
-                    <#if item.imagePath = 'imagePath'>
+                    <#if item.imagePath == "imagePath">
                         <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                         <img src="/images/no-auction-photo.jpg" alt="">
                     <#else>
@@ -41,7 +41,6 @@
 
     </script>
     <script src="/script/multiple-items.js" type="text/javascript"></script>
-    <#include "./include/multiple-items-js.ftlh">
 </body>
 
 </html>

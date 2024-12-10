@@ -14,7 +14,7 @@
                         </#if>
                         <p class="black-writing">Item Name: ${bid.auction.title}</p>
                         <p class="black-writing">Highest Bid: $ ${bid.auction.currentPrice}</p>
-                        <p><span class="black-writing">User: </span><a href="/users/other-profile/${bid.auction.seller.id}">@${bid.auction.seller.username}</a></p>
+                        <p><span class="black-writing">User: </span><a href="/public/users/other-profile/${bid.auction.seller.id}">@${bid.auction.seller.username}</a></p>
                         <#if reviewsCompletedAmount gt 0>
                             <#list reviewsCompleted as reviewCompleted>
                                 <#if reviewCompleted.auction.id == bid.auction.id && reviewCompleted.reviewCompleted == true>

@@ -54,14 +54,19 @@ public class AuctionController {
         List<Auction> auctions = auctionService.getAllCurrentAuctions();
         model.addAttribute("auctions", auctions);
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
-        System.out.println("Currently Logged In: " + currentlyLoggedIn);
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            if (user == null) {
+                currentlyLoggedIn = false;
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            } else {
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+                model.addAttribute("smallUser", user);
+            }
             return "index";
         } else {
+            model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
             return "index";
         }
     }
@@ -70,13 +75,19 @@ public class AuctionController {
     public String getAuctionById(Model model, @PathVariable int id) {
         model.addAttribute("auction", auctionService.getAuctionById(id));
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            if (user == null) {
+                currentlyLoggedIn = false;
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            } else {
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+                model.addAttribute("smallUser", user);
+            }
             return "an-auction";
         } else {
+            model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
             return "an-auction";
         }
     }
@@ -113,7 +124,7 @@ public class AuctionController {
         auction.setAuctionStatus("active");
         auctionService.createAuction(auction);
 
-        return "redirect:/users/profile/" + sellerId;
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/api/auctions/new-auction/{userId}")
@@ -125,7 +136,7 @@ public class AuctionController {
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            model.addAttribute("smallUser", user);
             return "auctioning";
         } else {
             return "auctioning";
@@ -143,7 +154,7 @@ public class AuctionController {
         //auction.setAuctionStatus("active");
         auctionService.updateAuction(id, auction);
         User user = auctionService.getAuctionById(id).getSeller();
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/api/auctions/update/{id}")
@@ -168,7 +179,7 @@ public class AuctionController {
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            model.addAttribute("smallUser", user);
             return "edit-auction";
         } else {
             return "edit-auction";
@@ -186,7 +197,7 @@ public class AuctionController {
         User user = auctionService.getAuctionById(id).getSeller();
 
         auctionService.deleteAuction(id);
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 
 

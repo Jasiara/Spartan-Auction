@@ -33,10 +33,12 @@ public class AuctionService {
 
     public List<Auction> getAllCurrentAuctions() {
         checkForActiveAuctions(auctionRepository.findAllCurrentAuctions());
-        return auctionRepository.findAllCurrentAuctions();}
-
+        return auctionRepository.findAllCurrentAuctions();
+    }
     public Auction getAuctionById(int id) {
-        return auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
+        Auction auction = auctionRepository.findById(id).orElseThrow(() -> new RuntimeException("Auction not found"));
+        updateHighestBidForOneAuction(auction);
+        return auction;
     }
 
     public List<Auction> getCurrentAuctionsForUser(int id) {
@@ -92,7 +94,11 @@ public class AuctionService {
         auction.setTitle(auctionDetails.getTitle());
         auction.setDescription(auctionDetails.getDescription());
         auction.setStartingPrice(auctionDetails.getStartingPrice());
-        auction.setCurrentPrice(auctionDetails.getCurrentPrice());
+        if (auctionDetails.getStartingPrice() > auctionDetails.getCurrentPrice()) {
+            auction.setCurrentPrice(auctionDetails.getStartingPrice());
+        } else  {
+            auction.setCurrentPrice(auctionDetails.getCurrentPrice());
+        }
         auction.setAuctionStatus(auctionDetails.getAuctionStatus());
         auction.setSeller(auctionDetails.getSeller());
         auction.setDateAndTime(auctionDetails.getDateAndTime());
@@ -116,6 +122,20 @@ public class AuctionService {
         }
 
         auctionRepository.deleteById(id);
+    }
+
+    public void updateHighestBidForOneAuction(Auction auction) {
+        double highestBid = bidService.getHighestBidForAuction(auction.getId());
+        auction.setCurrentPrice(highestBid);
+        auctionRepository.save(auction);
+    }
+
+    public void updateHighestBidForAllAuction(List<Auction> auctions) {
+        for (int i = 0; i < auctions.size(); i++) {
+            double highestBid = bidService.getHighestBidForAuction(auctions.get(i).getId());
+            auctions.get(i).setCurrentPrice(highestBid);
+            auctionRepository.save(auctions.get(i));
+        }
     }
 
     public void checkForActiveAuctions(List<Auction> auctions) {

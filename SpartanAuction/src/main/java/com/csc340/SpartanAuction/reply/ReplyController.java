@@ -29,20 +29,18 @@ public class ReplyController {
     @PostMapping("/new/{userId}")
     public String addNewReply(@ModelAttribute("reply") Reply reply, @PathVariable int userId) {
         replyService.addNewReply(reply);
-        System.out.println(reply.toString());
-        System.out.println(reply.getReview().getProviderUser().getId());
-        return "redirect:/users/profile/" + userId;
+        return "redirect:/users/profile";
     }
 
-    @PutMapping("/update/{id}")
-    public Reply updateReply(@PathVariable int id, @RequestBody Reply reply) {
+    @PostMapping("/update/{id}")
+    public String updateReply(@PathVariable int id, @RequestBody Reply reply) {
         replyService.updateReply(id, reply);
-        return replyService.getReplyById(id);
+        return "redirect:/users/profile";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public List<Reply> deleteReplyById(@PathVariable int id) {
+    @GetMapping("/delete/{id}")
+    public String deleteReplyById(@PathVariable int id) {
         replyService.deleteReplyById(id);
-        return replyService.getAllReplies();
+        return "redirect:/users/profile";
     }
 }

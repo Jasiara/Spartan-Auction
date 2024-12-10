@@ -104,7 +104,7 @@ header {
     margin: 2% 6%;
 }
 
-.item .navy-button, .item .navy-button-2 {
+.item .navy-button, .item .navy-button-2, .item .delete-bids{
     background-color: #0f2044;
     color: #e7e7ee;
     text-decoration: none;
@@ -114,7 +114,13 @@ header {
     border-radius: 10px;
 }
 
-.item .navy-button-2 {
+.item .delete-bids {
+    background-color: red;
+}
+
+
+
+.item .navy-button-2, .item .delete-bids {
     margin: 3%;
     padding: 3% 20%;
 }
@@ -123,6 +129,11 @@ header {
 .item .navy-button:hover, .item .navy-button-2:hover{
     background-color: #ffb71b;
     color: #0f2044;
+}
+
+.item .delete-bids:hover {
+    background: maroon;
+    color: #e7e7ee;
 }
 
 img {
@@ -305,6 +316,14 @@ img {
     color: red;
     font-size: 300%;
     text-align: center;
+}
+
+.trash-reply .fa-trash {
+    font-size: 150%;
+}
+
+.fa-pencil {
+    font-size: 150%;
 }
 
 .profile-img-small {
@@ -539,6 +558,37 @@ img {
     height: 125px;
 }
 
+.profile-img-small-header {
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    margin: 1%;
+}
+
+.link-header-div {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-header-div p {
+    margin-left: 5%;
+    text-decoration: none;
+    color: #0f2044;
+}
+
+.link-header-div .fa-user-circle {
+    font-size: 350%;
+    color: #0f2044;
+}
+
+
+.bid-confirm-form img {
+  width: 200px;
+  height: 200px;
+}
+
 .delete {
     background-color: red;
     text-align: center;
@@ -569,4 +619,3 @@ img {
     background-color: #e7e7ee;
     padding-bottom: 3%;
 }*/
-

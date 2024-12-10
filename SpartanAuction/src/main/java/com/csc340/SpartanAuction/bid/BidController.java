@@ -40,10 +40,13 @@ public class BidController {
     }
 
     @PostMapping("/new")
-    public List<Bid> addNewBid(@ModelAttribute("bid") Bid bid) {
+    public String addNewBid(@ModelAttribute("bid") Bid bid) {
         //System.out.println(bid.toString());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByUsername(username);
+        bid.setUser(user);
         bidService.addNewBid(bid);
-        return bidService.getAllBids();
+        return "redirect:/public/api/auctions/" + bid.getAuction().getId();
     }
 
     @GetMapping("/making-bid/{itemId}")
@@ -54,7 +57,7 @@ public class BidController {
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            model.addAttribute("smallUser", user);
             return "a-bid";
         } else {
             return "a-bid";
@@ -67,9 +70,21 @@ public class BidController {
         return bidService.getBidById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    /*@DeleteMapping("/delete/{id}")
     public List<Bid> deleteBidById(@PathVariable int id) {
         bidService.deleteBidById(id);
         return bidService.getAllBids();
+    }*/
+
+    @GetMapping("/delete/one/{bidId}")
+    public String deleteBidById(@PathVariable int bidId) {
+        bidService.deleteBidById(bidId);
+        return "redirect:/users/profile";
+    }
+
+    @GetMapping("/delete/all/{userId}/auction/{auctionId}")
+    public String deleteAllBidsForOneUserAndAuction(@PathVariable int userId, @PathVariable int auctionId) {
+        bidService.deleteAllBidsForOneUserAndAuction(userId, auctionId);
+        return "redirect:/users/profile";
     }
 }

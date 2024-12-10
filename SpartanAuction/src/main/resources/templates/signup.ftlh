@@ -14,7 +14,7 @@
     <main class="sign-up-main">
         <div class="sign-up-login-form">
             <h2>Sign-Up</h2>
-            <form action="/users/new" method="post">
+            <form action="/signup" method="post">
                 <label for="name">Name</label>
                 <br>
                 <input type="text" name="name" id="name" required>
@@ -38,7 +38,7 @@
                 <p><span id="message"></span></p>
                 <div>
                     <div>
-                        <a href="/users/login" class="sign-log-link">Login Instead</a>
+                        <a href="/login" class="sign-log-link">Login Instead</a>
                     </div>
                     <div>
                         <button class="sign-log-button">Sign-Up</button>

@@ -66,7 +66,7 @@ public class UserController {
     }*/
 
 
-    @PostMapping("/users/new")
+    @PostMapping("/signup")
     public String addNewUser(@ModelAttribute("user") User user) {
         user.setUserType("user");
         user.setLocation(" ");
@@ -105,14 +105,12 @@ public class UserController {
     @GetMapping({"/users/profile", "/users/update/profile/{id}"})
     public String showProfile(Model model /*@PathVariable int id*/) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(name);
         int id = userService.getUserByUsername(name).getId();
 
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
-
-        System.out.println(id);
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("smallUser", userService.getUserById(id));
         List<Bid> currentBids = bidService.getCurrentBidsForUser(id);
         List<Auction> currentAuctions = auctionService.getAllAuctionsForUser(id);
         List<Bid> pastBids = bidService.getPastBidsForUser(id);
@@ -143,7 +141,6 @@ public class UserController {
         int currentAuctionsSize = currentAuctions.size();
         boolean loggedIn = false;
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-        model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         List<Review> customerReviews = reviewService.getAllReviewsForOneUser(id);
         List<Reply> replies = replyService.getAllRepliesForOneUser(id);
         model.addAttribute("currentAuctions", currentAuctions);
@@ -153,7 +150,21 @@ public class UserController {
         model.addAttribute("customerReviewsAmount", customerReviews.size());
         model.addAttribute("replies", replies);
         model.addAttribute("repliesAmount", replies.size());
-        return "other-profile";
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            if (user == null) {
+                currentlyLoggedIn = false;
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            } else {
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+                model.addAttribute("smallUser", user);
+            }
+            return "other-profile";
+        } else {
+            model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            return "other-profile";
+        }
     }
 
     @PostMapping("/users/update/{id}")
@@ -172,13 +183,14 @@ public class UserController {
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("smallUser", userService.getUserById(id));
         return "update-user";
     }
 
     @GetMapping("/users/delete/{id}")
     public String deleteUserById(@PathVariable int id) {
         userService.deleteUserById(id);
-        return "redirect:/users/login";
+        return "redirect:/login";
     }
 
 }

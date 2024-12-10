@@ -23,4 +23,7 @@ public interface BidRepository extends JpaRepository<Bid, Integer> {
     @Query(value = "SELECT (CASE WHEN MAX(bid.amount) != 0 then MAX(bid.amount) else 0 END) FROM bid WHERE auction_id = :auctionId", nativeQuery = true)
     double getHighestBidForAuction(@Param("auctionId")int auctionId);
 
+    @Query(value = "SELECT * FROM bid WHERE auction_id = :auctionId and user_id = :userId;", nativeQuery = true)
+    List<Bid> getAllBidsForOneUserForOneAuction(@Param("userId")int userId, @Param("auctionId")int auctionId);
+
 }

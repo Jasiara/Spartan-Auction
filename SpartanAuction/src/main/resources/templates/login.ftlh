@@ -24,7 +24,7 @@
                 <a href="#">Forgot Username or Password</a><br>
                 <div>
                     <div>
-                        <a href="/users/signup" class="sign-log-link">Sign Up Instead</a>
+                        <a href="/signup" class="sign-log-link">Sign Up Instead</a>
                     </div>
                     <div>
                         <button class=".sign-log-button">Login</button>

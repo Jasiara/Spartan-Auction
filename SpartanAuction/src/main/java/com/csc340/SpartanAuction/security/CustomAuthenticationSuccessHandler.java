@@ -22,7 +22,6 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
         } else {
             redirectURL = "/public/api/auctions";
         }
-        System.out.println("Redirect URL: " + redirectURL);
         response.sendRedirect(redirectURL);
 
     }

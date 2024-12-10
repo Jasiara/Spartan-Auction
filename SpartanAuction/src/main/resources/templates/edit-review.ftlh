@@ -35,7 +35,7 @@
                     <input type="text" name="reviewUser" id="reviewUser" value="${review.reviewUser.id}" class="hide">
                     <input type="text" name="providerUser" id="providerUser" value="${auction.seller.id}" class="hide">
                     <div>
-                        <a class="cancel sign-log-link" href="/users/profile/${review.reviewUser.id}">Cancel Edit</a>
+                        <a class="cancel sign-log-link" href="/users/profile">Cancel Edit</a>
                         <button class="bid sign-log-button">Edit Review</button>
                     </div>
                 </form>

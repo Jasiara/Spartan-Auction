@@ -45,7 +45,7 @@ public class ReviewController {
         review.toString();
         reviewService.addNewReview(review, auctionId);
 
-        return "redirect:/users/profile/" + review.getReviewUser().getId();
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/write-review/user/{userId}/auction/{auctionId}")
@@ -62,7 +62,7 @@ public class ReviewController {
         reviewService.updateReview(id, review);
 
         User user = reviewService.getReviewById(id).getReviewUser();
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/update-review/{reviewId}/auction/{auctionId}")
@@ -76,7 +76,7 @@ public class ReviewController {
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
             User user = userService.getUserByUsername(name);
-            model.addAttribute("user", user);
+            model.addAttribute("smallUser", user);
             return "edit-review";
         } else {
             return "edit-review";
@@ -89,6 +89,6 @@ public class ReviewController {
         User user = reviewService.getReviewById(id).getReviewUser();
 
         reviewService.deleteReviewById(id);
-        return "redirect:/users/profile/" + user.getId();
+        return "redirect:/users/profile";
     }
 }

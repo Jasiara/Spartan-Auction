@@ -17,6 +17,7 @@
                             <p class="black-writing">Your Highest Bid: $ ${bid.amount}</p>
                             <p class="black-writing" id="auction-end${index}">Time Left: </p>
                             <p><span class="black-writing">User: </span><a href="/users/other-profile/${bid.auction.seller.id}">@${bid.auction.seller.username}</a></p>
+                            <a href="/bids/delete/all/${user.id}/auction/${bid.auction.id}" class="delete-bids">Delete Bids</a>
                             <#assign index = index + 1>
                         </div>
                     </a>
@@ -26,7 +27,7 @@
                 <br>
                 <p class="no-current-bids"> You are currently not bidding on any items</p>
                 <br>
-                <p class="no-current-bids">Would you like to find some <a href="/api/auctions">items?</a></p>
+                <p class="no-current-bids">Would you like to find some <a href="/public/api/auctions">items?</a></p>
                 <br><br><br>
             </div>
         </#if>

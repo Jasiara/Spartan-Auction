@@ -64,6 +64,16 @@
                 <p>Reply:</p>
                 <p>${reply.comment}</p>
                 </div>
+                <#if loggedIn == true>
+                    <div class="trash-reply">
+                        <form action="/replies/delete/${reply.id}" method="get">
+                            <button><i class="fa fa-trash"></i> Delete Reply</button>
+                        </form>
+                    </div>
+                    <div>
+                        <button><i class="fa fa-pencil"></i> Edit reply</button>
+                    </div>
+                </#if>
             </div>
         </#if>
         <#assign idNum = idNum + 1>

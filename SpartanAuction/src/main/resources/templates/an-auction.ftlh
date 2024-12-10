@@ -25,7 +25,7 @@
                 <p id="auction-end">Time Left: ${auction.dateAndTime}</p>
                 <p>Description: ${auction.description}</p>
                 <p>Current Highest Bid: $ ${auction.currentPrice}</p>
-                <p>Seller: <a href="/users/other-profile/${auction.seller.id}">@${auction.seller.username}</a></p>
+                <p>Seller: <a href="/public/users/other-profile/${auction.seller.id}">@${auction.seller.username}</a></p>
                 <div>
                     <a href="/bids/making-bid/${auction.id}" class="link-button-small">Place A Bid</a>
                 </div>

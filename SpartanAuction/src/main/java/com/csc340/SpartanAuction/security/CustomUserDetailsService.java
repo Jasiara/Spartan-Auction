@@ -24,7 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         authList.add(new SimpleGrantedAuthority(user.getUserType()));
 
-        System.out.println("Auth List: " + authList);
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(), user.getPassword(), authList);

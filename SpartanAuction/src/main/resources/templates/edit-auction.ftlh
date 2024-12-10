@@ -17,7 +17,7 @@
                 <h2>Edit Auction</h2>
                 <a href="/api/auctions/delete/${auction.id}"><i class="fa fa-trash"></i></a>
             </div>
-            <#if auction.imagePath = "imagePath">
+            <#if auction.imagePath == "imagePath">
                 <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
                 <img src="/images/no-auction-photo.jpg" alt="">
             <#else>
@@ -51,7 +51,7 @@
                 <input type="text" name="currentPrice" value=${auction.currentPrice} class="hide">
                 <div>
                     <button type="submit" class="sign-log-button">Update Auction</button>
-                    <a href="/users/profile/${auction.seller.id}" class="sign-log-link">Cancel</a>
+                    <a href="/users/profile" class="sign-log-link">Cancel</a>
                 </div>
             </form>
         </div>

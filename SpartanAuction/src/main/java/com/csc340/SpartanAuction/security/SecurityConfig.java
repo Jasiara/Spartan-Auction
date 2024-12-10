@@ -22,6 +22,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
         requestCache.setMatchingRequestParameterName(null);
+
+
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
@@ -29,7 +31,7 @@ public class SecurityConfig {
                                 DispatcherType.ERROR).permitAll()
                         .requestMatchers("/ADMIN/**").hasAuthority("admin")
                         .requestMatchers("/users/**", "/bids/**", "/reviews/**", "/replies/**").hasAuthority("user")
-                        .requestMatchers("/public/**", "/", "/signup", "/login").permitAll()
+                        .requestMatchers("/public/**", "/", "/signup", "/login", "/css/**", "/images/**","/script/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

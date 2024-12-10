@@ -96,4 +96,14 @@ public class BidService {
         bidRepository.deleteById(id);
     }
 
+    public void deleteAllBidsForOneUserAndAuction(int userId, int auctionId) {
+        List<Bid> bids = bidRepository.getAllBidsForOneUserForOneAuction(userId,auctionId);
+
+        while (!bids.isEmpty()) {
+            Bid deletedBid = bids.get(0);
+            bids.remove(0);
+            bidRepository.deleteById(deletedBid.getId());
+        }
+    }
+
 }
