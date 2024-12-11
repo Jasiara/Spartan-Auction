@@ -44,6 +44,7 @@
         for (let index = 0; index < repliesArray.length; index++) {
             repliesArray[index].addEventListener('click', () => {
                 let replyForm = document.getElementById("reply-form-" + index );
+                console.log(replyForm)
                 replyForm.classList.add("show");
                 replyForm.classList.remove("hide");
             });

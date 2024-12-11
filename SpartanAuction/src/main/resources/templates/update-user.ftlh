@@ -44,8 +44,12 @@
                 <br>
                 <input type="text" name="userType" id="userType" value=${user.userType} class="hide">
                 <div>
-                    <a href="/users/profile" class="sign-log-link">Cancel</a>
-                    <button type=submit class=".sign-log-button">Update Profile</button>
+                    <div>
+                        <a href="/users/profile" class="sign-log-link">Cancel</a>
+                    </div>
+                    <div>
+                        <button type=submit class=".sign-log-button">Update Profile</button>
+                    </div>
                 </div>
             </form>
         </div>

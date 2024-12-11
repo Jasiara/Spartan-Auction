@@ -104,6 +104,36 @@ public class AuctionController {
         return auctionService.getAuctionsByCategory(category);
     }
 
+    @GetMapping("/public/api/auctions/search")
+    public String searchForAuctions(@RequestParam(name = "searchTerm")String searchTerm, Model model) {
+        List<Auction> allAuctions = auctionService.getAuctionsByName(searchTerm);
+        List<Auction> auctionsByCategory = auctionService.getAuctionsByCategory(searchTerm);
+        for (int i = 0; i < auctionsByCategory.size(); i++) {
+            if (!allAuctions.contains(auctionsByCategory.get(i))) {
+                allAuctions.add(auctionsByCategory.get(i));
+            }
+        }
+        model.addAttribute("title", searchTerm);
+        model.addAttribute("auctions", allAuctions);
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            if (user == null) {
+                currentlyLoggedIn = false;
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            } else {
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+                model.addAttribute("smallUser", user);
+            }
+            return "search";
+        } else {
+            model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            return "search";
+        }
+
+    }
+
     // GET statistics for items by provider
     @GetMapping("/api/auctions/provider/{providerId}/statistics")
     public List<Auction> getAuctionsByProvider(@PathVariable int providerId) {

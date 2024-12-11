@@ -49,9 +49,14 @@
                 <input type="text" name="seller" value=${auction.seller.id} class="hide">
                 <input type="text" name="auctionStatus" value=${auction.auctionStatus} class="hide">
                 <input type="text" name="currentPrice" value=${auction.currentPrice} class="hide">
+                <input type="text" name="startingPrice" value=${auction.startingPrice} class="hide">
                 <div>
-                    <button type="submit" class="sign-log-button">Update Auction</button>
-                    <a href="/users/profile" class="sign-log-link">Cancel</a>
+                    <div>
+                        <button type="submit" class="sign-log-button">Update Auction</button>
+                    </div>
+                    <div>
+                        <a href="/users/profile" class="sign-log-link">Cancel</a>
+                    </div>
                 </div>
             </form>
         </div>

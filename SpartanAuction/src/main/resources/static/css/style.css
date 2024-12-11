@@ -3,6 +3,7 @@ body {
     padding: 0;
     margin: 0;
     color: #0f2044;
+    font-family: "Times New Roman";
 }
 
 header {
@@ -17,6 +18,12 @@ header {
     text-decoration: none;
     font-size: 135%;
     color: #0f2044;
+}
+
+.header-items {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 .search {
@@ -45,6 +52,14 @@ header {
     color: #0f2044;
 }
 
+.search button {
+    border: none;
+}
+
+.search button:hover {
+    background-color: transparent;
+}
+
 .sign-up-login {
     display: flex;
     justify-content: space-around;
@@ -54,6 +69,7 @@ header {
     background-color: #0f2044;
     padding: 10% 60%;
     margin: 0 10%;
+    border: none;
     border-radius: 10px;
     color: #e7e7ee;
     text-decoration: none;
@@ -61,6 +77,23 @@ header {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.link-button-button {
+    background-color: #0f2044;
+    padding: 10% 60%;
+    margin: 0 40%;
+    border-radius: 10px;
+    color: #e7e7ee;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    width: 125px;
+    font-family: "Times New Roman";
 }
 
 .link-button:hover {
@@ -236,6 +269,7 @@ img {
     color: #0f2044;
     border-radius: 10px;
     border: solid 2px #0f2044;
+    text-align: center;
 }
 
 .sign-log-link:hover {
@@ -246,10 +280,22 @@ img {
 .sign-up-login-form button {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
-    border: solid 2px #0f2044;
+    background-color: #e7e7ee;
+    text-decoration: none;
+    padding: 5% 8%;
+    margin: 3%;
+    color: #0f2044;
     border-radius: 10px;
-    padding: 0% 8%;
+    border: solid 2px #0f2044;
+    font-size: 100%;
+    cursor: pointer;
+    width: 105px;
+    font-family: "Times New Roman";
+}
+
+.sign-up-login-form button:hover {
+    background-color: #ffb71b;
+    color: #0f2044;
 }
 
 .forgot {
@@ -324,6 +370,12 @@ img {
 
 .fa-pencil {
     font-size: 150%;
+}
+
+.edit-and-delete-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .profile-img-small {
@@ -547,7 +599,7 @@ img {
     color: #e7e7ee;
 }
 
-.bid:hover {
+.sign-up-login-form .bid:hover {
     background-color: green;
     color: #e7e7ee;
 }
@@ -603,6 +655,12 @@ img {
     background-color: maroon;
 }
 
+.search-heading {
+    margin: 3%;
+    text-transform: uppercase;
+    font-size: 300%;
+}
+
 .hide {
     display: none;
 }
@@ -619,3 +677,4 @@ img {
     background-color: #e7e7ee;
     padding-bottom: 3%;
 }*/
+
