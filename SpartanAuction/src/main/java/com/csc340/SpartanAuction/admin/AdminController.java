@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -90,17 +93,25 @@ public class AdminController {
     @GetMapping("/admin/auctions/edit/{id}")
     public String editAuction(@PathVariable int id, Model model) {
         Auction auction = AuctionService.getAuctionById(id);  // Fetch auction by ID
+
+        Timestamp dateAndTime = auction.getDateAndTime();
+        LocalDateTime localDateTime = dateAndTime.toLocalDateTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        String auctionEnd = localDateTime.format(formatter);
+        model.addAttribute("auctionEnd", auctionEnd);
+
         model.addAttribute("auction", auction);
         return "admin-edit-auction";  // Render a page for editing the auction
     }
 
-    @GetMapping("/logout")
+    /*@GetMapping("/logout")
     public String logout(HttpSession session) {
         // Invalidate the session to log the user out
         session.invalidate();
         // Redirect to the login page
         return "redirect:/users/login";
-    }
+    }*/
 
     @PostMapping("/admin/users/edit/{id}")
     public String saveEditedUser(@PathVariable int id, @ModelAttribute("user") User user) {
@@ -114,7 +125,13 @@ public class AdminController {
     }
     // Route to save edited auction (POST)
     @PostMapping("/admin/auctions/edit/{id}")
-    public String saveEditedAuction(@PathVariable int id, @ModelAttribute Auction auctionDetails) {
+    public String saveEditedAuction(@PathVariable int id, @ModelAttribute Auction auctionDetails, @RequestParam String auctionEnd) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime localDateTime = LocalDateTime.parse(auctionEnd, formatter);
+        Timestamp dateAndTime = Timestamp.valueOf(localDateTime);
+
+        auctionDetails.setDateAndTime(dateAndTime);
+
         try {
             Auction updatedAuction = AuctionService.updateAuction(id, auctionDetails);  // Update auction details
             return "redirect:/admin/auctions";  // Redirect to the auction management page

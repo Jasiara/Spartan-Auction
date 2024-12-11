@@ -54,7 +54,14 @@ public class ReviewController {
         model.addAttribute("auction", auctionService.getAuctionById(auctionId));
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
-        return "write-review";
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            model.addAttribute("smallUser", user);
+            return "write-review";
+        } else {
+            return "write-review";
+        }
     }
 
     @PostMapping("/update/{id}")

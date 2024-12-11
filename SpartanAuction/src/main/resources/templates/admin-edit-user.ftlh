@@ -97,6 +97,13 @@
                     font-size: 20px;
                 }
             }
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: inline-block;
+            }
         </style>
 </head>
 <body>
@@ -126,15 +133,8 @@
             <!-- Password -->
             <label for="password">Password</label>
             <br>
-            <input type="password" name="password" id="password" required>
+            <input type="password" name="password" id="password" value="${user.password}" required>
             <br>
-
-            <!-- Confirm Password -->
-            <label for="confirm-password">Confirm Password</label>
-            <br>
-            <input type="password" name="confirm-password" id="confirm-password" required>
-            <br>
-
             <!-- User Type -->
             <label for="userType">Account Type</label>
             <br>
@@ -143,7 +143,9 @@
                 <option value="admin">Admin</option>
             </select>
             <br><br>
-
+            <input type="hidden" name="imagePath" id="imagePath" value="${user.imagePath}">
+            <input type="hidden" name="ratingAverage" id="ratingAverage" value="${user.ratingAverage}">
+            <input type="hidden" name="location" id="location" value="${user.location}">
             <!-- Submit Button -->
             <button type="submit">Submit</button>
         </form>

@@ -23,7 +23,7 @@
                 <br>
                 <label for="description">Description</label>
                 <br>
-                <input type="text" name="description" id="description" required></input>
+                <textarea rows="5" cols="40" name="description" id="description" required></textarea>
                 <br>
                 <label for="startingPrice">Starting Price</label>
                 <br>

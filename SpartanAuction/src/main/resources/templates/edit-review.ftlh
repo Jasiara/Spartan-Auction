@@ -31,7 +31,7 @@
                     <label for="rating">Stars:</label>
                     <input type="number" name="rating" id="rating" min="0" max="5" step="1" value="${review.rating}">
                     <label for="comment">Review:</label><br>
-                    <textarea name="comment" id="comment" rows="5" cols="40" value="comment"></textarea><br>
+                    <textarea name="comment" id="comment" rows="5" cols="40">${review.comment}</textarea><br>
                     <input type="text" name="reviewUser" id="reviewUser" value="${review.reviewUser.id}" class="hide">
                     <input type="text" name="providerUser" id="providerUser" value="${auction.seller.id}" class="hide">
                     <div>

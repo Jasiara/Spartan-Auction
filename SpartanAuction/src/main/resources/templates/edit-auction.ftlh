@@ -33,7 +33,7 @@
                 <br>
                 <label for="description">Description</label>
                 <br>
-                <input type="text" name="description" id="description" value="${auction.description}">
+                <textarea rows="5" cols="40" type="text" name="description" id="description">${auction.description}</textarea>
                 <br>
                 <label for="imagePath">Image Path</label>
                 <br>

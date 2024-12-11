@@ -127,6 +127,7 @@
                    </#list>
                </tbody>
                </table>
+               <a href="/admin/home" class="button">Back to Dashboard</a>
                </main>
                </body>
                </html>

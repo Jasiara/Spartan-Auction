@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write Review Page</title>
+    <title>Write Review For ${auction.seller.id}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/css/style.css">
 
@@ -32,8 +32,12 @@
                     <input type="text" name="reviewUser" id="reviewUser" value="${user.id}" class="hide">
                     <input type="text" name="providerUser" id="providerUser" value="${auction.seller.id}" class="hide">
                     <div>
-                        <a class="cancel sign-log-link" href="">Cancel Review</a>
-                        <button class="bid sign-log-button">Write Review</button>
+                        <div>
+                            <a href="/users/profile" class="cancel sign-log-link" href="">Cancel Review</a>
+                        </div>
+                        <div>
+                            <button class="bid sign-log-button">Write Review</button>
+                        </div>
                     </div>
                 </form>
             </div>

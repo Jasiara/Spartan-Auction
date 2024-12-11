@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.ERROR).permitAll()
-                        .requestMatchers("/ADMIN/**").hasAuthority("admin")
+                        .requestMatchers("/ADMIN/**", "/admin/**").hasAuthority("admin")
                         .requestMatchers("/users/**", "/bids/**", "/reviews/**", "/replies/**").hasAuthority("user")
                         .requestMatchers("/public/**", "/", "/signup", "/login", "/css/**", "/images/**","/script/**").permitAll()
                         .anyRequest().authenticated()
