@@ -10,13 +10,20 @@ import com.csc340.SpartanAuction.review.Review;
 import com.csc340.SpartanAuction.review.ReviewService;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompleted;
 import com.csc340.SpartanAuction.reviewCompleted.ReviewCompletedService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * UserController.java.
@@ -69,8 +76,61 @@ public class UserController {
     @PostMapping("/signup")
     public String addNewUser(@ModelAttribute("user") User user) {
         user.setUserType("user");
-        user.setLocation(" ");
+        //user.setLocation(" ");
         user.setImagePath("imagePath");
+        String ip = "";
+        String location = "";
+        //Third party APIs used to get location of user when they sign-up
+        try {
+            String url = "https://api.ipify.org?format=json";
+            RestTemplate restTemplate = new RestTemplate();
+            ObjectMapper mapper = new ObjectMapper();
+
+            String jsonListResponse = restTemplate.getForObject(url, String.class);
+            JsonNode root = mapper.readTree(jsonListResponse);
+
+            ip = root.get("ip").asText();
+
+
+            //The response from the above API is a JSON Array, which we loop through.
+            /*for (JsonNode rt : root) {
+                //Extract relevant info from the response and use it for what you want, in this case build a Brewery object
+                String quote = rt.get("quote").asText();
+                String author = rt.get("author").asText();
+
+                Quote quote1 = new Quote(quote, author);
+                quoteList.add(quote1);
+            }*/
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+        try {
+            String url = "http://ip-api.com/json/"+ip;
+            RestTemplate restTemplate = new RestTemplate();
+            ObjectMapper mapper = new ObjectMapper();
+
+            String jsonListResponse = restTemplate.getForObject(url, String.class);
+            JsonNode root = mapper.readTree(jsonListResponse);
+
+            location = root.get("city").asText();
+            location = location + ", " +root.get("region").asText();
+
+            //The response from the above API is a JSON Array, which we loop through.
+            /*for (JsonNode rt : root) {
+                //Extract relevant info from the response and use it for what you want, in this case build a Brewery object
+                String quote = rt.get("quote").asText();
+                String author = rt.get("author").asText();
+
+                Quote quote1 = new Quote(quote, author);
+                quoteList.add(quote1);
+            }*/
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE,
+                    null, ex);
+        }
+
+        user.setLocation(location);
         userService.addNewUser(user);
         return "redirect:/users/profile";
     }
