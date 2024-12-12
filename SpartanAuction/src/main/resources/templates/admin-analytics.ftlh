@@ -123,7 +123,7 @@
             <div class="card">
                 <i class="fas fa-comments"></i>
                 <h2>Total Reviews</h2>
-                <p>1</p>
+                <p>3</p>
             </div>
         </div>
     </div>
