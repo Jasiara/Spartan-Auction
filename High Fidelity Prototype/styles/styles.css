@@ -183,11 +183,17 @@ img {
     justify-content: center;
 }
 
-.profile-img, .profile-desc {
+.profile-img, .profile-desc, .profile-edit {
     margin: 2%;
 }
 
 .profile-img {
+    border-radius: 100%;
+    width: 250px;
+    height: 250px;
+}
+
+.profile-img-small {
     border-radius: 100%;
     width: 250px;
     height: 250px;
@@ -547,7 +553,7 @@ img {
     margin: 2%;
 }
 
-.fa-plus {
+.fa-plus, .fa-gear {
     font-size: 1500%;
     color: #0f2044;
 }
@@ -635,3 +641,4 @@ td, th {
 .rating-number {
     display: inline;
 }
+
