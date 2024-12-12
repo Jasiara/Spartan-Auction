@@ -116,13 +116,13 @@
                 <#list reviews as review>
                     <tr>
                         <td>${review.id}</td>
-                        <td>${review.reviewUser}</td> <!-- Assuming the review has a user object -->
-                        <td>${review.auction.id}</td> <!-- Assuming the review has an auction object -->
+                        <td>${review.reviewUser.username}</td> <!-- Assuming the review has a user object -->
+                        <td>${review.providerUser.username}</td> <!-- Assuming the review has an auction object -->
                         <td>${review.rating}</td>
                         <td>${review.comment}</td>
                         <td>
-                            <a href="/admin/reviews/edit/${review.id}" class="button">Edit</a>
-                            <a href="/admin/reviews/delete/${review.id}" class="button" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>
+                            <a href="admin/reviews/delete/${review.id}"><i class="fa fa-trash"></i></a>
+        
                         </td>
                     </tr>
                 </#list>
