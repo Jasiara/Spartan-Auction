@@ -130,7 +130,7 @@
 
             <div class="card">
                 <i class="fas fa-cogs"></i>
-                <a href="/admin/settings">Settings</a>
+                <a href="/admin/reviews">Manage Reviews</a>
             </div>
 
             <div class="card">
@@ -141,24 +141,8 @@
     </div>
 </body>
 </html>
-<<<<<<< HEAD
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-     <style>
-            /* General Body Styling */
-            body {
-                font-family: 'Arial', sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f9ff;
-                color: #333;
-            }
 
+<<<<<<< HEAD
             /* Main Container Styling */
             .dashboard-main {
                 max-width: 800px;
@@ -234,3 +218,4 @@
     </div>
 </body>
 </html>
+

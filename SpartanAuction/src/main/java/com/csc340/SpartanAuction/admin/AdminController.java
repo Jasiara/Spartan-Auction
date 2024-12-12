@@ -1,7 +1,9 @@
 package com.csc340.SpartanAuction.admin;
 
+import com.csc340.SpartanAuction.review.ReviewService;
 import com.csc340.SpartanAuction.user.User;
 import com.csc340.SpartanAuction.user.UserService;
+import com.csc340.SpartanAuction.review.Review;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import com.csc340.SpartanAuction.auction.Auction;
@@ -23,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private AuctionService AuctionService;
+
+    @Autowired
+    private ReviewService ReviewService;
 
 
     @GetMapping("/admin/login")
@@ -60,6 +65,39 @@ public class AdminController {
         List<Auction> auctions = AuctionService.getAllAuctions();
         model.addAttribute("auctions", auctions);
         return "admin-manage-auctions";
+    }
+
+    // Route to manage auctions
+    @GetMapping("/admin/reviews")
+    public String manageReviews(Model model) {
+        // Fetch all auctions (use AuctionService to interact with AuctionRepository)
+        List<Review> reviews = ReviewService.getAllReviews();
+        model.addAttribute("reviews", reviews);
+        return "admin-reviews";
+    }
+
+    @GetMapping("/admin/reviews/delete/{id}")
+    public String deleteReview(@PathVariable int id) {
+        ReviewService.deleteReviewById(id);
+        return "redirect:/admin/reviews";
+    }
+
+    @GetMapping("/admin/reviews/edit/{id}")
+    public String editReview(@PathVariable int id, Model model) {
+        Review review = ReviewService.getReviewById(id);
+        model.addAttribute("review", review);
+        return "admin-edit-review";
+    }
+
+    @PostMapping("/admin/reviews/edit/{id}")
+    public String saveEditedReview(@PathVariable int id, @ModelAttribute Review review) {
+        try {
+            ReviewService.updateReview(id, review);
+            return "redirect:/admin/reviews";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
     }
 
     // Delete User
