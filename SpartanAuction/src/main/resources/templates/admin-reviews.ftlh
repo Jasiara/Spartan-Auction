@@ -116,7 +116,7 @@
                 <#list reviews as review>
                     <tr>
                         <td>${review.id}</td>
-                        <td>${review.user.username}</td> <!-- Assuming the review has a user object -->
+                        <td>${review.reviewUser}</td> <!-- Assuming the review has a user object -->
                         <td>${review.auction.id}</td> <!-- Assuming the review has an auction object -->
                         <td>${review.rating}</td>
                         <td>${review.comment}</td>
