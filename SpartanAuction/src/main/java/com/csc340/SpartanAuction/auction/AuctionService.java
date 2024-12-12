@@ -82,10 +82,7 @@ public class AuctionService {
                 auction.getDateAndTime(), auction.getImagePath(), auction.getCategory());
         auctionRepository.save(auction);
 
-        ReviewCompleted newReviewCompleted = new ReviewCompleted();
-        newReviewCompleted.setAuction(auction);
-        newReviewCompleted.setReviewCompleted(false);
-        reviewCompletedRepository.save(newReviewCompleted);
+
     }
 
 
@@ -148,6 +145,10 @@ public class AuctionService {
             long timeLeft = auctions.get(i).getDateAndTime().getTime() - currentTime.getTime();
             if (timeLeft < 0) {
                 auctions.get(i).setAuctionStatus("completed");
+                ReviewCompleted newReviewCompleted = new ReviewCompleted();
+                newReviewCompleted.setAuction(auctions.get(i));
+                newReviewCompleted.setReviewCompleted(false);
+                reviewCompletedRepository.save(newReviewCompleted);
             }
             auctionRepository.save(auctions.get(i));
         }
