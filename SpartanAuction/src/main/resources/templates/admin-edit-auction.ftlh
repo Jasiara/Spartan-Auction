@@ -4,7 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Auction</title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9ff;
+            color: #333;
+        }
+
+        /* Main Container Styling */
+        .edit-auction-main {
+            max-width: 400px; /* Reduced width for a smaller form */
+            margin: 100px auto; /* Increased vertical spacing for centering */
+            padding: 30px; /* Reduced padding for a more compact look */
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #004aad;
+        }
+
+        /* Label Styling */
+        label {
+            font-weight: bold;
+            color: #004aad;
+        }
+
+        /* Input Styling */
+        input[type="text"],
+        input[type="number"],
+        input[type="datetime-local"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccd9f0;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #f9fbff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #004aad;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 74, 173, 0.5);
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            background-color: #ffcb05;
+            color: #004aad;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #ffd633;
+        }
+
+        /* Form Container Spacing */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form > * {
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .edit-auction-main {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+
 </head>
 <body>
     <main class="auction-main">
