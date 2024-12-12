@@ -95,6 +95,15 @@ public class AuctionController {
     @GetMapping("/public/api/auctions/stats/{id}")
     public String getAuctionStats(Model model, @PathVariable int id) {
         model.addAttribute("auction", auctionService.getAuctionById(id));
+        model.addAttribute("amountOfBids", bidService.getAmountOfBidsForOneAuction(id));
+        int highestBidderId = bidService.getHighestBidderForOneAuction(id);
+        User highestBidder = userService.getUserById(highestBidderId);
+        if (highestBidder != null) {
+            model.addAttribute("highestBidder", highestBidder);
+            model.addAttribute("highestBidderExist", true);
+        } else {
+            model.addAttribute("highestBidderExist", false);
+        }
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         if (currentlyLoggedIn) {
             String name = SecurityContextHolder.getContext().getAuthentication().getName();

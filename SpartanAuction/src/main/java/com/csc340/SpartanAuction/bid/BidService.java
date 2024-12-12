@@ -66,6 +66,9 @@ public class BidService {
         return highestBid;
     }
 
+    public int getHighestBidderForOneAuction(int auctionId) {
+         return bidRepository.getHighestBidderForOneAuction(auctionId);
+    }
     public List<Bid> getPastBidsForUser(int userId) {
         List<Bid> listOfAllBids = bidRepository.getPastBidsForUser(userId);
         List<Bid> pastBids = new ArrayList<>();
@@ -80,6 +83,10 @@ public class BidService {
 
     public List<Bid> getAllBidsForUser(int userId) {
         return bidRepository.getAllBidsForUser(userId);
+    }
+
+    public int getAmountOfBidsForOneAuction(int auctionId) {
+         return bidRepository.getAllBidsForOneAuction(auctionId).size();
     }
 
     public void updateBid(int id, Bid bid) {

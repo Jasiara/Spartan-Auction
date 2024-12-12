@@ -25,7 +25,13 @@
                 <p id="auction-end">Time Left: ${auction.dateAndTime}</p>
                 <p>Description: ${auction.description}</p>
                 <p>Current Highest Bid: $ ${auction.currentPrice}</p>
-                <p>Seller: <a href="/profile/${auction.seller.id}">@${auction.seller.username}</a></p>
+                <p>Seller: <a href="/users/profile">@${auction.seller.username}</a></p>
+                <p>Amount of Bids: ${amountOfBids}</p>
+                <#if highestBidderExist == true>
+                    <p>Highest Bidder: <a href="/public/users/other-profile/${highestBidder.id}">@${highestBidder.username}</a></p>
+                <#else>
+                    <p>Highest Bidder: Doesn't Exist</p>
+                </#if>
                 <div>
                     <a href="/users/profile" class="link-button-small">Go Back To Profile</a>
                 </div>
