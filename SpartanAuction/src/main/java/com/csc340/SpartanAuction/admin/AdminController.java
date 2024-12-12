@@ -143,6 +143,22 @@ public class AdminController {
         return "admin-edit-auction";  // Render a page for editing the auction
     }
 
+    @GetMapping("/admin/analytics")
+    public String adminAnalyticsPage(Model model) {
+        // Hardcoded values for now
+        int numberOfUsers = 13;
+        int numberOfActiveAuctions = 3;
+        int numberOfReviews = 1;
+
+        // Add these values to the model to be displayed on the page
+        model.addAttribute("numberOfUsers", numberOfUsers);
+        model.addAttribute("numberOfActiveAuctions", numberOfActiveAuctions);
+        model.addAttribute("numberOfReviews", numberOfReviews);
+
+        return "admin-analytics"; // Ensure this corresponds to the HTML page filename
+    }
+
+
     /*@GetMapping("/logout")
     public String logout(HttpSession session) {
         // Invalidate the session to log the user out
