@@ -92,7 +92,7 @@ public class AuctionController {
         }
     }
 
-    @GetMapping("/public/api/auctions/stats/{id}")
+    @GetMapping("/api/auctions/stats/{id}")
     public String getAuctionStats(Model model, @PathVariable int id) {
         model.addAttribute("auction", auctionService.getAuctionById(id));
         model.addAttribute("amountOfBids", bidService.getAmountOfBidsForOneAuction(id));
@@ -183,8 +183,7 @@ public class AuctionController {
         auction.setSeller(seller);
         auction.setAuctionStatus("active");
         auctionService.createAuction(auction);
-
-        return "redirect:/api/auctions/stats/" + auction.getId();
+        return "redirect:/users/profile";
     }
 
     @GetMapping("/api/auctions/new-auction/{userId}")
