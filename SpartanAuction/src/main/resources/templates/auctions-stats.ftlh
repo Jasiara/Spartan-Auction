@@ -26,6 +26,9 @@
                 <p>Description: ${auction.description}</p>
                 <p>Current Highest Bid: $ ${auction.currentPrice}</p>
                 <p>Seller: <a href="/profile/${auction.seller.id}">@${auction.seller.username}</a></p>
+                <div>
+                    <a href="/users/profile" class="link-button-small">Go Back To Profile</a>
+                </div>
             </div>
         </div>
     </main>

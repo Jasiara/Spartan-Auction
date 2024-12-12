@@ -165,9 +165,7 @@ public class UserController {
     @GetMapping({"/users/profile", "/users/update/profile/{id}"})
     public String showProfile(Model model /*@PathVariable int id*/) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(name);
         int id = userService.getUserByUsername(name).getId();
-        System.out.println(id);
         boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
         model.addAttribute("user", userService.getUserById(id));

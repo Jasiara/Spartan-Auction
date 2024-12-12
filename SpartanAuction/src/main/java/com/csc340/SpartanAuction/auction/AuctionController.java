@@ -92,6 +92,27 @@ public class AuctionController {
         }
     }
 
+    @GetMapping("/public/api/auctions/stats/{id}")
+    public String getAuctionStats(Model model, @PathVariable int id) {
+        model.addAttribute("auction", auctionService.getAuctionById(id));
+        boolean currentlyLoggedIn = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+        if (currentlyLoggedIn) {
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.getUserByUsername(name);
+            if (user == null) {
+                currentlyLoggedIn = false;
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            } else {
+                model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+                model.addAttribute("smallUser", user);
+            }
+            return "auctions-stats";
+        } else {
+            model.addAttribute("currentlyLoggedIn", currentlyLoggedIn);
+            return "auctions-stats";
+        }
+    }
+
     // GET item by its name
     @GetMapping("/api/auctions/name/{name}")
     public List<Auction> getAuctionsByName(@PathVariable String name) {
@@ -154,7 +175,7 @@ public class AuctionController {
         auction.setAuctionStatus("active");
         auctionService.createAuction(auction);
 
-        return "redirect:/users/profile";
+        return "redirect:/api/auctions/stats/" + auction.getId();
     }
 
     @GetMapping("/api/auctions/new-auction/{userId}")
@@ -184,7 +205,7 @@ public class AuctionController {
         //auction.setAuctionStatus("active");
         auctionService.updateAuction(id, auction);
         User user = auctionService.getAuctionById(id).getSeller();
-        return "redirect:/users/profile";
+        return "redirect:/api/auctions/stats/" + auction.getId();
     }
 
     @GetMapping("/api/auctions/update/{id}")
