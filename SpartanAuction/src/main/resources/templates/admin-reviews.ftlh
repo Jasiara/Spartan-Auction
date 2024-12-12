@@ -121,8 +121,7 @@
                         <td>${review.rating}</td>
                         <td>${review.comment}</td>
                         <td>
-                            <a href="admin/reviews/delete/${review.id}"><i class="fa fa-trash"></i></a>
-        
+                          <a href="/admin/reviews/delete/${review.id}" class="button">Delete</a>
                         </td>
                     </tr>
                 </#list>
