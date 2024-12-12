@@ -132,7 +132,7 @@ public class UserController {
 
         user.setLocation(location);
         userService.addNewUser(user);
-        return "redirect:/users/profile";
+        return "redirect:/login";
     }
 
     @GetMapping("/signup")

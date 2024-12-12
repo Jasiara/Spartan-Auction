@@ -16,9 +16,15 @@
                         <p class="black-writing">Highest Bid: $ ${bid.auction.currentPrice}</p>
                         <p><span class="black-writing">User: </span><a href="/public/users/other-profile/${bid.auction.seller.id}">@${bid.auction.seller.username}</a></p>
                         <#if reviewsCompletedAmount gt 0>
+                            <#assign reviewsCompletedCount = reviewsCompletedAmount>
                             <#list reviewsCompleted as reviewCompleted>
-                                <#if reviewCompleted.auction.id == bid.auction.id && reviewCompleted.reviewCompleted == true>
-                                    <a href="/reviews/update-review/${reviewCompleted.review.id}/auction/${bid.auction.id}" class="navy-button-2">Edit Review</a>
+                                <#if reviewsCompletedCount gt 0>
+                                    <#if reviewCompleted.auction.id == bid.auction.id && reviewCompleted.reviewCompleted == true>
+                                        <a href="/reviews/update-review/${reviewCompleted.review.id}/auction/${bid.auction.id}" class="navy-button-2">Edit Review</a>
+                                        <#assign reviewsCompletedCount = reviewsCompletedCount - 1>
+                                    <#else>
+                                        <a href="/reviews/write-review/user/${user.id}/auction/${bid.auction.id}" class="navy-button-2">Write A Review</a>
+                                    </#if>
                                 <#else>
                                     <a href="/reviews/write-review/user/${user.id}/auction/${bid.auction.id}" class="navy-button-2">Write A Review</a>
                                 </#if>

@@ -45,7 +45,9 @@ public class ReviewService {
         review = new Review(review.getReviewUser(), review.getProviderUser(), review.getComment(), review.getRating());
         reviewRepository.save(review);
 
+        System.out.println(auctionId);
         ReviewCompleted reviewCompleted = reviewCompletedRepository.getReviewCompletedByAuctionId(auctionId);
+        System.out.println(reviewCompleted);
         reviewCompleted.setReview(review);
         reviewCompleted.setReviewCompleted(true);
         reviewCompletedRepository.save(reviewCompleted);

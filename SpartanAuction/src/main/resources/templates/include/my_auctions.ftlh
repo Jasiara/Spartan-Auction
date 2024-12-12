@@ -4,7 +4,7 @@
     <#assign index = 0>
     <#list auctions as item>
         <#if item.auctionStatus == 'active'>
-            <a href="/public/api/auctions/stats/${item.id}" class="item-link">
+            <a href="/api/auctions/stats/${item.id}" class="item-link">
                 <div class="item">
                     <#if item.imagePath == "imagePath">
                         <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
@@ -35,7 +35,7 @@
     <div>
     <#list auctions as item>
             <#if item.auctionStatus == 'completed'>
-                <a href="/public/api/auctions/stats/${item.id}" class="item-link">
+                <a href="/api/auctions/stats/${item.id}" class="item-link">
                     <div class="item">
                         <#if item.imagePath == "imagePath">
                             <!--IMAGE SOURCE:  https://www.thehouseofr.com/victrola-record-player-->
